@@ -1,0 +1,137 @@
+<% layout('./layouts/boilerplate') %>
+
+    <!-- Card -->
+    <div class="container content-space-2">
+        <div class="w-lg-75 mx-lg-auto">
+            <!-- Card -->
+            <div class="card card-bordered p-4 p-md-7">
+                <h1 class="card-title h2 text-center">Meeting Notes</h1>
+                <a class='text-primary' href="form/<%=meeting._id%>">Edit Meeting</a>
+
+                </p>
+
+                <!-- Media -->
+                <div class="d-flex mb-5">
+                    <div class="flex-shrink-0">
+                        <img class="avatar avatar-sm avatar-circle" src="<%= meeting.counselor.profile_picture %>"
+                            alt="Image Description">
+                    </div>
+
+                    <div class="flex-grow-1 ms-3 mt-2">
+
+                        <p class="card-text">Meeting between <%= meeting.user.firstName + " " + meeting.user.lastName %>
+                                and <%= meeting.counselor.first_name + " " + meeting.counselor.last_name %>
+                        </p>
+
+
+                    </div>
+                    <div>
+                        <a class='btn btn-primary ' href="<%=meeting.zoom_meeting_link %>">Zoom Meet
+                            Link</a>
+                    </div>
+
+                </div>
+
+
+                <!-- End Media -->
+
+                <div class="">
+
+                    <p>
+                        Student Comments:
+                        <%= meeting.student_comments %>
+                    </p>
+
+                    <p class="card-text">Meeting Type: <%= meeting.type.charAt(0).toUpperCase() + meeting.type.slice(1,)
+                            %>
+                    </p>
+                    <p class="card-text">Meeting Date: <span class="format-date">
+                            <%= meeting.start %>
+                        </span>
+                    </p>
+                    <p class="card-text">Meeting Time: <span class="format-time">
+                            <%= meeting.start %>
+                        </span>
+                    </p>
+                    <p class="card-text">Mentor Email: <%= meeting.counselor.email_address %>
+                    </p>
+                    <p class="card-text">Mentor Phone Number: <%= meeting.counselor.phone_number %>
+                    </p>
+                    <p class="card-text">Student Email: <%= meeting.user.email %>
+                    </p>
+
+                </div>
+                <div class="my-3"></div>
+                <div class="meeting-type">
+                    <h3>Essay Help Meeting</h3>
+                    <p>Before the meeting, high schoolers seeking essay help should have a draft of their essay ready
+                        and prepare
+                        specific questions or areas where they need assistance. It's also essential to research their
+                        mentor's
+                        university and program to gain insights into the institution's culture and values.</p>
+                    <p>Mentors, on the other hand, should review the student's essay in advance, highlighting strengths
+                        and areas for
+                        improvement. They should be prepared to provide constructive feedback, offer suggestions for
+                        refining the
+                        essay's structure and content, and share personal experiences that can enhance the student's
+                        writing. This
+                        collaborative approach ensures that the essay reflects the student's unique voice while aligning
+                        with the
+                        university's expectations.</p>
+                </div>
+
+                <div class="meeting-type">
+                    <h3>Strategy Creation Meeting</h3>
+                    <p>High school students seeking strategy creation guidance should come to the meeting with a clear
+                        plan for their
+                        academic and career goals. They should also be ready to discuss their strengths and weaknesses
+                        in achieving
+                        those goals.</p>
+                    <p>Mentors should prepare by familiarizing themselves with the strategies for achieving academic and
+                        career success,
+                        including tips on setting achievable goals, overcoming obstacles, and staying motivated. These
+                        meetings should
+                        empower students to create effective strategies for their future education and career paths.</p>
+                </div>
+
+                <div class="meeting-type">
+                    <h3>Interview Prep Meeting</h3>
+                    <p>In preparation for an interview prep meeting, high schoolers should research the specific
+                        interviews they are
+                        preparing for and have a clear understanding of the expectations and requirements. They should
+                        also be ready to
+                        discuss their strengths and weaknesses in interview skills.</p>
+                    <p>Mentors should provide guidance on interview techniques, including tips on effective
+                        communication, answering
+                        common interview questions, and making a positive impression. These meetings aim to help
+                        students feel confident
+                        and well-prepared for their upcoming interviews, increasing their chances of success.</p>
+                </div>
+
+
+                <!-- Info -->
+                <div class="border-top border-bottom text-center py-7 my-5">
+
+
+                    <div class="mb-3">
+
+                        <img src="/assets/counsia_logos/blue logos/logos/1000x250_transparent_logo.png" alt=""
+                            style="width: 30%;">
+
+
+                    </div>
+
+                </div>
+
+                <a href="/meeting/delete/<%= meeting._id %>" class=" col-3 h6 btn btn-soft-danger my-1 me-sm-2">
+                    Cancel Meeeting
+                </a>
+                <!-- End Info -->
+
+
+                <!-- End List -->
+            </div>
+            <!-- End Card -->
+        </div>
+    </div>
+    <!-- End Card -->

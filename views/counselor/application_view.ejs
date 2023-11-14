@@ -1,0 +1,143 @@
+<% layout('./layouts/boilerplate') %>
+
+
+    <!-- User Profile -->
+    <div class="container content-space-1 mt-5">
+        <div class="row justify-content-lg-center">
+            <div class="col-lg-8">
+                <div class="mb-5">
+
+                </div>
+
+                <!-- Media -->
+                <div class="d-sm-flex">
+                    <div class="flex-grow-1 ms-sm-4">
+                        <!-- Media -->
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h3 class="mb-0">
+                                <a class="text-dark">
+                                    <%=application.name %>
+                                </a>
+                            </h3>
+
+
+
+                            <form action="/admin/application/<%=application._id  %>/approve" method="POST">
+                                <button type="submit" class="btn btn-outline-primary btn-sm">
+                                    <i class="bi-person-plus-fill me-1"></i> Approve
+                                </button>
+                            </form>
+                            <form action="/admin/application/<%=application._id  %>/reject" method="POST">
+                                <button type="submit" class="btn btn-outline-primary btn-sm">
+                                    <i class="bi-person-plus-fill me-1"></i> Reject
+                                </button>
+                            </form>
+                        </div>
+                        <!-- End Media -->
+                        <img src="<%=application.profile_picture %>" alt="">
+
+                        <p>
+                            <span class="fw-bold">Status:</span>
+                            <%=application.status %>
+
+                        </p>
+
+                        <p>
+                            <span class="fw-bold">Email:</span>
+                            <%=application.email_address %>
+                        </p>
+
+                        <p>
+                            <span class="fw-bold">GPA:</span>
+                            <%=application.gpa %>
+                        </p>
+
+                        <p>
+                            <span class="fw-bold">Accepted Universities:</span>
+                            <%=application.accepted_universities %>
+                        </p>
+
+                        <p>
+                            <span class="fw-bold">SAT:</span>
+                            <%=application.SAT %>
+                        </p>
+                        <p>
+                            <span class="fw-bold">ACT:</span>
+                            <%=application.ACT %>
+                        </p>
+
+                        <p>
+                            <span class="fw-bold">Grad Year:</span>
+                            <%=application.graduation_year %>
+                        </p>
+                        <p>
+                            <span class="fw-bold">Attending University:</span>
+                            <%=application.current_university %>
+                        </p>
+
+                        <p>
+                            <span class="fw-bold">Address:</span>
+                            <%=application.address %>
+                        </p>
+                        <p>
+                            <span class="fw-bold">City:</span>
+                            <%=application.city %>
+                        </p>
+                        <p>
+                            <span class="fw-bold">Weekly Availability:</span>
+                            <%=application.weekly_availability %>
+                        </p>
+                        <p>
+                            <span class="fw-bold">Phone:</span>
+                            <%=application.phone_number %>
+                        </p>
+                        <p>
+                            <span class="fw-bold">Personal Statement:</span>
+                            <%=application.personal_statement %>
+                        </p>
+                        <p>
+                            <span class="fw-bold">Essay 2:</span>
+                            <%=application.essay_2 %>
+                        </p>
+                        <p>
+                            <span class="fw-bold">Essay 3:</span>
+                            <%=application.essay_3 %>
+                        </p>
+
+                        <p>
+                            <span class="fw-bold">Proof of Attendence</span>
+                            <a href="<%=application.proof_of_attendance %>">
+                                <%=application.proof_of_attendance %>
+                            </a>
+                        </p>
+
+                        <p>
+                            <span class="fw-bold">Proof of Identification</span>
+                            <a href="<%=application.proof_of_id %>">
+                                <%=application.proof_of_id %>
+                            </a>
+                        </p>
+
+                        <p>
+                            <span class="fw-bold">Profile Picture</span>
+                            <a href="<%=application.profile_picture %>">
+                                <%=application.profile_picture %>
+                            </a>
+                        </p>
+
+
+
+
+
+
+
+                    </div>
+                </div>
+                <!-- End Media -->
+            </div>
+        </div>
+    </div>
+
+
+    <!-- End User Profile -->
+    

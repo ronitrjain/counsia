@@ -1,0 +1,1199 @@
+<% layout('./layouts/boilerplate') %>
+    <link rel="stylesheet" href="/assets/vendor/tom-select/dist/css/tom-select.bootstrap5.css">
+
+    <link rel="stylesheet" href="/assets/vendor/quill/dist/quill.snow.css">
+
+
+
+
+
+
+    <!-- Form -->
+    <div class="container content-space-2 content-space-lg-3">
+        <div class="w-lg-75 mx-lg-auto">
+
+            <button type="button" id="loginModalButton" class="btn btn-primary d-none" data-bs-toggle="modal"
+                data-bs-target="#loginModal">Log in modal</button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <!-- Header -->
+                        <div class="modal-close">
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <!-- End Header -->
+
+                        <!-- Body -->
+                        <div class="modal-body">
+                            <!-- Log in -->
+                            <div id="loginModalFormLogin">
+                                <!-- Heading -->
+                                <div class="text-center mb-3">
+                                    <h3 class="modal-title">Log in to Counsia</h3>
+                                    <p>Login to apply to become a counselor</p>
+                                </div>
+                                <!-- End Heading -->
+
+                                <form class="js-validate needs-validation" novalidate action="/login" method="POST">
+                                    <!-- Form -->
+                                    <div class="mb-3">
+                                        <label class="form-label" for="username">Your Username</label>
+                                        <input type="text" class="form-control" name="username" id="username"
+                                            placeholder="john123" aria-label="john123"" required>
+                                        <span class=" invalid-feedback">Please enter a username.</span>
+                                    </div>
+                                    <!-- End Form -->
+
+                                    <!-- Form -->
+                                    <div class="mb-3">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <label class="form-label" for="password">Password</label>
+
+                                            <a href="/password-reset"'>Forgot Password or Username?</a>
+                                        </div>
+            
+                                        <input type="password" class="form-control form-control-lg" name="password"
+                                            id="password" placeholder="8+ characters required"
+                                            aria-label="8+ characters required" required minlength="8">
+                                        <span class="invalid-feedback">Please enter a valid password.</span>
+                                    </div>
+                                    <!-- End Form -->
+            
+                                    <div class="d-grid gap-3 text-center">
+                                        <button type="submit" class="btn btn-primary btn-lg">Log in</button>
+                                        
+            
+                                        
+            
+                                       
+            
+                                        <p>Don' t have an account yet? <a class="" href="/register">Sign up</a>
+                                            </p>
+                                        </div>
+                                </form>
+                            </div>
+                            <!-- End Log in -->
+
+                            <!-- Log in -->
+
+                            <!-- End Log in -->
+
+                            <!-- Reset Password -->
+
+                            <!-- End Reset Password -->
+                        </div>
+                        <!-- End Body -->
+                    </div>
+                </div>
+            </div>
+            <!-- End Modal -->
+            <!-- Heading -->
+            <div class="text-center mb-2">
+                <h1 class="h2">Counsia Mentor Application </h1>
+                <p class="mb-1">Please proofread your submission carefully before submitting.</p>
+                <p class="mb-0">View the <a href="/help/apply">Application Guide</a> if you are having problems.</p>
+
+
+                
+
+            </div>
+            <!-- End Heading -->
+
+            <form action="/counselor/apply" method="POST" enctype="multipart/form-data" id="application_form">
+                <div class="mb-5">
+                    <h4 class="my-7">Mentor information</h4>
+
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <!-- Form -->
+                            <div class="mb-4">
+                                <label class="form-label" for="first_name">First Name</label>
+
+                                <div class="input-group input-group-merge">
+                                    <span class="input-group-prepend input-group-text">
+                                        <i class="bi-person-fill"></i>
+                                    </span>
+                                    <input required maxlength="20" type="text" class="form-control form-control-lg"
+                                        id="first_name" placeholder="Full Name" aria-label="Listing agent name"
+                                        name="first_name">
+                                </div>
+                            </div>
+                            <!-- End Form -->
+                        </div>
+                        <!-- End Col -->
+
+                        <!-- Form -->
+                        <div class="col-sm-3">
+
+                            <div class="mb-4">
+                                <label class="form-label" for="last_name">Last Name</label>
+
+                                <div class="input-group input-group-merge">
+                                    <span class="input-group-prepend input-group-text">
+                                        <i class="bi-person-fill"></i>
+                                    </span>
+                                    <input maxlength="20" required type="text" class="form-control form-control-lg"
+                                        id="last_name" placeholder="Last Name" aria-label="Listing agent name"
+                                        name="last_name">
+                                </div>
+                            </div>
+
+                        </div>
+                        <!-- End Form -->
+
+
+                        <div class="col-sm-6">
+
+                            <!-- Form -->
+                            <div class="mb-4">
+                                <label class="form-label" for="phone_number">Phone number (XXX-XXX-XXXX)</label>
+
+                                <div class="input-group input-group-merge">
+                                    <span class="input-group-prepend input-group-text">
+                                        <i class="bi-telephone-inbound-fill"></i>
+                                    </span>
+                                    <input required type="tel" class="form-control form-control-lg" id="phone_number"
+                                        placeholder="XXX-XXX-XXXX" aria-label="XXX-XXX-XXXX" name="phone_number"
+                                        pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">
+                                </div>
+                            </div>
+                            <!-- End Form -->
+                        </div>
+                    </div>
+                    <!-- End Col -->
+                </div>
+                <!-- End Row -->
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <!-- Form -->
+                        <div class="mb-4">
+                            <label class="form-label" for="gpaUploadForm">Highschool 4-Year GPA</label>
+
+                            <div class="input-group input-group-merge">
+                                <span class="input-group-prepend input-group-text">
+                                    <i class="bi-pen"></i>
+                                </span>
+                                <input  maxlength="6" required type="number" class="form-control form-control-lg"
+                                    id="gpaUploadForm" placeholder="3.39" aria-label="gpa" name="gpa" step="0.01">
+                            </div>
+                        </div>
+                        <!-- End Form -->
+                    </div>
+                    <!-- End Col -->
+
+                    <div class="col-sm-6">
+                        <!-- Form -->
+                        <div class="mb-4">
+                            <label class="form-label" for="email_address">University Email</label>
+
+                            <div class="input-group input-group-merge">
+                                <span class="input-group-prepend input-group-text">
+                                    <i class="bi-globe2"></i>
+                                </span>
+                                <input required type="email" class="form-control form-control-lg"
+                                    id="email_address" placeholder="Email address" aria-label="Email address"
+                                    name="email_address">
+                            </div>
+                        </div>
+                        <!-- End Form -->
+                    </div>
+                    <!-- End Col -->
+                </div>
+                <!-- End Row -->
+
+                <!-- Form -->
+                <div class="js-add-field row mb-4" data-hs-add-field-options='{
+                                      "template": "#addPhoneFieldTemplate",
+                                      "container": "#addPhoneFieldContainer",
+                                      "defaultCreated": 0
+                                    }'>
+
+                    <label for="acceptedUniversities" class="col-sm-3 col-form-label form-label">Accepted
+                        Universities<span class="form-label-secondary"></span></label>
+
+                    <div class="col-sm-9">
+                        <div class="input-group">
+
+
+                            <!-- Select -->
+                            <div class="tom-select-custom mb-3">
+                                <select required id="acceptedUniversities" class="js-select form-select" multiple
+                                    name="acceptedUniversities" data-hs-tom-select-options='{
+                                                "width": "100%",
+                                                "hideSearch": false
+                                              }' placeholder="Select Universities" required>
+                                    <% for(let university of world_universities) {%>
+                                        <option value="<%=university %>">
+                                            <%= university %>
+                                        </option>
+
+
+                                        <% } %>
+                                </select>
+                            </div>
+                            <!-- End Select -->
+                        </div>
+
+
+
+
+                    </div>
+                    <!-- End Form -->
+
+                    <label for="attendingUniversity" class="col-sm-3 col-form-label form-label">Attending
+                        University<span class="form-label-secondary"></span></label>
+
+                    <div class="col-sm-9">
+                        <div class="input-group">
+
+
+                            <!-- Select -->
+                            <div class="tom-select-custom">
+                                <select required id="attendingUniversity" class="js-select form-select" name="current_university"
+                                    data-hs-tom-select-options='{
+                                                                                                "width": "100%",
+                                                                                                "hideSearch": false
+                                                                                              }'
+                                    placeholder="Select University">
+                                    <% for(let university of world_universities) {%>
+                                        <option value="<%=university %>">
+                                            <%= university %>
+                                        </option>
+
+
+                                        <% } %>
+                                </select>
+                            </div>
+                        </div>
+
+
+                        <!-- End Select -->
+                    </div>
+
+
+
+
+
+
+
+
+                    <h4 class="my-7">Detailed information</h4>
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <!-- Form -->
+                            <div class="mb-4">
+                                <label class="form-label" for="SAT">SAT (Leave Blank If No Report)</label>
+
+                                <div class="input-group input-group-merge">
+                                    <span class="input-group-prepend input-group-text">
+                                        <span class="bi bi-newspaper">
+
+                                        </span>
+                                    </span>
+                                    <input type="number" class="form-control form-control-lg" id="SAT"
+                                        placeholder="1400" aria-label="SAT Score" name="SAT" max="1600" step="10">
+                                </div>
+                            </div>
+                            <!-- End Form -->
+                        </div>
+                        <!-- End Col -->
+
+                        <div class="col-sm-6">
+                            <label class="form-label" for="graduation_year">Graduation Year</label>
+
+                            <div class="input-group input-group-merge">
+                                <span class="input-group-prepend input-group-text">
+                                    <i class="bi-calendar-week"></i>
+                                </span>
+                                <select id="graduation_year" name="graduation_year" class="form-select form-select-lg"
+                                    required>
+                                    <option selected disabled>Select year</option>
+                                    
+                              
+                                    <option selected value="2023">2023</option>
+                                    <option value="2024">2024</option>
+                                    <option value="2025">2025</option>
+                                    <option value="2026">2026</option>
+                                    <option value="2027">2027</option>
+                                    <option value="2028">2028</option>
+
+                                </select>
+                            </div>
+                        </div>
+                        <!-- End Col -->
+                    </div>
+                    <!-- End Row -->
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <!-- Form -->
+                            <div class="mb-4">
+                                <label class="form-label" for="addressUploadForm">Address</label>
+
+                                <div class="input-group input-group-merge">
+                                    <span class="input-group-prepend input-group-text">
+                                        <i class="bi-geo-alt-fill"></i>
+                                    </span>
+                                    <input required type="text" class="form-control form-control-lg"
+                                        id="addressUploadForm" placeholder="Address" aria-label="Address"
+                                        name="address">
+                                </div>
+                            </div>
+                            <!-- End Form -->
+                        </div>
+                        <!-- End Col -->
+
+                        <div class="col-sm-6">
+                            <!-- Form -->
+                            <div class="mb-4">
+                                <label class="form-label" for="cityUploadForm">City/Province</label>
+
+                                <div class="input-group input-group-merge">
+                                    <span class="input-group-prepend input-group-text">
+                                        <i class="bi-building"></i>
+                                    </span>
+                                    <input required type="text" class="form-control form-control-lg" id="cityUploadForm"
+                                        placeholder="City/Province" aria-label="City/Province" name="city">
+                                </div>
+                            </div>
+                            <!-- End Form -->
+                        </div>
+                        <!-- End Col -->
+                    </div>
+                    <!-- End Row -->
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <!-- Form -->
+                            <div class="mb-4">
+                                <label class="form-label" for="ACT">
+                                    ACT (Leave Blank If No Report)</label>
+
+                                <div class="input-group input-group-merge">
+                                    <span class="input-group-prepend input-group-text">
+                                        <i class="bi bi-newspaper"></i>
+                                    </span>
+                                    <input type="number" class="form-control form-control-lg" id="ACT" placeholder="20"
+                                        aria-label="20" name="ACT" max="36" step="1">
+                                </div>
+                            </div>
+                            <!-- End Form -->
+                        </div>
+                        <!-- End Col -->
+
+                        <div class="col-sm-6">
+                            <!-- Form -->
+                            <div class="mb-4">
+                                <label class="form-label" for="majorInput">Major</label>
+
+                                <div class="input-group input-group-merge">
+                                    <span class="input-group-prepend input-group-text">
+                                        <i class="bi-envelope-open-fill"></i>
+                                    </span>
+                                    <input required type="text" class="form-control form-control-lg" id="majorInput"
+                                        placeholder="Major" aria-label="Major" name="major">
+                                </div>
+                            </div>
+
+
+                            <!-- End Form -->
+                        </div>
+                        <label class="form-label" for="counselor_bio">Describe yourself in a couple words.</label>
+                        <div class="input-group  mb-4">
+
+                            <textarea required type="text" class="form-control form-control-lg" id="counselor_bio"
+                                aria-label="bio" name="bio" maxlength="50" rows="1"></textarea>
+                        </div>
+
+
+                        <label class="form-label" for="long_bio">(Can Edit Later) Write a longer bio for your profile. You can keep this minimal and edit later.</label>
+                        <div class="input-group  mb-4">
+
+                            <textarea required  type="text" class="form-control form-control-lg" id="long_bio"
+                                aria-label="long_bio" name="long_bio" rows="5"></textarea>
+                        </div>
+                        <!-- End Col -->
+                    </div>
+                    <!-- End Row -->
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <!-- Form -->
+                            <div class="mb-4">
+                                <label class="form-label" for="race">Race/Ethnicity</label>
+
+                                <div class="input-group input-group-merge">
+                                    <span class="input-group-prepend input-group-text">
+                                        <i class="bi-person-fill"></i>
+                                    </span>
+                                    <select required class="form-select form-select-lg" id="race" aria-label="race"
+                                        name="race">
+
+                                        <option selected value="White">White</option>
+                                        <option value="Black">Black or African American</option>
+                                        <option value="Native">American Indian or Alaska Native</option>
+                                        <option value="Asian">Asian</option>
+                                        <option value="Pacific">Pacific Islander</option>
+                                        <option value="Hispanic">Hispanic</option>
+
+
+                                    </select>
+                                </div>
+                            </div>
+                            <!-- End Form -->
+                        </div>
+                        <!-- End Col -->
+
+                        <div class="col-sm-6">
+                            <!-- Form -->
+                            <div class="mb-4">
+                                <label class="form-label" for="gender">Gender</label>
+
+                                <div class="input-group input-group-merge">
+                                    <span class="input-group-prepend input-group-text">
+                                        <i class="bi-person"></i>
+                                    </span>
+                                    <select required class="form-select form-select-lg" id="gender" placeholder="Gender"
+                                        aria-label="gender" name="gender">
+                                        <option selected value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                        <option value="Other">Other</option>
+
+
+
+                                    </select>
+                                </div>
+                            </div>
+                            <!-- End Form -->
+                        </div>
+                        <!-- End Col -->
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <!-- Form -->
+                            <div class="mb-4">
+                                <label class="form-label" for="international">International</label>
+
+                                <div class="input-group input-group-merge">
+                                    <span class="input-group-prepend input-group-text">
+                                        <i class="bi-globe"></i>
+                                    </span>
+                                    <select required class="form-select form-select-lg" id="race"
+                                        aria-label="international" name="international">
+
+                                        <option  selected value="Yes">Yes</option>
+                                        <option value="No">No</option>
+
+
+                                    </select>
+                                </div>
+                            </div>
+                            <!-- End Form -->
+                        </div>
+                        <!-- End Col -->
+
+                        <div class="col-sm-6">
+                            <!-- Form -->
+                            <div class="mb-4">
+                                <label class="form-label" for="legacy">Legacy</label>
+
+                                <div class="input-group input-group-merge">
+                                    <span class="input-group-prepend input-group-text">
+                                        <i class="bi-cash"></i>
+                                    </span>
+                                    <select required class="form-select form-select-lg" id="legacy" placeholder="Legacy"
+                                        aria-label="legacy" name="legacy">
+                                        <option selected value="Yes">Yes</option>
+                                        <option value="No">No</option>
+
+
+
+                                    </select>
+                                </div>
+                            </div>
+                            <!-- End Form -->
+                        </div>
+                        <!-- End Col -->
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <!-- Form -->
+                            <div class="mb-4">
+                                <label class="form-label" for="low_income">Low Income</label>
+
+                                <div class="input-group input-group-merge">
+                                    <span class="input-group-prepend input-group-text">
+                                        <i class="bi-piggy-bank"></i>
+                                    </span>
+                                    <select required class="form-select form-select-lg" id="low_income"
+                                        aria-label="low_income" name="low_income">
+
+                                        <option selected value="Yes">Yes</option>
+                                        <option value="No">No</option>
+
+
+                                    </select>
+                                </div>
+                            </div>
+                            <!-- End Form -->
+                        </div>
+                        <!-- End Col -->
+
+                        <div class="col-sm-6">
+                            <!-- Form -->
+                            <div class="mb-4">
+                                <label class="form-label" for="first_gen">First Gen</label>
+
+                                <div class="input-group input-group-merge">
+                                    <span class="input-group-prepend input-group-text">
+                                        <i class="bi-1-square"></i>
+                                    </span>
+                                    <select required class="form-select form-select-lg" id="first_gen"
+                                        placeholder="First-Gen" aria-label="first_gen" name="first_gen">
+                                        <option value="Yes">Yes</option>
+                                        <option value="No">No</option>
+
+
+
+                                    </select>
+                                </div>
+                            </div>
+                            <!-- End Form -->
+                        </div>
+                        <!-- End Col -->
+                    </div>
+
+                    <h4 class="my-7">AP/IB/Dual Enrollment Classes (Summarize Can Add Later)</h4>
+
+
+
+                    <div id="class-container">
+                        <!-- Initial input field -->
+                        <div id='class-input' class="class-input d-flex my-2">
+                            <input maxlength="35" type="text" name="class[]" class="form-control"
+                                placeholder="Enter Class Name">
+                            <button type="button" class="remove-class btn btn-dark bi-x-circle mx-3">
+                            </button>
+
+                        </div>
+
+                       
+
+
+
+                    </div>
+
+
+                    <button type="button" id="add-class" class="btn btn-icon my-3"><i
+                            class="bi bi-plus-circle-fill"></i></button>
+
+
+                    <h4 class="my-7">Awards (Summarize and Can Add Later)</h4>
+
+
+
+                    <div id="awards-container">
+                        <!-- Initial input field -->
+                        <div id='awards-input' class="awards-input d-flex my-2">
+                            <input maxlength="30" type="text" name="awards[]" class="form-control"
+                                placeholder="Enter Award">
+                            <button type="button" class="remove-awards btn btn-dark bi-x-circle mx-3">
+                            </button>
+
+
+
+                        </div>
+
+
+                      
+
+                    </div>
+                    <button type="button" id="add-awards" class="btn btn-icon my-3"><i
+                            class="bi bi-plus-circle-fill"></i></button>
+
+                    <h4 class="my-7">Activities (Summarize and Can Add Later)</h4>
+
+
+
+                    <div id="extracurriculars-container">
+                        <!-- Initial input field -->
+                        <div id='extracurriculars-input' class="extracurriculars-input d-flex my-2">
+                            <input maxlength="35" type="text" name="extracurriculars[]" class="form-control "
+                                placeholder="Enter Extracurriculars">
+                            <button type="button" class="remove-extracurriculars btn btn-dark bi-x-circle mx-3">
+                            </button>
+
+                        </div>
+
+                        
+
+
+
+
+                    </div>
+                    <button type="button" id="add-extracurriculars" class="btn btn-icon my-3"><i
+                            class="bi bi-plus-circle-fill"></i></button>
+
+
+
+
+
+
+
+
+
+
+                    <h4 class="my-7">College Essays (Can Edit Later)</h4>
+
+
+                    <div class="mb-4">
+                        <p>In this section, you will enter your personal statement as well as two other
+                            supplemental
+                            essays,
+                            with prompt and college. Please submit your best work. You will be able to add more essays once you are verified.</p>
+                    </div>
+
+
+
+
+                <h5 class="my-4">Essay 1</h5>
+                
+                
+                
+                <label class="form-label" for="prompt_essay_1">Write Your Prompt For Essay 1.</label>
+                <div class="input-group input-group-merge mb-4">
+                    <span class="input-group-prepend input-group-text">
+                    </span>
+                    <textarea required type="text" class="form-control form-control-lg" id="prompt_essay_2" aria-label="prompt_essay_1"
+                        name="prompt_essay_1"></textarea>
+                </div>
+                
+                
+                <label for="university_essay_1" class="col-sm-3 col-form-label form-label">Essay 1
+                    University<span class="form-label-secondary"></span></label>
+                
+                <div class="col-sm-9 mb-3">
+                    <div class="input-group">
+                
+                
+                        <!-- Select -->
+                        <div class="tom-select-custom">
+                            <select id="university_essay_1" class="js-select form-select" name="university_essay_1"
+                                data-hs-tom-select-options='{
+                                                                                                                                                                "width": "100%",
+                                                                                                                                                                "hideSearch": false
+                                                                                                                                                              }'
+                                placeholder="Select University">
+                                <% for(let university of world_universities) {%>
+                                    <option value="<%=university %>">
+                                        <%= university %>
+                                    </option>
+                
+                
+                                    <% } %>
+                            </select>
+                        </div>
+                    </div>
+                
+                
+                    <!-- End Select -->
+                </div>
+                
+                
+                
+                <div class="mb-4">
+                    <label class="form-label">Essay 1</label>
+                
+                    <!-- Quill -->
+                    <div class="input-group">
+                        <textarea required type="text" class="form-control form-control-lg" id="essay_1_text" aria-label="essay text"
+                            name="essay_1_text" rows="10"></textarea>
+                    </div>
+                    <!-- End Quill -->
+                
+                </div>
+
+
+
+                    <h5 class="my-4">Essay 2</h5>
+
+
+
+                    <label class="form-label" for="prompt_essay_2">Write Your Prompt For Essay 2.</label>
+                    <div class="input-group input-group-merge mb-4">
+                        <span class="input-group-prepend input-group-text">
+                        </span>
+                        <textarea required type="text" class="form-control form-control-lg" id="prompt_essay_2"
+                            aria-label="prompt_essay_2" name="prompt_essay_2"></textarea>
+                    </div>
+
+
+                    <label for="university_essay_2" class="col-sm-3 col-form-label form-label">Essay 2
+                        University<span class="form-label-secondary"></span></label>
+
+                    <div class="col-sm-9 mb-3">
+                        <div class="input-group">
+
+
+                            <!-- Select -->
+                            <div class="tom-select-custom">
+                                <select id="university_essay_2" class="js-select form-select" name="university_essay_2"
+                                    data-hs-tom-select-options='{
+                                                                                                                                                "width": "100%",
+                                                                                                                                                "hideSearch": false
+                                                                                                                                              }'
+                                    placeholder="Select University">
+                                    <% for(let university of world_universities) {%>
+                                        <option value="<%=university %>">
+                                            <%= university %>
+                                        </option>
+
+
+                                        <% } %>
+                                </select>
+                            </div>
+                        </div>
+
+
+                        <!-- End Select -->
+                    </div>
+
+
+
+                    <div class="mb-4">
+                        <label class="form-label">Essay 2</label>
+
+                        <!-- Quill -->
+                        <div class="input-group">
+                            <textarea required type="text" class="form-control form-control-lg" id="essay_2_text"
+                                aria-label="bio" name="essay_2_text" rows="10"></textarea>
+                        </div>
+                        <!-- End Quill -->
+
+                    </div>
+
+                    <h5 class="my-4">Essay 3</h5>
+
+
+
+                    <label class="form-label" for="prompt_essay_3">Write Your Prompt For Essay 3. Please Include
+                        University (Georgetown: Please describe...)</label>
+                    <div class="input-group input-group-merge mb-4">
+
+
+
+                        <span class="input-group-prepend input-group-text">
+                        </span>
+                        <textarea required type="text" class="form-control form-control-lg" id="prompt_essay_3"
+                            aria-label="prompt_essay_3" name="prompt_essay_3"></textarea>
+                    </div>
+
+
+                    <label for="university_essay_3" class="col-sm-3 col-form-label form-label">Essay 3
+                        University<span class="form-label-secondary"></span></label>
+
+                    <div class="col-sm-9 mb-3">
+                        <div class="input-group">
+
+
+                            <!-- Select -->
+                            <div class="tom-select-custom">
+                                <select id="university_essay_3" class="js-select form-select" name="university_essay_3"
+                                    data-hs-tom-select-options='{
+                                                                                                                                                                        "width": "100%",
+                                                                                                                                                                        "hideSearch": false
+                                                                                                                                                                      }'
+                                    placeholder="Select University">
+                                    <% for(let university of world_universities) {%>
+                                        <option value="<%=university %>">
+                                            <%= university %>
+                                        </option>
+
+
+                                        <% } %>
+                                </select>
+                            </div>
+                        </div>
+
+
+                        <!-- End Select -->
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label">Essay 3</label>
+
+                        <!-- Quill -->
+                        <div class="input-group">
+                            <textarea required type="text" class="form-control form-control-lg" id="essay_3_text"
+                                aria-label="essay_3_text" name="essay_3_text" rows="10"></textarea>
+                        </div>
+                        <!-- End Quill -->
+
+                    </div>
+                    <!-- End Form -->
+
+
+                    <h4 class="my-7">Required Info</h4>
+
+                    <div class="row">
+                        
+
+                       
+
+                        <div class="col-lg-12 mb-3">
+
+                            <div class="row mb-3">
+                                <label for="profile_picture" class="col-sm-4 col-form-label">Mentor
+                                    Profile
+                                    Picture</label>
+                                <div class="col-sm-8">
+                                    <input type="file" class="form-control" id="profile_picture"
+                                        name="profile_picture" required accept="image/x-png,image/gif,image/jpeg">
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End File Attachment Input -->
+
+                        <div class="col-lg-12 mb-3">
+
+                            <div class="row mb-3">
+                                <label for="zoom_meeting_link" class="col-sm-4 col-form-label">Edu Account ZOOM Meeting
+                                    Link </label>
+                                <div class="col-sm-8">
+                                    <input type="url" class="form-control" id="zoom_meeting_link"
+                                        name="zoom_meeting_link" required>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+                </div>
+        </div>
+        <!-- End Row -->
+
+        <%if(error!=""){%>
+            <p class=" text-danger">
+                                    <%= error %>
+                                        </p>
+
+
+
+                                        <% } %>
+
+                                            <div class="d-grid">
+                                                <button id="application_submit" type="submit"
+                                                    class="btn btn-primary btn-lg"
+                                                    
+                                                    >Submit</button>
+                                            </div>
+
+                                </div>
+            </form>
+
+        </div>
+
+
+
+
+    </div>
+    <!-- End Form -->
+
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"
+        integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+
+
+
+    <!-- JS Implementing Plugins -->
+    <script src="/assets/vendor/hs-count-characters/dist/js/hs-count-characters.js"></script>
+    <script src="/assets/js/file_upload.js"></script>
+    <script src="/assets/vendor/quill/dist/quill.min.js"></script>
+    <script src="/assets/vendor/hs-add-field/dist/hs-add-field.min.js"></script>
+    <script src="/assets/vendor/tom-select/dist/js/tom-select.complete.min.js"></script>
+    <script src="/assets/vendor/imask/dist/imask.min.js"></script>
+    <script src="/assets/vendor/hs-file-attach/dist/hs-file-attach.min.js"></script>
+    <script src="/assets/vendor/hs-show-animation/dist/hs-show-animation.min.js"></script>
+
+
+
+
+    <!-- JS Front -->
+    <script src="/assets/js/theme.min.js"></script>
+
+
+    <!-- JS Plugins Init. -->
+    <script>
+        (function () {
+
+            new HSShowAnimation('.js-animation-link')
+
+            // INITIALIZATION OF FILE ATTACH
+            // =======================================================
+            new HSFileAttach('.js-file-attach')
+
+
+            // INITIALIZATION OF COUNT CHARACTERS
+            // =======================================================
+            new HSCountCharacters('.js-count-characters')
+
+
+            // INITIALIZATION OF QUILLJS EDITOR
+            // =======================================================
+            HSCore.components.HSQuill.init('.js-quill')
+
+
+
+
+
+
+
+            // INITIALIZATION OF ADD FIELD
+            // =======================================================
+            new HSAddField('.js-add-field', {
+                addedField: el => {
+                    el.querySelectorAll('.js-select-dynamic').forEach(item => {
+                        HSCore.components.HSTomSelect.init(item)
+                    })
+
+                    el.querySelectorAll('.js-input-mask-dynamic').forEach(item => {
+                        HSCore.components.HSMask.init(item)
+                    })
+                }
+            })
+
+
+            // INITIALIZATION OF INPUT MASK
+            // =======================================================
+            HSCore.components.HSMask.init('.js-input-mask')
+
+
+            // INITIALIZATION OF QUILLJS EDITOR
+            // =======================================================
+
+
+            // INITIALIZATION OF SELECT
+            // =======================================================
+            HSCore.components.HSTomSelect.init('.js-select', {
+                render: {
+                    'option': function (data, escape) {
+                        return data.optionTemplate || `<div>${data.text}</div>>`
+                    },
+                    'item': function (data, escape) {
+                        return data.optionTemplate || `<div>${data.text}</div>>`
+                    }
+                }
+            })
+
+            let isLoggedIn = false;
+
+            if (<%= currentUser != null %> ) {
+                isLoggedIn = true;
+            }
+
+            if (!isLoggedIn) {
+
+                window.onload = function () {
+                    var button = document.getElementById('loginModalButton');
+                    button.click();
+                }
+
+            }
+
+            const button = document.getElementById("application_submit");
+
+            // Check if currentUser is defined
+            if (isLoggedIn) {
+                // If currentUser is defined, enable the button and allow form submission
+                    button.removeAttribute("disabled");
+
+            } else {
+                // If currentUser is undefined, disable the button and prevent form submission
+                 button.setAttribute("disabled", "true");
+                 button.innerText = "Please Login To Apply";
+                
+
+            }
+
+
+
+        })()
+    </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const classContainer = document.getElementById("class-container");
+            const addClassButton = document.getElementById("add-class");
+
+            addClassButton.addEventListener("click", function () {
+                const classInput = document.createElement("div");
+                classInput.classList.add("class-input");
+                classInput.innerHTML = `
+                         <div id='class-input' class="class-input remove-class_ d-flex my-2">
+                                <input maxlength="30" type="text" name="class[]" class="form-control" placeholder="Enter Class Name">
+                                <button type="button" class="remove-class btn btn-dark bi-x-circle mx-3">
+                                </button>
+
+                            </div>
+
+                    `;
+                classContainer.appendChild(classInput);
+            });
+
+            classContainer.addEventListener("click", function (e) {
+
+
+                if (e.target.classList.contains("remove-class")) {
+
+
+                    e.target.parentElement.remove();
+                }
+            });
+
+
+
+
+
+
+            const awardsContainer = document.getElementById("awards-container");
+            const addAwardsButton = document.getElementById("add-awards");
+
+            addAwardsButton.addEventListener("click", function () {
+                const awardsInput = document.createElement("div");
+                awardsInput.classList.add("awards-input");
+                awardsInput.innerHTML = `
+                        <div id='class-input' class="awards-input my-2 d-flex">
+                                <input maxlength="30" type="text" name="awards[]" class="form-control" placeholder="Enter Award Name">
+                                 <button type="button" class="remove-awards btn btn-dark bi-x-circle mx-3">
+                                </button>
+
+                            </div>
+
+                    `;
+                awardsContainer.appendChild(awardsInput);
+            });
+
+            awardsContainer.addEventListener("click", function (e) {
+                if (e.target.classList.contains("remove-awards")) {
+                    e.target.parentElement.remove();
+                }
+            });
+
+
+
+
+
+
+
+            const extracirricularsContainer = document.getElementById("extracurriculars-container");
+            const addExtracurricularsButton = document.getElementById("add-extracurriculars");
+
+            addExtracurricularsButton.addEventListener("click", function () {
+                const extracurricularsInput = document.createElement("div");
+                extracurricularsInput.classList.add("extracurriculars-input");
+                extracurricularsInput.innerHTML = `
+                        <div id='class-input' class="extracurriculars-input my-2 d-flex">
+                                <input maxlength="30" type="text" name="extracurriculars[]" class="form-control" placeholder="Enter Extracurricular Name">
+                                 <button type="button" class="remove-extracurriculars btn btn-dark bi-x-circle mx-3">
+                                </button>
+
+                            </div>
+
+                    `;
+                extracirricularsContainer.appendChild(extracurricularsInput);
+            });
+
+            extracirricularsContainer.addEventListener("click", function (e) {
+                if (e.target.classList.contains("remove-extracurriculars")) {
+                    e.target.parentElement.remove();
+                }
+            });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        });
+    </script>
+
+    <script>
+        // Get a reference to the file input element
+        const fileInput = document.getElementById("profile_picture");
+
+        // Add an event listener to detect when a file is selected
+        fileInput.addEventListener("change", function () {
+            // Check if files were selected
+            if (fileInput.files.length > 0) {
+                const selectedFile = fileInput.files[0];
+
+                // Create a FileReader to read the image
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    const img = new Image();
+                    img.src = e.target.result;
+
+                    // Once the image is loaded, get its width and height
+                    img.onload = function () {
+                        const width = img.width;
+                        const height = img.height;
+                        const aspectRatio = width / height;
+
+                        // Define a threshold for "closeness" to a square (80%)
+                        const threshold = 0.7;
+
+                        // Calculate the lower and upper bounds for aspect ratio
+                        const lowerBound = 1 - (1 - threshold) / 2;
+                        const upperBound = 1 + (1 - threshold) / 2;
+
+                      
+                        // Check if the height is less than 500 pixels
+                        if (!(aspectRatio >= lowerBound && aspectRatio <= upperBound)) {                            
+                            alert("Profile Image must be a square for best results.");
+                            // Clear the input field
+                            fileInput.value = "";
+                        }
+                    };
+                };
+                reader.readAsDataURL(selectedFile);
+            }
+        });
+    </script>
+
+    
+<script>
+    document.title = "Counsia Mentor Application";
+
+        $('meta[name="description"]').attr("content", "Apply to be a mentor at Counsia. Mentors make $40-$50 an hour. We are looking for the best and brightest students to help high school students with the college admissions process.");
+</script>

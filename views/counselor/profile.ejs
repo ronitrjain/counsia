@@ -1,0 +1,974 @@
+<% layout('/layouts/boilerplate') %>
+
+
+
+
+
+<!-- ========== MAIN CONTENT ========== -->
+<main id="content" role="main" >
+
+            <div id="background" class=" d-lg-flex position-relative " style="background:linear-gradient(0deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(/assets/img/college_backdrops/<%=counselor.current_university.replaceAll(" ","_")%>.png);
+                    object-fit: cover; background-repeat: no-repeat; background-size: cover; background-position: center center; height: 100%
+                      ">
+
+
+
+    <!-- Content -->
+    <div class="container content-space-t-1 content-space-t-sm-2 content-space-b-2 mt-9" >
+        <div class="row">
+            <div class="col-md-5 col-lg-4 mb-md-0">
+                <!-- Sticky Block -->
+                <div id="stickyBlockStartPoint">
+                    <div class="js-sticky-block" data-hs-sticky-block-options='{
+                   "parentSelector": "#stickyBlockStartPoint",
+                   "breakpoint": "md",
+                   "startPoint": "#stickyBlockStartPoint",
+                   "endPoint": "#stickyBlockEndPoint",
+                   "stickyOffsetTop": 12,
+                   "stickyOffsetBottom": 12
+                 }'>
+                        <!-- Card -->
+                        <div class="card">
+                            <!-- Card Header -->
+                            <div class="card-header text-center" style="background:linear-gradient(0deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url(/assets/img/Colleges/<%=counselor.current_university.replaceAll(" ","_")%>.png);
+                            background-size: 100%; background-repeat: no-repeat; background-position: center ;">
+                                <div class="mb-3">
+                                    <img class="avatar avatar-xxl avatar-circle avatar-centered"
+                                        src="<%- counselor.profile_picture %>" alt="Image Description">
+                                </div>
+
+
+                                <a class="btn btn-dark btn-transition" href="/counselor/book/<%= counselor.id %>" style="width: 90%; font-size: 1.2rem;">
+                                  Book Now
+                                </a>
+                            </div>
+                            <!-- End Card Header -->
+
+                            <!-- Card Body -->
+                            <div class="card-body">
+                                <div class="mb-4">
+                                    <h4>Stats</h4>
+                                </div>
+                                <div class="row mb-7">
+                                    <div class="col-6 col-md-12 col-lg-6 mb-4">
+                                        <!-- Icon Block -->
+                                        <div class="d-flex align-items-center">
+                                            <div class="flex-shrink-0">
+                                                <span class="text-body small text-dark">
+                                                    GPA:
+                                                </span>
+                                            </div>
+
+                                            <div class="flex-grow-1 ms-3">
+                                                <span class="text-body small"><%= counselor.gpa %></span>
+                                            </div>
+                                        </div>
+                                        <!-- End Icon Block -->
+                                    </div>
+                                    <!-- End Col -->
+
+                                    <div class="col-6 col-md-12 col-lg-6 mb-4">
+                                        <!-- Icon Block -->
+                                        <div class="d-flex align-items-center">
+                                            <div class="flex-shrink-0">
+                                                <span class="text-body small text-dark">
+                                                    SAT:
+                                                </span>
+                                            </div>
+
+                                            <div class="flex-grow-1 ms-3">
+                                                <span class="text-body small"><%= counselor.SAT || "N/A" %></span>
+                                            </div>
+                                        </div>
+                                        <!-- End Icon Block -->
+                                    </div>
+                                    <!-- End Col -->
+
+                                    <div class="col-6 col-md-12 col-lg-6 mb-4 col-6 col-md-12 mb-lg-0">
+                                        <!-- Icon Block -->
+                                        <div class="d-flex align-items-center">
+                                            <div class="flex-shrink-0">
+                                                <span class="text-body small text-dark">
+                                                    ACT:
+                                                    
+                                                </span>
+                                            </div>
+
+                                            <div class="flex-grow-1 ms-3">
+                                                <span class="text-body small"><%= counselor.ACT || "N/A" %></span>
+                                            </div>
+                                        </div>
+                                        <!-- End Icon Block -->
+                                    </div>
+                                    <!-- End Col -->
+
+                                    <div class="col-6 col-md-12 col-lg-6">
+                                        <!-- Icon Block -->
+                                        <div class="d-flex align-items-center">
+                                            <div class="flex-shrink-0">
+                                                <span class="text-body small text-dark">
+                                                    AP/IB
+                                                </span>
+                                            </div>
+
+                                            <div class="flex-grow-1 ms-3">
+                                                <span class="text-body small"><%= counselor.classes.length + " "%>classes</span>
+                                            </div>
+                                        </div>
+                                        <!-- End Icon Block -->
+                                    </div>
+                                    <!-- End Col -->
+                                </div>
+                                <!-- End Row -->
+
+                                <div class="mb-4">
+                                    <h4>Accepted Universities</h4>
+                                </div>
+
+                                <div class="row mb-7">
+                                                                        <div class="avatar-group avatar-group-md mx-1">
+
+                                    <% for(let university of counselor.accepted_universities){ %>
+                                        <a class="avatar avatar-s avatar-circle" data-toggle="tooltip" data-placement="top" title="<%= university %>" href="#">
+                                            <img class="avatar-img" src="/assets/img/Colleges/<%=university.replaceAll(' ', '_')%>.png" alt="Image Description">
+                                        </a>
+                                        <% } %>
+
+
+                                    </div>
+                                    <!-- End Col -->
+
+                                    
+                                    <!-- End Col -->
+
+                                    
+                                    <!-- End Col -->
+
+                                   
+                                    <!-- End Col -->
+                                </div>
+                                <!-- End Row -->
+
+<div class="mb-4">
+    <h4>Personal Information</h4>
+</div>
+
+                                <div class="row mb-7">
+                                    <div class="col-6 col-md-12 col-lg-6 mb-4">
+                                        <!-- Icon Block -->
+                                        <div class="d-flex align-items-center">
+                                            <div class="flex-shrink-0">
+                                                <span class="text-body small text-dark">
+                                                    First Gen:
+                                                </span>
+                                            </div>
+                                
+                                            <div class="flex-grow-1 ms-3">
+                                                <span class="text-body small">
+                                                    <%= counselor.first_gen %>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <!-- End Icon Block -->
+                                    </div>
+                                    <!-- End Col -->
+                                
+                                    <div class="col-6 col-md-12 col-lg-6 mb-4">
+                                        <!-- Icon Block -->
+                                        <div class="d-flex align-items-center">
+                                            <div class="flex-shrink-0">
+                                                <span class="text-body small text-dark">
+                                                    Low Income:
+                                                </span>
+                                            </div>
+                                
+                                            <div class="flex-grow-1 ms-3">
+                                                <span class="text-body small">
+                                                    <%= counselor.low_income %>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <!-- End Icon Block -->
+                                    </div>
+                                    <!-- End Col -->
+                                
+                                    <div class="col-6 col-md-12 col-lg-6 mb-4 col-6 col-md-12 mb-lg-0">
+                                        <!-- Icon Block -->
+                                        <div class="d-flex align-items-center">
+                                            <div class="flex-shrink-0">
+                                                <span class="text-body small text-dark">
+                                                    International:
+                                
+                                                </span>
+                                            </div>
+                                
+                                            <div class="flex-grow-1 ms-3">
+                                                <span class="text-body small">
+                                                    <%= counselor.international %>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <!-- End Icon Block -->
+                                    </div>
+                                    <!-- End Col -->
+                                
+                                    <div class="col-6 col-md-12 col-lg-6">
+                                        <!-- Icon Block -->
+                                        <div class="d-flex align-items-center">
+                                            <div class="flex-shrink-0">
+                                                <span class="text-body small text-dark">
+                                                    Legacy:
+                                                </span>
+                                            </div>
+                                
+                                            <div class="flex-grow-1 ms-3">
+                                                <span class="text-body small">
+                                                    <%= counselor.legacy%>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <!-- End Icon Block -->
+                                    </div>
+                                    <!-- End Col -->
+                                </div>
+                            </div>
+                            <!-- End Card Body -->
+
+                          
+                        </div>
+                        <!-- End Card -->
+                    </div>
+                </div>
+                <!-- End Sticky Block -->
+            </div>
+            <!-- End Col -->
+
+            <div class="col-md-7 col-lg-8 mt-3">
+                <div class="ps-lg-6 ">
+                                        <div class="bg-white p-4 rounded-2">
+
+                    <div class="mb-3 mb-sm-0 me-2 mt-3 ">
+                       
+                        <h2><%- counselor.first_name + " " + counselor.last_name  %></h2>
+                        
+                    </div>
+
+
+                    <div class="d-flex small mb-3">
+                        <div class="flex-shrink-0">
+                            <i class="bi-briefcase-fill"></i>
+                        </div>
+                        <div class="flex-grow-1 ms-2">
+                            <%- counselor.current_university + " - " + counselor.major %>
+                        </div>
+                    </div>
+
+                    <p><%= counselor.long_bio  %>
+</p>
+
+                    <!-- Read More - Collapse -->
+            
+                    <!-- End Read More - Collapse -->
+
+                    </div>
+
+
+
+                    <!-- Link -->
+                 
+                    <!-- End Link -->
+
+                    <!-- Courses -->
+                    <div class="bg-white px-4  my-4 pb-1 rounded-3">
+                    <div class="border-top pt-5 mt-5">
+                      
+
+                        <div class="d-grid gap-1 mb-8">
+                            <!-- Card -->
+                            <a class="d-block p-2" href="/counselor/book/<%= counselor.id %>">
+                                <div class="row text-secondary">
+
+                                    <h5>Extracurriculars</h5>
+
+                                    <div class="col-6">
+
+                                    <ul class="d-block">
+                                        <% for(let extra of counselor.extracurriculars.slice(0,5)){ %>
+                                            <li><%= extra %></li>
+                                        
+                                       
+
+                                            <% } %>
+                                    </ul>
+
+                                    </div>
+
+                                <div class="col-6">
+                                
+                                    <ul class="d-block">
+                                        <% for(let extra of counselor.extracurriculars.slice(5,10)){ %>
+                                            <li>
+                                                <%= extra %>
+                                            </li>
+                                
+                                
+                                
+                                            <% } %>
+                                    </ul>
+                                
+                                </div>
+
+                                   
+
+                                  
+                                </div>
+                                <!-- End Row -->
+                            </a>
+                            <!-- End Card -->
+
+                            <!-- Card -->
+                        <a class="d-block p-2" href="/counselor/book/<%= counselor.id %>">
+                            <div class="row text-secondary">
+                        
+                                <h5>Awards</h5>
+                        
+                                <div class="col-6">
+                        
+                                    <ul class="d-block">
+                                        <% for(let extra of counselor.awards.slice(0,5)){ %>
+                                            <li>
+                                                <%= extra %>
+                                            </li>
+                        
+                        
+                        
+                                            <% } %>
+                                    </ul>
+                        
+                                </div>
+                        
+                                <div class="col-6">
+                        
+                                    <ul class="d-block">
+                                        <% for(let extra of counselor.awards.slice(5,10)){ %>
+                                            <li>
+                                                <%= extra %>
+                                            </li>
+                        
+                        
+                        
+                                            <% } %>
+                                    </ul>
+                        
+                                </div>
+                        
+                        
+                        
+                        
+                            </div>
+                            <!-- End Row -->
+                        </a>
+                            <!-- End Card -->
+
+                            <!-- Card -->
+                            <a class="d-block p-2" href="/counselor/book/<%= counselor.id %>">
+                                <div class="row text-secondary">
+                            
+                                    <h5>Classes</h5>
+                            
+                                    <div class="col-6">
+                            
+                                        <ul class="d-block">
+                                            <% for(let extra of counselor.classes.slice(0,5)){ %>
+                                                <li>
+                                                    <%= extra %>
+                                                </li>
+                            
+                            
+                            
+                                                <% } %>
+                                        </ul>
+                            
+                                    </div>
+                            
+                                    <div class="col-6">
+                            
+                                        <ul class="d-block">
+                                            <% for(let extra of counselor.classes.slice(5,10)){ %>
+                                                <li>
+                                                    <%= extra %>
+                                                </li>
+                            
+                            
+                            
+                                                <% } %>
+                                        </ul>
+                            
+                                    </div>
+                            
+                            
+                            
+                            
+                                </div>
+                                <!-- End Row -->
+                            </a>
+                            <!-- End Card -->
+                        </div>
+
+                        <div class="text-end small">
+                           
+                        </div>
+                    </div>
+                    <!-- End Courses -->
+
+                </div>
+
+                    <div class="border-top pt-5 mt-5">
+                        <div class="mb-4 text-light">
+                            <h4 class="text-white">Read Mentor's Essays</h4>
+                        </div>
+
+                        <div class="row">
+                            <% for (let essay of essays){ %>
+                            <div class="col-4 mb-3 mb-lg-0">
+                                <!-- Card -->
+                                <a class="card card-sm card-stretched-vertical card-transition bg-img-start"
+                                    href="/essay/<%= essay.id %>"
+                                    style="background-color: #21325B; height: 100%">
+                                    <div class="card-body">
+                                        <span class="card-subtitle text-white-70"><%= essay.university %></span>
+                                        <h4 class="card-title text-white"><%= essay.prompt.slice(0,100) %></h4>
+
+                                        <div class="card-footer pt-0">
+                                            <span class="card-link text-white">Read now</span>
+                                        </div>
+                                    </div>
+                                </a>
+                                <!-- End Card -->
+                            </div>
+
+                            <% } %>
+                            <!-- End Col -->
+
+                            
+                            <!-- End Col -->
+
+                           
+                            <!-- End Col -->
+                        </div>
+                        <!-- End Row -->
+                    </div>
+
+                    <!-- Sticky Block End Point -->
+                    <div id="stickyBlockEndPoint"></div>
+                </div>
+            </div>
+            <!-- End Col -->
+        </div>
+        <!-- End Row -->
+    </div>
+    </div>
+    <!-- End Content -->
+</main>
+
+
+
+
+
+    <!-- Reviews -->
+    <div class="container content-space-1">
+        <div class="mb-4">
+            <h3>Student feedback</h3>
+        </div>
+
+        <div class="row mb-5">
+
+            <div class="col-lg-4">
+                <!-- Card -->
+                <div class="card card-sm bg-primary text-center mb-3">
+                    <div class="card-body">
+                        <span class="display-4 text-white">
+                            <%= Math.round((counselor.average_rating*10))/10 %>
+                        </span>
+
+                        <div class="d-flex justify-content-center gap-2 mb-2">
+
+                            <% for(let i=0; i<Math.floor(counselor.average_rating);i++){%>
+
+
+
+
+
+                                <img src="/assets/svg/illustrations/star.svg" alt="Review rating" width="22">
+
+
+                                <% } %>
+
+                                    <img src="/assets/svg/illustrations/star.svg" alt="Review rating" width="22">
+
+                                    <% for(let i=4; i>Math.floor(counselor.average_rating);i--){%>
+
+
+
+
+
+                                        <img src="/assets/svg/illustrations/star-muted.svg" alt="Review rating"
+                                            width="22">
+
+
+                                        <% } %>
+
+
+
+
+
+
+
+                        </div>
+                        <span class="text-white">Mentor rating</span>
+                    </div>
+                </div>
+                <!-- End Card -->
+            </div>
+            <!-- End Col -->
+
+
+
+
+
+            <div class="col-lg-8">
+                <!-- Ratings -->
+                <div class="d-grid gap-2">
+                    <a class="row align-items-center" href="#">
+                        <div class="col-7">
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar"
+                                    style="width:<%= 100* counselor.rating_distribution[4]/ counselor.total_reviews%>%;"
+                                    aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </div>
+                        <!-- End Col -->
+
+                        <div class="col-2 text-end">
+                            <div class="d-flex">
+                                <div class="d-flex gap-1 me-2">
+                                    <img src="/assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+                                    <img src="/assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+                                    <img src="/assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+                                    <img src="/assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+                                    <img src="/assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+                                </div>
+                                <span>
+                                    <%= counselor.rating_distribution[4] %>
+                                </span>
+                            </div>
+                        </div>
+                        <!-- End Col -->
+                    </a>
+                    <!-- End Row -->
+
+                    <a class="row align-items-center" href="#">
+                        <div class="col-7">
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar"
+                                    style="width:<%= 100* counselor.rating_distribution[3]/ counselor.total_reviews%>%;"
+                                    aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </div>
+                        <!-- End Col -->
+
+                        <div class="col-2 text-end">
+                            <div class="d-flex">
+                                <div class="d-flex gap-1 me-2">
+                                    <img src="/assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+                                    <img src="/assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+                                    <img src="/assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+                                    <img src="/assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+                                    <img src="/assets/svg/illustrations/star-muted.svg" alt="Review rating" width="16">
+                                </div>
+                                <span>
+                                    <%= counselor.rating_distribution[3] %>
+                                </span>
+                            </div>
+                        </div>
+                        <!-- End Col -->
+                    </a>
+                    <!-- End Row -->
+
+                    <a class="row align-items-center" href="#">
+                        <div class="col-7">
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar"
+                                    style="width:<%=100* counselor.rating_distribution[2]/ counselor.total_reviews%>%;"
+                                    aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </div>
+                        <!-- End Col -->
+
+                        <div class="col-2 text-end">
+                            <div class="d-flex">
+                                <div class="d-flex gap-1 me-2">
+                                    <img src="/assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+                                    <img src="/assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+                                    <img src="/assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+                                    <img src="/assets/svg/illustrations/star-muted.svg" alt="Review rating" width="16">
+                                    <img src="/assets/svg/illustrations/star-muted.svg" alt="Review rating" width="16">
+                                </div>
+                                <span>
+                                    <%= counselor.rating_distribution[2] %>
+                                </span>
+                            </div>
+                        </div>
+                        <!-- End Col -->
+                    </a>
+                    <!-- End Row -->
+
+                    <a class="row align-items-center" href="#">
+                        <div class="col-7">
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar"
+                                    style="width:<%= 100* counselor.rating_distribution[1]/ counselor.total_reviews%>%;"
+                                    aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </div>
+                        <!-- End Col -->
+
+                        <div class="col-2 text-end">
+                            <div class="d-flex">
+                                <div class="d-flex gap-1 me-2">
+                                    <img src="/assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+                                    <img src="/assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+                                    <img src="/assets/svg/illustrations/star-muted.svg" alt="Review rating" width="16">
+                                    <img src="/assets/svg/illustrations/star-muted.svg" alt="Review rating" width="16">
+                                    <img src="/assets/svg/illustrations/star-muted.svg" alt="Review rating" width="16">
+                                </div>
+                                <span>
+                                    <%= counselor.rating_distribution[1] %>
+                                </span>
+                            </div>
+                        </div>
+                        <!-- End Col -->
+                    </a>
+                    <!-- End Row -->
+
+                    <a class="row align-items-center" href="#">
+                        <div class="col-7">
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar"
+                                    style="width: <%= 100* counselor.rating_distribution[0]/ counselor.total_reviews%>%;"
+                                    aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </div>
+                        <!-- End Col -->
+
+                        <div class="col-2 text-end">
+                            <div class="d-flex">
+                                <div class="d-flex gap-1 me-2">
+                                    <img src="/assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+                                    <img src="/assets/svg/illustrations/star-muted.svg" alt="Review rating" width="16">
+                                    <img src="/assets/svg/illustrations/star-muted.svg" alt="Review rating" width="16">
+                                    <img src="/assets/svg/illustrations/star-muted.svg" alt="Review rating" width="16">
+                                    <img src="/assets/svg/illustrations/star-muted.svg" alt="Review rating" width="16">
+                                </div>
+                                <span>
+                                    <%= counselor.rating_distribution[0] %>
+                                </span>
+                            </div>
+                        </div>
+                        <!-- End Col -->
+                    </a>
+                    <!-- End Row -->
+                </div>
+                <!-- End Ratings -->
+            </div>
+            <!-- End Col -->
+        </div>
+        <!-- End Row -->
+
+        <!-- Heading -->
+        <div class="border-bottom pb-4 mb-4">
+            <div class="row align-items-center">
+                <div class="col-sm-6 mb-2 mb-sm-0">
+                </div>
+                <!-- End Col -->
+
+                <div class="col-sm-12">
+
+                    <!-- Form -->
+                    <form method="POST" action="/review/<%=counselor._id  %>">
+
+
+
+
+
+                        <div class="mb-4">
+                            <label class="form-label" for="rating">Rating</label>
+                            <select name="rating" id="rating" class="form-select form-select-lg"
+                                aria-label="Tell us about your budget">
+                                <option selected value="NaN">Review This Mentor</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+
+
+                            <%if(error!=""){%>
+                                <p class=" mt-3 text-danger">
+                                    <%= error %>
+                                </p>
+
+
+
+                                <% } %>
+
+
+
+
+                        </div>
+                        <!-- End Select -->
+
+                        <!-- Form -->
+                        <div class="mb-4">
+                            <label class="form-label" for="reviewText">Review</label>
+                            <textarea required class="form-control form-control-lg" name="reviewText" id="reviewText"
+                                placeholder="Write your review here..." aria-label="Write your review here..."
+                                rows="4"></textarea>
+                        </div>
+                        <!-- End Form -->
+
+                        <div class="d-grid mb-2">
+                            <button type="submit" class="btn btn-primary btn-lg">Add Review</button>
+                        </div>
+
+
+
+
+                        <!-- End Select -->
+                    </form>
+                    <!-- End Form -->
+                </div>
+                <!-- End Col -->
+            </div>
+            <!-- End Row -->
+        </div>
+        <!-- End Heading -->
+
+        <h3 class="mb-3">Reviews</h3>
+
+
+        <!-- Comment -->
+        <ul id="review_list" class="list-comment list-comment-divider mb-7">
+
+
+
+
+        </ul>
+        <!-- End Comment -->
+
+        <div class="text-center">
+            <button class="btn btn-outline-primary btn-transition" id="more_reviews">See more reviews</button>
+        </div>
+    </div>
+    <!-- End Content -->
+
+
+
+
+
+
+
+
+
+    </main>
+    <!-- ========== END MAIN CONTENT ========== -->
+<script>
+    let background = document.getElementById('background');
+    let university = '<%= counselor.current_university %>'
+     university = university.replaceAll(" ", "_");
+         let image = `/assets/img/college_backdrops/${university}.png`
+         var img = new Image();
+         img.onload = function () {
+             ;
+         }
+         img.onerror = function () {
+             //set the background of the background div to empty
+             console.log('error')
+                background.style.background = '';
+                background.style.backgroundColor = '#21325B';
+
+         }
+
+            img.src = image;
+
+             function updateShareLink(imageURL, title) {
+                    // Find the og:image and og:title meta tags
+                    var ogImageTag = document.querySelector('meta[property="og:image"]');
+                    var ogTitleTag = document.querySelector('meta[property="og:title"]');
+
+                    // Update the content attribute of the og:image and og:title meta tags
+                    if (ogImageTag) {
+                        ogImageTag.setAttribute('content', imageURL);
+                    }
+                    if (ogTitleTag) {
+                        ogTitleTag.setAttribute('content', title);
+                    }
+                }
+
+
+            updateShareLink('<%= counselor.profile_picture %>', 'View <%= counselor.first_name %> on Counsia')
+
+            //set og:url to the current url
+            document.querySelector('meta[property="og:url"]').setAttribute('content', window.location.href);
+
+
+
+
+
+</script>
+
+   
+
+
+    <script>
+
+        //gets 10 new essays from the database
+        let current_page = 1;
+        let reviews = [];
+        const more_reviews = document.getElementById('more_reviews');
+
+        //get request to /reviews/:counselor_id/page
+        const getReviews = async () => {
+            console.log('get reviews')
+            const response = await fetch(`/review/<%- counselor._id %>/${current_page}`);
+            console.log('get reviews')
+
+            const data = await response.json();
+            reviews = data
+            current_page++;
+            return reviews;
+        }
+
+
+
+
+
+
+
+        async_call_reviews = async () => {
+            console.log('clicked');
+            const new_reviews = await getReviews();
+            console.log(new_reviews.length)
+
+            if (new_reviews.length != 0) {
+
+                let reviews =  <%- JSON.stringify(reviews) %>;
+
+
+
+
+                const review_list = document.getElementById('review_list');
+
+
+
+                for (let review of reviews) {
+
+                    let stars = '';
+                    for (let i = 0; i < review.rating; i++) {
+                        stars += `<img src="/assets/svg/illustrations/star.svg" alt="Review rating" width="16">`
+                    }
+
+
+
+
+
+                    let new_review = `
+
+                        <div class="d-flex gap-1 mb-5 mt-3">
+                            ${stars}
+
+                        </div>
+
+
+
+                        <!-- Media -->
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="flex-shrink-0">
+                                <img class="avatar avatar-sm avatar-circle" src="${review.user.profile_picture}"
+                                    alt="Image Description">
+                            </div>
+
+                            <div class="flex-grow-1 ms-3">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <h5 class="mb-0">
+                                        ${review.user.firstName + " " + review.user.lastName}
+                                    </h5>
+                                    <span class="d-block small text-muted">
+                                        ${new String(review.date).substring(0, 16)}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End Media -->
+
+                        <div class="mb-5">
+                            <p>
+                                ${review.review}
+                            </p>
+                        </div>
+
+
+
+                        <!-- Media -->
+                       
+                        <!-- End Media -->
+
+                    <!--End Item-- >
+                    `
+                    review_list.innerHTML += new_review;
+                }
+            }
+
+
+
+
+
+
+            //jquery reload review_list
+
+
+
+
+
+
+        }
+
+        async_call_reviews();
+
+
+
+
+        more_reviews.addEventListener('click', async_call_reviews)
+
+
+
+
+
+
+    </script>
+
+</div>
+
+<script>
+
+    let counselor = <%- JSON.stringify(counselor) %>;
+    let name = counselor.first_name + " " + counselor.last_name;
+    university = counselor.current_university;
+
+    document.title = name + " | Counsia";
+
+    $('meta[name="description"]').attr("content", "Connect with " + name + " to help you through the college application process. " + name + " is a student at " + university + " and has been accepted to " + counselor.accepted_universities.length + " universities.");
+</script>
+
+

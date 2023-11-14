@@ -1,0 +1,158 @@
+<% layout('./layouts/dashboard_boilerplate') %>
+
+
+
+    <div class="col-lg-12">
+        <!-- Card -->
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-header-title">Your Interested Universities </h5>
+                <div class="text-warning" style="font-size: 0.5rem; font-weight: 400;">(Showing Universities We Have Data
+                    For)</div>
+            </div>
+
+            <!-- Table -->
+            <div class="table-responsive">
+
+                <% if(interested_universities_data.length==0) {%>
+                
+                    <div class="container m-5 p-5">
+                
+                        <h2>Add interested universities in the <span class="text-primary text-highlight-warning">profile dashboard.</span></h2>
+                    </div>
+                
+                
+                    <% }else{ %>
+                
+                
+                
+                        <table class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th>University</th>
+                                    <th>Type</th>
+                                    <th>SAT Range</th>
+                                    <th>ACT Range</th>
+                                    <th>Acceptanace Rate</th>
+                                    <th>Median Earnings</th>
+                                     <th>Deadline</th>
+                                    <th>HS GPA</th>
+                                </tr>
+                            </thead>
+                
+                            <tbody>
+                
+                         <% interested_universities_data.forEach(function(uni) { %>
+                            <% if(uni){%>
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <div class="flex-shrink-0">
+                                                    <%=uni.name%>
+                                                </div>
+                
+                                                <div class="flex-grow-1 ms-1">
+                                                    <a class="d-inline-block link-dark" href="#">
+                                                        <h6 class="text-hover-primary mb-0">
+                
+                                                       
+                
+                                                                    <img class="avatar avatar-xss ms-1"
+                                                                        src="../assets/svg/illustrations/top-vendor.svg"
+                                                                        alt="Image Description" data-bs-toggle="tooltip"
+                                                                        data-bs-placement="top" title="Verified user">
+                                                        </h6>
+                                                    </a>
+                                                    <small class="d-block">
+                                                    </small>
+                                                </div>
+                                            </div>
+                                        </td>
+
+                                        <td>
+
+                                            <%-(uni.Acceptance_Rate_Num < 20) ? "<div class='bg-danger badge rounded-2'>Reach</div>" : ""%>
+                                            <%-(uni.Acceptance_Rate_Num > 20 && uni.Acceptance_Rate_Num < 60) ? "<div class='bg-warning badge'>Target</div>" : "" %>
+                                            <%-(uni.Acceptance_Rate_Num < 100 &&  uni.Acceptance_Rate_Num > 60) ? "<div class='bg-success badge'>Safety</div>" : "" %>
+                                            <!-- Select -->
+
+                                        </td>
+                                        <td>
+                                            <%=uni.SAT_Range%>
+                                            
+                
+                
+                                            <!-- End Select -->
+                                        </td>
+                                        <td>
+
+                                            <%=uni.ACT_Range%>
+                                            <!-- Select -->
+                                       
+                
+                                            <!-- End Select -->
+                                        </td>
+                                        <td>
+
+                                         <%=uni.Acceptance_Rate%>
+
+                
+                                        </td>
+
+                                        <td>
+                                        
+                                            <%=uni.Median_Earnings%>
+                                        
+                                        
+                                        </td>
+
+                                        <td>
+                                        
+                                            <%=uni.Application_Deadline%>
+                                        
+                                        
+                                        </td>
+
+                                        
+
+                                       
+
+                                        <td>
+                                        
+                                            <%=uni.High_School_GPA%>
+                                            </td>
+
+                                            
+                                          
+                                    
+                                    </tr>
+                                    <%}%>
+                                    <%})%>
+                
+                
+                
+                
+                            </tbody>
+                        </table>
+                        <% } %>
+
+                </div>
+
+
+            <!-- End Table -->
+
+
+        </div>
+        <!-- End Card -->
+
+
+
+    </div>
+
+    <script>
+        //print interested_universities_data
+
+        console.log(<%-JSON.stringify(interested_universities_data)%>)
+
+
+    </script>

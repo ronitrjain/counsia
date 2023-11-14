@@ -1,0 +1,599 @@
+<!-- ========== HEADER ========== -->
+
+
+<style>
+    .text-nav {
+        color: black !important;
+    }
+
+    @media (max-width: 990px) {
+        .account-button {
+            padding-top: 1rem !important;
+
+        }
+
+    }
+</style>
+
+<% if(typeof home !=="undefined" ){ %>
+
+
+
+    <style>
+        .text-nav {
+            color: white !important;
+        }
+
+        @media (max-width: 990px) {
+
+            .text-nav {
+                color: black !important;
+
+
+            }
+
+
+
+
+
+
+        }
+    </style>
+
+
+    <% } %>
+
+
+
+        <header id="header" class="navbar navbar-expand-lg navbar-end navbar-absolute-top navbar-light">
+            <div class="container">
+                <nav class="js-mega-menu navbar-nav-wrap">
+                    <!-- Default Logo -->
+                    <a class="navbar-brand" href="/" aria-label="Counsia">
+                        <% if(typeof home=="undefined" ){ %>
+
+                            <img class="navbar-brand-logo"
+                                src="/assets/counsia_logos/blue logos/logos/1000x250_transparent_logo.png" Logo">
+
+                            <% } else { %>
+
+                                <img src="/assets/counsia_logos/white logos/1000x250_transparent_logo.png" alt=""
+                                    class="navbar-brand-logo">
+
+
+                                <% } %>
+                    </a>
+                    <!-- End Default Logo -->
+
+                    <!-- Toggler -->
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                        <span class="navbar-toggler-default">
+                            <i class="bi-list"></i>
+                        </span>
+                        <span class="navbar-toggler-toggled">
+                            <i class="bi-x"></i>
+                        </span>
+                    </button>
+                    <!-- End Toggler -->
+
+                    <!-- Collapse -->
+                    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                        <ul class="navbar-nav">
+
+                            
+                           
+
+                            
+
+
+                            <li class="hs-has-mega-menu nav-item">
+                                <a id="landingsMegaMenu" class="hs-mega-menu-invoker nav-link dropdown-toggle text-nav"
+                                    aria-current="page" href="#" role="button" aria-expanded="false">
+                                    Mentors</a>
+
+                                <!-- Mega Menu -->
+                                <div class="hs-mega-menu dropdown-menu w-100" aria-labelledby="landingsMegaMenu"
+                                    style="min-width: 30rem;">
+                                    <div class="row">
+                                        <div class="col-lg-6 d-none d-lg-block">
+                                            <!-- Banner Image -->
+                                            <div class="navbar-dropdown-menu-banner"
+                                                style="background-image: url(/assets/img/nav/pexels-keira-burton-6084257.jpg);">
+                                                <div class="navbar-dropdown-menu-banner-content">
+                                                    <div class="mb-4">
+                                                        <span class="h2 d-block text-white">Mentors</span>
+                                                        <p class="text-white">Read mentor profiles and get their
+                                                            guidance
+                                                            through the college applicaiton process .</p>
+                                                    </div>
+                                                    <a class="btn btn-primary btn-transition"
+                                                        href="/counselor/search">Search <i
+                                                            class="bi-chevron-right small"></i></a>
+                                                </div>
+                                            </div>
+                                            <!-- End Banner Image -->
+                                        </div>
+                                        <!-- End Col -->
+
+                                        <div class="col-lg-6">
+                                            <div class="navbar-dropdown-menu-inner">
+                                                <div class="row">
+                                                    <div class="col-sm mb-3 mb-sm-0">
+                                                        <span class="dropdown-header">Mentor By College</span>
+
+                                                        <a class="dropdown-item " href="/counselor/college/stanford">
+                                                            <div class="avatar avatar-xs avatar-circle mx-1"
+                                                                data-toggle="tooltip" data-placement="top"
+                                                                title="College" href="#">
+                                                                <img class="avatar-img"
+                                                                    src="/assets/img/Colleges/Stanford_University.png"
+                                                                    alt=" Image Description">
+                                                            </div>
+                                                            Stanford
+                                                        </a>
+
+
+                                                        <a class="dropdown-item " href="/counselor/college/harvard">
+                                                            <div class="avatar avatar-xs avatar-circle mx-1"
+                                                                data-toggle="tooltip" data-placement="top"
+                                                                title="College" href="#">
+                                                                <img class="avatar-img"
+                                                                    src="/assets/img/Colleges/Harvard_University.png"
+                                                                    alt=" Image Description">
+                                                            </div>
+                                                            Harvard
+                                                        </a>
+
+
+                                                        <a class="dropdown-item " href="/counselor/college/yale">
+                                                            <div class="avatar avatar-xs avatar-circle mx-1"
+                                                                data-toggle="tooltip" data-placement="top"
+                                                                title="College" href="#">
+                                                                <img class="avatar-img"
+                                                                    src="/assets/img/Colleges/Yale_University.png"
+                                                                    alt=" Image Description">
+                                                            </div>
+                                                            Yale
+                                                        </a>
+
+
+                                                        <a class="dropdown-item " href="/counselor/college/chicago">
+                                                            <div class="avatar avatar-xs avatar-circle mx-1"
+                                                                data-toggle="tooltip" data-placement="top"
+                                                                title="College" href="#">
+                                                                <img class="avatar-img"
+                                                                    src="/assets/img/Colleges/University_of_Chicago.png"
+                                                                    alt=" Image Description">
+                                                            </div>
+                                                            UChicago
+                                                        </a>
+
+
+                                                        <a class="dropdown-item " href="/counselor/college/upenn">
+                                                            <div class="avatar avatar-xs avatar-circle mx-1"
+                                                                data-toggle="tooltip" data-placement="top"
+                                                                title="College" href="#">
+                                                                <img class="avatar-img"
+                                                                    src="/assets/img/Colleges/University_of_Pennsylvania.png"
+                                                                    alt=" Image Description">
+                                                            </div>
+                                                            UPenn
+                                                        </a>
+
+                                                        <a class="dropdown-item " href="/counselor/college/mit">
+                                                            <div class="avatar avatar-xs avatar-circle mx-1"
+                                                                data-toggle="tooltip" data-placement="top"
+                                                                title="College" href="#">
+                                                                <img class="avatar-img"
+                                                                    src="/assets/img/Colleges/Massachusetts_Institute_of_Technology.png"
+                                                                    alt=" Image Description">
+                                                            </div>
+                                                            MIT
+                                                        </a>
+
+                                                        <a class="dropdown-item "
+                                                            href="/counselor/college/johns_hopkins">
+                                                            <div class="avatar avatar-xs avatar-circle mx-1"
+                                                                data-toggle="tooltip" data-placement="top"
+                                                                title="College" href="#">
+                                                                <img class="avatar-img"
+                                                                    src="/assets/img/Colleges/John_Hopkins_University.png"
+                                                                    alt=" Image Description">
+                                                            </div>
+                                                            Johns Hopkins
+                                                        </a>
+
+                                                        <a class="dropdown-item " href="/counselor/college/princeton">
+                                                            <div class="avatar avatar-xs avatar-circle mx-1"
+                                                                data-toggle="tooltip" data-placement="top"
+                                                                title="College" href="#">
+                                                                <img class="avatar-img"
+                                                                    src="/assets/img/Colleges/Princeton_University.png"
+                                                                    alt=" Image Description">
+                                                            </div>
+                                                            Princeton
+                                                        </a>
+
+
+
+                                                    </div>
+                                                    <!-- End Col -->
+
+                                                    <div class="col-sm">
+                                                        <div class="mb-3">
+                                                            <a class="dropdown-item "
+                                                                href="/counselor/college/columbia">
+                                                                <div class="avatar avatar-xs avatar-circle mx-1"
+                                                                    data-toggle="tooltip" data-placement="top"
+                                                                    title="College" href="#">
+                                                                    <img class="avatar-img"
+                                                                        src="/assets/img/Colleges/Columbia_University.png"
+                                                                        alt=" Image Description">
+                                                                </div>
+                                                                Columbia
+                                                            </a>
+
+                                                            <a class="dropdown-item "
+                                                                href="/counselor/college/carnegie_mellon"">
+                                                                                                <div class=" avatar
+                                                                avatar-xs avatar-circle mx-1" data-toggle="tooltip"
+                                                                data-placement="top" title="College" href="#">
+                                                                <img class="avatar-img"
+                                                                    src="/assets/img/Colleges/Carnegie_Mellon_University.png"
+                                                                    alt=" Image Description">
+                                                        </div>
+                                                        Carnegie Mellon
+                                                        </a>
+
+                                                        <a class="dropdown-item " href="/counselor/college/michigan">
+                                                            <div class="avatar avatar-xs avatar-circle mx-1"
+                                                                data-toggle="tooltip" data-placement="top"
+                                                                title="College" href="#">
+                                                                <img class="avatar-img"
+                                                                    src="/assets/img/Colleges/University_of_Michigan--Ann_Arbor.png"
+                                                                    alt=" Image Description">
+                                                            </div>
+                                                            Michigan
+                                                        </a>
+
+                                                        <a class="dropdown-item " href="/counselor/college/gt">
+                                                            <div class="avatar avatar-xs avatar-circle mx-1"
+                                                                data-toggle="tooltip" data-placement="top"
+                                                                title="College" href="#">
+                                                                <img class="avatar-img"
+                                                                    src="/assets/img/Colleges/Georgia_Institute_of_Technology.png"
+                                                                    alt=" Image Description">
+                                                            </div>
+                                                            Georgia Tech
+                                                        </a>
+
+                                                        <a class="dropdown-item " href="/counselor/college/berkeley">
+                                                            <div class="avatar avatar-xs avatar-circle mx-1"
+                                                                data-toggle="tooltip" data-placement="top"
+                                                                title="College" href="#">
+                                                                <img class="avatar-img"
+                                                                    src="/assets/img/Colleges/University_of_California--Berkeley.png"
+                                                                    alt=" Image Description">
+                                                            </div>
+                                                            Berkeley
+                                                        </a>
+
+                                                        
+
+                                                    </div>
+
+                                                    <span class="dropdown-header">More</span>
+                                                     <a class="dropdown-item " href="/meeting/all">Available</a>
+                                                    <a class="dropdown-item " href="/counselor/search">Search</a>
+                                                    <a class="dropdown-item " href="/counselor/popular">Popular
+                                                        <span class="badge bg-primary rounded-pill ms-1">Hot</span></a>
+                                                </div>
+                                                <!-- End Col -->
+                                            </div>
+                                            <!-- End Row -->
+                                        </div>
+                                    </div>
+                                    <!-- End Col -->
+                                </div>
+                                <!-- End Row -->
+
+                                <!-- End Mega Menu -->
+                            </li>
+                            <!-- Landings -->
+
+                            <!-- Essays That Worked -->
+
+
+
+                            <!-- Account -->
+                            <li class="hs-has-mega-menu nav-item">
+                                <a id="landingsMegaMenu" class="hs-mega-menu-invoker nav-link dropdown-toggle text-nav "
+                                    aria-current="page" href="#" role="button" aria-expanded="false">Essays
+                                    That Worked</a>
+
+                                <!-- Mega Menu -->
+                                <div class="hs-mega-menu dropdown-menu w-100" aria-labelledby="landingsMegaMenu"
+                                    style="min-width: 30rem;">
+                                    <div class="row">
+                                        <div class="col-lg-6 d-none d-lg-block">
+                                            <!-- Banner Image -->
+                                            <div class="navbar-dropdown-menu-banner"
+                                                style="background-image: url(/assets/img/nav/pexels-keira-burton-6147369.jpg);">
+                                                <div class="navbar-dropdown-menu-banner-content">
+                                                    <div class="mb-4">
+                                                        <span class="h2 d-block text-white">Read Essays That
+                                                            Worked</span>
+                                                        <p class="text-white">Get inspiration and direction for your
+                                                            college
+                                                            essays by reading real essays.</p>
+                                                    </div>
+                                                    <a class="btn btn-primary btn-transition"
+                                                        href="/essay/search">Search <i
+                                                            class="bi-chevron-right small"></i></a>
+                                                </div>
+                                            </div>
+                                            <!-- End Banner Image -->
+                                        </div>
+                                        <!-- End Col -->
+
+                                        <div class="col-lg-6">
+                                            <div class="navbar-dropdown-menu-inner">
+                                                <div class="row">
+                                                    <div class="col-sm mb-3 mb-sm-0">
+                                                        <span class="dropdown-header">Essays By College</span>
+
+                                                        <a class="dropdown-item " href="/essay/college/stanford">
+                                                            <div class="avatar avatar-xs avatar-circle mx-1"
+                                                                data-toggle="tooltip" data-placement="top"
+                                                                title="College" href="#">
+                                                                <img class="avatar-img"
+                                                                    src="/assets/img/Colleges/Stanford_University.png"
+                                                                    alt=" Image Description">
+                                                            </div>
+                                                            Stanford
+                                                        </a>
+
+
+                                                        <a class="dropdown-item " href="/essay/college/harvard">
+                                                            <div class="avatar avatar-xs avatar-circle mx-1"
+                                                                data-toggle="tooltip" data-placement="top"
+                                                                title="College" href="#">
+                                                                <img class="avatar-img"
+                                                                    src="/assets/img/Colleges/Harvard_University.png"
+                                                                    alt=" Image Description">
+                                                            </div>
+                                                            Harvard
+                                                        </a>
+
+
+                                                        <a class="dropdown-item " href="/essay/college/yale">
+                                                            <div class="avatar avatar-xs avatar-circle mx-1"
+                                                                data-toggle="tooltip" data-placement="top"
+                                                                title="College" href="#">
+                                                                <img class="avatar-img"
+                                                                    src="/assets/img/Colleges/Yale_University.png"
+                                                                    alt=" Image Description">
+                                                            </div>
+                                                            Yale
+                                                        </a>
+
+
+                                                        <a class="dropdown-item " href="/essay/college/chicago">
+                                                            <div class="avatar avatar-xs avatar-circle mx-1"
+                                                                data-toggle="tooltip" data-placement="top"
+                                                                title="College" href="#">
+                                                                <img class="avatar-img"
+                                                                    src="/assets/img/Colleges/University_of_Chicago.png"
+                                                                    alt=" Image Description">
+                                                            </div>
+                                                            UChicago
+                                                        </a>
+
+
+                                                        <a class="dropdown-item " href="/essay/college/upenn">
+                                                            <div class="avatar avatar-xs avatar-circle mx-1"
+                                                                data-toggle="tooltip" data-placement="top"
+                                                                title="College" href="#">
+                                                                <img class="avatar-img"
+                                                                    src="/assets/img/Colleges/University_of_Pennsylvania.png"
+                                                                    alt=" Image Description">
+                                                            </div>
+                                                            UPenn
+                                                        </a>
+
+                                                        <a class="dropdown-item " href="/essay/college/mit">
+                                                            <div class="avatar avatar-xs avatar-circle mx-1"
+                                                                data-toggle="tooltip" data-placement="top"
+                                                                title="College" href="#">
+                                                                <img class="avatar-img"
+                                                                    src="/assets/img/Colleges/Massachusetts_Institute_of_Technology.png"
+                                                                    alt=" Image Description">
+                                                            </div>
+                                                            MIT
+                                                        </a>
+
+                                                        <a class="dropdown-item " href="/essay/college/johns_hopkins">
+                                                            <div class="avatar avatar-xs avatar-circle mx-1"
+                                                                data-toggle="tooltip" data-placement="top"
+                                                                title="College" href="#">
+                                                                <img class="avatar-img"
+                                                                    src="/assets/img/Colleges/John_Hopkins_University.png"
+                                                                    alt=" Image Description">
+                                                            </div>
+                                                            Johns Hopkins
+                                                        </a>
+
+                                                        <a class="dropdown-item " href="/essay/college/princeton">
+                                                            <div class="avatar avatar-xs avatar-circle mx-1"
+                                                                data-toggle="tooltip" data-placement="top"
+                                                                title="College" href="#">
+                                                                <img class="avatar-img"
+                                                                    src="/assets/img/Colleges/Princeton_University.png"
+                                                                    alt=" Image Description">
+                                                            </div>
+                                                            Princeton
+                                                        </a>
+
+
+
+                                                    </div>
+                                                    <!-- End Col -->
+
+                                                    <div class="col-sm">
+                                                        <div class="mb-3">
+                                                            <a class="dropdown-item " href="/essay/college/columbia">
+                                                                <div class="avatar avatar-xs avatar-circle mx-1"
+                                                                    data-toggle="tooltip" data-placement="top"
+                                                                    title="College" href="#">
+                                                                    <img class="avatar-img"
+                                                                        src="/assets/img/Colleges/Columbia_University.png"
+                                                                        alt=" Image Description">
+                                                                </div>
+                                                                Columbia
+                                                            </a>
+
+                                                            <a class="dropdown-item "
+                                                                href="/essay/college/carnegie_mellon"">
+                                                                        <div class=" avatar avatar-xs avatar-circle
+                                                                mx-1" data-toggle="tooltip" data-placement="top"
+                                                                title="College" href="#">
+                                                                <img class="avatar-img"
+                                                                    src="/assets/img/Colleges/Carnegie_Mellon_University.png"
+                                                                    alt=" Image Description">
+                                                        </div>
+                                                        Carnegie Mellon
+                                                        </a>
+
+                                                        <a class="dropdown-item " href="/essay/college/michigan">
+                                                            <div class="avatar avatar-xs avatar-circle mx-1"
+                                                                data-toggle="tooltip" data-placement="top"
+                                                                title="College" href="#">
+                                                                <img class="avatar-img"
+                                                                    src="/assets/img/Colleges/University_of_Michigan--Ann_Arbor.png"
+                                                                    alt=" Image Description">
+                                                            </div>
+                                                            Michigan
+                                                        </a>
+
+                                                        <a class="dropdown-item " href="/essay/college/gt">
+                                                            <div class="avatar avatar-xs avatar-circle mx-1"
+                                                                data-toggle="tooltip" data-placement="top"
+                                                                title="College" href="#">
+                                                                <img class="avatar-img"
+                                                                    src="/assets/img/Colleges/Georgia_Institute_of_Technology.png"
+                                                                    alt=" Image Description">
+                                                            </div>
+                                                            Georgia Tech
+                                                        </a>
+
+                                                        <a class="dropdown-item " href="/essay/college/berkeley">
+                                                            <div class="avatar avatar-xs avatar-circle mx-1"
+                                                                data-toggle="tooltip" data-placement="top"
+                                                                title="College" href="#">
+                                                                <img class="avatar-img"
+                                                                    src="/assets/img/Colleges/University_of_California--Berkeley.png"
+                                                                    alt=" Image Description">
+                                                            </div>
+                                                            Berkeley
+                                                        </a>
+
+                                                        <a class="dropdown-item " href="/essay/college/duke">
+                                                            <div class="avatar avatar-xs avatar-circle mx-1"
+                                                                data-toggle="tooltip" data-placement="top"
+                                                                title="College" href="#">
+                                                                <img class="avatar-img"
+                                                                    src="/assets/img/Colleges/Duke_University.png"
+                                                                    alt=" Image Description">
+                                                            </div>
+                                                            Duke
+                                                        </a>
+
+                                                    </div>
+
+                                                    <span class="dropdown-header">More Pages</span>
+                                                    <a class="dropdown-item " href="/essay/search">Search</a>
+                                                    <a class="dropdown-item " href="/essay/recent">Recent
+                                                        <span class="badge bg-primary rounded-pill ms-1">New</span></a>
+                                                </div>
+                                                <!-- End Col -->
+                                            </div>
+                                            <!-- End Row -->
+                                        </div>
+                                    </div>
+                                    <!-- End Col -->
+                                </div>
+                                <!-- End Row -->
+
+                                <!-- End Mega Menu -->
+                            </li>
+                            <!-- End Account -->
+
+                            <!-- Account -->
+
+                            <!-- End Account -->
+
+
+
+                            <!-- Pages -->
+                            <li class="hs-has-sub-menu nav-item">
+                                <a id="pagesMegaMenu" class="hs-mega-menu-invoker nav-link dropdown-toggle text-nav"
+                                    href="/counselor/application-process" role="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">Join Us</a>
+
+                                <!-- Mega Menu -->
+                                <div class="hs-sub-menu dropdown-menu" aria-labelledby="pagesMegaMenu"
+                                    style="min-width: 14rem;">
+                                    <a class="dropdown-item" href="/counselor/apply">Application</a>
+                                    <a class="dropdown-item" href="/counselor/application-process">Application
+                                        Process</a>
+                                    <a class="dropdown-item" href="/requirements">Requirements</a>
+
+                                </div>
+                                <!-- End Mega Menu -->
+                            </li>
+                            <!-- End Pages -->
+
+                            <!-- Blog -->
+                            <li class="hs-has-sub-menu nav-item">
+                                <a id="blogMegaMenu" class="hs-mega-menu-invoker dropdown-toggle text-nav" href="/about"
+                                    role="button" data-bs-toggle="dropdown" aria-expanded="false">About</a>
+
+                                <!-- Mega Menu -->
+                                <div class="hs-sub-menu dropdown-menu" aria-labelledby="blogMegaMenu"
+                                    style="min-width: 14rem;">
+                                    <a class="dropdown-item" href="/about">About</a>
+                                    <a class="dropdown-item" href="/contact">Contact</a>
+                                    <a class="dropdown-item" href="/pricing">Pricing</a>
+
+                                </div>
+                                <!-- End Mega Menu -->
+                            </li>
+                            <!-- End Blog -->
+
+
+
+                            <!-- Button -->
+                            <li class="nav-item  d-flex justify-content-end account-button">
+                                <% if(currentUser) { %>
+                                    <a class="btn btn-primary btn-transition" href="/dashboard">Account</a>
+                                    <% } else { %>
+                                        <a class="btn btn-primary btn-transition" href="/login">Log In</a>
+                                        <% } %>
+
+                            </li>
+                            <!-- End Button -->
+                        </ul>
+                    </div>
+                    <!-- End Collapse -->
+                </nav>
+            </div>
+        </header>
+
+
+
+
+
+
+        <!-- JS Plugins Init. -->

@@ -1,0 +1,333 @@
+<% layout('./layouts/dashboard_boilerplate') %>
+
+
+
+
+        <!-- Changable Content -->
+        <div class="content container-fluid col-12">
+            <div class="row justify-content-center align-items-centers">
+                <div class="col-lg-10">
+                    <!-- Profile Cover -->
+                    <div class="profile-cover">
+                        <div class="profile-cover-img-wrapper">
+                            <img class="profile-cover-img" src="/assets_dashboard/img/1920x400/img1.jpg"
+                                alt="Image Description">
+                        </div>
+                    </div>
+                    <!-- End Profile Cover -->
+
+                    <!-- Profile Header -->
+                    <div class="text-center mb-5">
+                        <!-- Avatar -->
+                        <div class="avatar avatar-xxl avatar-circle profile-cover-avatar">
+                            <img class="avatar-img" src="<%=currentUser.profile_picture %>" alt="Image Description">
+                            <span class="avatar-status avatar-status-success"></span>
+                        </div>
+                        <!-- End Avatar -->
+
+                        <h1 class="page-header-title">
+                            <%= currentUser.firstName + " " + currentUser.lastName %> <i
+                                    class="bi-patch-check-fill fs-2 text-primary" data-bs-toggle="tooltip"
+                                    data-bs-placement="top" title="Top endorsed"></i>
+                        </h1>
+
+                        <!-- List -->
+                        <ul class="list-inline list-px-2">
+                            <li class="list-inline-item">
+                                <i class="bi-person me-1"></i>
+                                <span>
+                                    <%= currentUser.username %>
+                                </span>
+                            </li>
+
+                            <li class="list-inline-item">
+                                <i class="bi-envelope me-1"></i>
+                                <a href="#">
+                                    <%= currentUser.email %>
+                                </a>
+                            </li>
+
+
+                        </ul>
+                        <!-- End List -->
+                    </div>
+                    <!-- End Profile Header -->
+
+
+
+
+
+
+
+
+                    <div class="col-lg-12">
+                        <div class="d-grid gap-3 gap-lg-5">
+
+
+
+                            <!-- Card -->
+                            <div class="card">
+                                <div class="card-header border-bottom">
+                                    <h4 class="card-header-title">Basic info</h4>
+                                </div>
+
+                                <!-- Body -->
+                                <div class="card-body">
+
+
+
+                                    <form action="/user/<%=currentUser._id %>/info/update" method="POST">
+                                        <!-- Form -->
+
+                                        <!-- End Form -->
+
+                                        <!-- Form -->
+                                        <div class="row mb-4">
+                                            <label for="firstNameLabel" class="col-sm-3 col-form-label form-label">Full
+                                                name
+                                                <i class="bi-question-circle text-body ms-1" data-bs-toggle="tooltip"
+                                                    data-bs-placement="top"
+                                                    title="Only Visible to Those You Interact With"></i></label>
+
+                                            <div class="col-sm-9">
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control" name="firstName"
+                                                        id="firstNameLabel" placeholder="Clarice" aria-label="Clarice"
+                                                        value="<%=currentUser.firstName %>">
+                                                    <input type="text" class="form-control" name="lastName"
+                                                        id="lastNameLabel" placeholder="Boone" aria-label="Boone"
+                                                        value="<%=currentUser.lastName %>">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- End Form -->
+
+                                        <!-- Form -->
+                                        <div class="row mb-4">
+                                            <label for="emailLabel"
+                                                class="col-sm-3 col-form-label form-label">Email</label>
+
+                                            <div class="col-sm-9">
+                                                <input type="email" class="form-control" name="email" id="emailLabel"
+                                                    placeholder="clarice@example.com" aria-label="clarice@example.com"
+                                                    value="<%=currentUser.email %>">
+                                            </div>
+                                        </div>
+
+
+                                        <!-- End Form -->
+
+                                        <%if(error!=""){%>
+                                            <p class="text-danger">
+                                                <%= error %>
+                                            </p>
+
+
+
+                                            <% } %>
+
+
+                                                <!-- End Item -->
+                                                <div class="row my-3">
+                                                    <div class="col-sm-6">
+                                                        <!-- Form -->
+                                                        <div class="mb-4">
+                                                            <label class="form-label" for="gpa">University GPA
+                                                                (UW)</label>
+
+                                                            <div class="input-group input-group-merge">
+                                                                <span class="input-group-prepend input-group-text">
+                                                                    <i class="bi-briefcase-fill"></i>
+                                                                </span>
+                                                                <input required type="number"
+                                                                    class="form-control form-control-lg" id="gpa"
+                                                                    placeholder="3.39" aria-label="gpa" name="gpa"
+                                                                    step="0.01" value="<%=currentUser.gpa  %>">
+                                                            </div>
+                                                        </div>
+                                                        <!-- End Form -->
+                                                    </div>
+                                                    <!-- End Col -->
+
+                                                    <div class="col-sm-6">
+                                                        <!-- Form -->
+                                                        <div class="mb-4">
+                                                            <label class="form-label" for="ACT">ACT</label>
+
+                                                            <div class="input-group input-group-merge">
+                                                                <span class="input-group-prepend input-group-text">
+                                                                    <i class="bi-globe2"></i>
+                                                                </span>
+                                                                <input min="0" max="36" type="number"
+                                                                    class="form-control form-control-lg" id="ACT"
+                                                                    placeholder="23" aria-label="ACT" name="ACT"
+                                                                    step="1" value="<%=currentUser.ACT %>">
+                                                            </div>
+                                                        </div>
+                                                        <!-- End Form -->
+                                                    </div>
+                                                    <!-- End Col -->
+                                                </div>
+
+                                                <!-- End Row -->
+
+                                                <div class="row my-3">
+
+
+                                                    <div class="col-sm-6">
+                                                        <!-- Form -->
+                                                        <div class="mb-4">
+                                                            <label class="form-label" for="SAT">SAT</label>
+
+                                                            <div class="input-group input-group-merge">
+                                                                <span class="input-group-prepend input-group-text">
+                                                                    <i class="bi-globe2"></i>
+                                                                </span>
+                                                                <input  type="number"
+                                                                    class="form-control form-control-lg" id="SAT"
+                                                                    placeholder="1400" aria-label="SAT" name="SAT"
+                                                                    step="10" min="400"  max="1600" value="<%=currentUser.SAT %>">
+                                                            </div>
+                                                        </div>
+                                                        <!-- End Form -->
+                                                    </div>
+
+
+
+                                                    <div class="col-sm-6">
+                                                        <!-- Form -->
+                                                        <div class="mb-4">
+                                                            <label class="form-label" for="major">Major Of
+                                                                Interest</label>
+
+                                                            <div class="input-group input-group-merge">
+                                                                <span class="input-group-prepend input-group-text">
+                                                                    <i class="bi-globe2"></i>
+                                                                </span>
+                                                                <input required type="text"
+                                                                    class="form-control form-control-lg" id="major"
+                                                                    placeholder="Economics" aria-label="major"
+                                                                    name="major" value="<%=currentUser.major %>">
+                                                            </div>
+                                                        </div>
+                                                        <!-- End Form -->
+                                                    </div>
+                                                    <!-- End Col -->
+
+
+                                                </div>
+
+                                                <div class="form-label">
+
+                                                    <label for="bio">Bio</label>
+
+                                                    <textarea class="form-control" id="bio" rows="3"
+                                                        placeholder="Tell us about yourself" name="bio"
+                                                        value="<%=currentUser.bio %>"><%=currentUser.bio %></textarea>
+
+                                                </div>
+
+
+                                                <div class="col-sm-9 my-3">
+
+                                                    <label for="interested_universities">Interested Universities</label>
+
+
+                                                    <div class="input-group">
+
+
+                                                        <!-- Select -->
+                                                        <div class="tom-select-custom my-3 col-12">
+                                                            <select id="interested_universities"
+                                                                class="js-select form-select" multiple
+                                                                name="interested_universities"
+                                                                data-hs-tom-select-options='{
+                                                                                                                                                        "width": "100%",
+                                                                                                                                                        "hideSearch": false
+                                                                                                                                                      }'
+                                                                placeholder="Select Universities">
+                                                                <% for (let university of world_universities) { %>
+                                                                    <option value="<%= university %>" 
+                                                                        <% if(currentUser.interested_universities.includes(university)){%>
+                                                                       
+
+
+
+
+
+
+                                                                        selected
+
+                                                                        <% } %>
+                                                                            >
+                                                                            <%= university %>
+
+                                                                    </option>
+                                                                    <% } %>
+                                                            </select>
+                                                        </div>
+                                                        <!-- End Select -->
+                                                    </div>
+
+
+
+
+                                                </div>
+
+                                                <!-- Item -->
+                                                
+
+
+
+
+
+
+                                                <!-- Form -->
+
+
+
+                                                <div class="d-flex justify-content-end gap-3 mb-3">
+                                                    <a class="btn btn-white" onclick="refreshPage()">Cancel</a>
+                                                    <button class="btn btn-primary" type="submit">Save changes</a>
+                                                </div>
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <a class="btn btn-soft-danger my-4"href="/delete-account">Delete Account</a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    <!-- Sticky Block End Point -->
+                    <div id="stickyBlockEndPoint"></div>
+                </div>
+            </div>
+            <!-- End Row -->
+        </div>
+        <!-- End Col -->
+
+        <!-- End Changeable Content -->
+

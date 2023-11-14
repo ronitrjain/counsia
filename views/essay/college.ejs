@@ -1,0 +1,282 @@
+<% layout('./layouts/boilerplate') %>
+<style>
+    .counselor_card{
+          box-shadow: 0 0px 10px 1px rgb(136, 211, 232);
+
+        
+    }
+
+    .animate-charcter
+{
+                font-family: 'Kumbh Sans', sans-serif;
+    font-weight: 700;
+   text-transform: uppercase;
+  background-image: linear-gradient(
+    -225deg,
+    #c94b4b 0%,
+    #4b134f 50%,
+    #c94b4b 100%
+
+  );
+  background-size: auto auto;
+  background-clip: border-box;
+  background-size: 200% auto;
+  color: #fff;
+  background-clip: text;
+  text-fill-color: transparent;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: textclip 3s linear infinite;
+  display: inline-block;
+      font-size: 4rem;
+}
+
+@keyframes textclip {
+  to {
+    background-position: 200% center;
+  }
+}
+
+.btn-grad{
+    background-image: linear-gradient(
+    -225deg,
+    #c94b4b 0%,
+    #4b134f 50%,
+    #c94b4b 100%
+
+  );
+    background-size: auto auto;
+
+
+   background-size: 200%;
+animation: anime 7s linear infinite;
+color: white;
+margin-bottom: 0%;
+
+
+}
+
+@keyframes anime {
+   to {
+    background-position: 200% center;
+  }
+}
+
+
+
+</style>
+
+<div class="bg-img-start" 
+    style="background:linear-gradient(0deg, rgba(70, 54, 30, 0.5), rgba(70, 54, 30, 0.5)),
+    url(/assets/img/college_backdrops/<%=college.replaceAll(' ', '_')%>.png);
+    object-fit: cover; background-repeat: no-repeat; background-size: cover; background-position: center center; height:
+    80vh
+    ">
+        <div class="d-md-flex content-space-3 content-space-md-0">
+        <div
+            class="container d-md-flex justify-content-md-center align-items-md-center flex-md-column text-center" style="height: 80vh;">
+            <h1 class="display-1 text-white "><%= college %></h1>
+            <p class="lead text-white">Look through our essays from <%= college %>.</p>
+        </div>
+    </div>
+</div>
+
+
+<% if(college_data_obj) {%>
+    <div class="container content-space-2 content-space-lg-3 mb-n10 pb-n10">
+        <h1 class="text-center mb-6">
+            <%= college%> Information
+        </h1>
+        <div class="my-10 text-center">
+
+            <p>
+                <%= college_data_obj['Bio'] %>
+            </p>
+
+
+        </div>
+        <div class="row mb-10">
+            <div class="col-sm-4 mb-3 mb-sm-0">
+                <div class="text-center">
+                    <small class="text-cap text-primary">— SAT Range</small>
+                    <h4 class="display-4"><%- college_data_obj['SAT_Range'] %></h4>
+                    <p>SAT Range to be competitive</p>
+
+
+                </div>
+            </div>
+            <!-- End Col -->
+
+            <div class="col-sm-4 mb-3 mb-sm-0">
+                <div class="text-center">
+                    <small class="text-cap text-primary">— ACT Range</small>
+                    <h4 class="display-4"><%- college_data_obj['ACT_Range'] %></h4>
+                    <p>ACT Range to be competitive</p>
+
+                </div>
+            </div>
+            <!-- End Col -->
+
+            <div class="col-sm-4">
+                <div class="text-center">
+                    <small class="text-cap text-primary">— Acceptance Rate</small>
+                    <h4 class="display-4"><%- college_data_obj['Acceptance_Rate'] %></h4>
+                    <p>Includes early and regular decision plans.</p>
+
+                </div>
+            </div>
+            <!-- End Col -->
+        </div>
+        <!-- End Row -->
+
+        <div class="row" <%  %>>
+            <div class="col-sm-4 mb-3 mb-sm-0">
+                <div class="text-center">
+                    <small class="text-cap text-primary">— Median Income</small>
+                    <h4 class="display-4"><%- college_data_obj['Median_Earnings'] || 'N/A' %></h4>
+                    <p>Median earnings for graduates.</p>
+
+                </div>
+            </div>
+            <!-- End Col -->
+
+            <div class="col-sm-4 mb-3 mb-sm-0">
+                <div class="text-center">
+                    <small class="text-cap text-primary">— Application Fee</small>
+                    <h4 class="display-4"><%- college_data_obj['Application_Fee'] %></h4>
+                    <p>The school's application fee.</p>
+
+                </div>
+            </div>
+            <!-- End Col -->
+
+            <div class="col-sm-4">
+                <div class="text-center">
+                    <small class="text-cap text-primary">— Deadline</small>
+                    <h4 class="display-4"><%- college_data_obj['Application_Deadline'] %></h4>
+                    <p>Deadline for regular decision.</p>
+                </div>
+            </div>
+            <!-- End Col -->
+        </div>
+    </div>
+
+    <% } %>
+        <!-- End Features Stats -->
+
+
+
+
+
+
+    <div class=" mx-9 my-10 py-10  px-0">
+
+        <div class="w-md-100 text-center mb-1">
+            <h2 class="h1 cursive_bold animate-charcter">Essays</h2>
+        </div>
+
+        <div class="w-md-100 text-center mb-9 px-10">
+            <h2 class="h1 cursive ">Look through our most viewed essays from <%= college %>.</h2>
+        </div>
+
+
+
+
+        <div class=" row overflow-auto  pb-5 mb-10 ">
+            
+            <% for (let essay of essays){ %>
+            
+            
+            
+                <div class="col-lg-6 mb-3 mb-lg-5 ">
+                    <!-- Card -->
+                    <a class="card card-bordered card-transition h-100" href="/essay/<%= essay._id %>" style="background-image: url(/assets/img/others/bg.jpg);
+                                    background-position: left top;
+                                    background-size: contain;
+                                    ">
+                        <div class="card-body">
+                            <!-- Media -->
+                            <div class="d-block d-sm-flex">
+                                <div class="flex-shrink-0">
+                                    <span class="svg-icon text-primary mb-2 mb-sm-0">
+                                    </span>
+                                </div>
+            
+                                <div class="flex-grow-1 ms-sm-4">
+                                    <h3 class="card-title">
+                                        <img class="avatar-sm avatar-circle mb-2 mx-1 inline"
+                                            src="/assets/img/Colleges/<%=  essay.university.replaceAll(" ", "_") + ".png" %>">
+                                        <%= essay.university %>
+            
+                                    </h3>
+            
+            
+            
+            
+                                    <p class="card-text text-black bold py-1" style="font-weight: 700;">
+                                        <%=essay.prompt.slice(0,100) + "..." %>
+                                    </p>
+            
+                                    <p class="card-text text-black py-1">
+                                        <%=essay.essay.slice(0,300)+"..." %>
+                                    </p>
+            
+                                    <div class="d-flex">
+                                        <div class="flex-shrink-0">
+                                            <!-- Avatar Group -->
+            
+                                            <!-- End Avatar Group -->
+                                        </div>
+            
+                                        <div class="flex-grow-1 ms-2 d-flex justify-content-end">
+            
+                                            <p class="card-text text-dark small">
+                                                <span class="text-muted"></span>
+            
+                                                <%= essay.counselor.first_name + " " + essay.counselor.last_name%> (<%=
+                                                        essay.counselor.current_university%>)
+                                                        <img class="avatar-sm avatar-circle mb-2 mx-1 inline"
+                                                            src="<%= essay.counselor.profile_picture  %>">
+            
+                                            </p>
+            
+            
+                                        </div>
+            
+            
+                                    </div>
+            
+                                </div>
+                            </div>
+                            <!-- End Media -->
+                        </div>
+                    </a>
+                    <!-- End Card -->
+                </div>
+                <!-- End Col -->
+            
+                <% } %>
+                <% if (essays.length==0) { %>
+                    <div class="w-md-100 text-center mb-9 px-10">
+                        <h2 class="h6 cursive ">No essays posted yet. Please take a look later.</h2>
+                    </div>
+                 
+                <% } %>
+
+
+                    <!-- End Col -->
+        </div>
+
+    </div>
+    <!-- End Row -->
+
+
+    <script>
+
+        let college = "<%- college %>";
+
+
+        document.title =  college + " Essays | Counsia";
+
+        $('meta[name="description"]').attr("content", "Read winning essays from " + college + " students. Get a better understanding of the college application process.");
+    </script>

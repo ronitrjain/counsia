@@ -1,0 +1,474 @@
+<% layout('./layouts/boilerplate') %>
+  <link rel="stylesheet" href="/assets/vendor/tom-select/dist/css/tom-select.bootstrap5.css">
+<style>
+  .animate-charcter
+{
+                font-family: 'Kumbh Sans', sans-serif;
+    font-weight: 700;
+   text-transform: uppercase;
+  background-image: linear-gradient(
+    -225deg,
+    #c94b4b 0%,
+    #4b134f 50%,
+    #c94b4b 100%
+
+  );
+  background-size: auto auto;
+  background-clip: border-box;
+  background-size: 200% auto;
+  color: #fff;
+  background-clip: text;
+  text-fill-color: transparent;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: textclip 1s linear infinite;
+  display: inline-block;
+      font-size: 4rem;
+}
+
+@keyframes textclip {
+  to {
+    background-position: 200% center;
+  }
+}
+
+.btn-grad{
+    background-image: linear-gradient(
+    -225deg,
+    #c94b4b 0%,
+    #4b134f 50%,
+    #c94b4b 100%
+
+  );
+    background-size: auto auto;
+
+
+   background-size: 200%;
+animation: anime 7s linear infinite;
+color: white;
+margin-bottom: 0%;
+
+
+}
+
+@keyframes anime {
+   to {
+    background-position: 200% center;
+  }
+}
+</style>
+
+  <main id="content" role="main">
+    <!-- Form -->
+    <div class=" my-10 py-10">
+      <div class="flex-grow-1 mx-auto" style="max-width: 100rem;">
+        <div class="w-md-100 w-lg-50 text-center mx-md-auto mb-5 mb-md-1">
+          <h2 class="cursive_bold animate-charcter">Mentor Search</h2>
+        
+        </div>
+
+        <div class="w-md-100 text-center mb-7">
+          <h2 class="h1 cursive ">Look for mentors at your dream university.</h2>
+        </div>
+        <!-- List Directory -->
+        <div id="openRolesSection" class="container content-space-1 search">
+          <!-- Heading -->
+          
+          <!-- End Heading -->
+
+          <!-- Form -->
+          <form onsubmit="return false;">
+            <div class="row gx-2 gx-md-3 mb-7">
+
+
+              <div class="col-md-10 mb-2 mb-md-0">
+                <label class="form-label visually-hidden" for="searchCounselors">Search mentor</label>
+
+                <!-- Form -->
+                <div class="input-group input-group-merge">
+                  <span class="input-group-prepend input-group-text">
+                    <i class="bi-search"></i>
+                  </span>
+                  <input type="text" class="form-control form-control-lg" id="searchCounselors"
+                    placeholder="Search by university, college, or name..."
+                    aria-label="Search by university, college, or name...">
+                </div>
+                <!-- End Form -->
+              </div>
+              <!-- End Col -->
+
+
+
+
+              <div class="col-md-2 col-sm-6">
+                <button id="search_submit" class="btn btn-primary">
+                  <i class="bi-arrow-right"></i>
+                </button>
+              </div>
+
+
+              <!-- End Col -->
+            </div>
+            <!-- End Row -->
+          </form>
+          <!-- End Form -->
+
+
+        </div>
+        <!-- End List Directory -->
+        <div class=" mx-9 mt-1 px-0">
+          <div class="row overflow-auto pb-5 mb-10" id="search-results" >
+
+
+          <!-- Content -->
+          <div class="d-md-flex ">
+            <div
+              class="container d-md-flex align-items-md-center content-space-t-3 content-space-b-1 content-space-b-md-3 content-space-md-0">
+              <div class="row justify-content-md-between align-items-md-center flex-grow-1">
+                <div class="col-9 col-md-5 mb-5 mb-md-0">
+                  <img class="img-fluid" src="../assets/svg/illustrations/oc-yelling.svg" alt="SVG Illustration">
+                </div>
+                <!-- End Col -->
+
+                <div class="col-md-6">
+                  <!-- Heading -->
+                  <div class="mb-4">
+                    <h1 class="cursive_bold">Connect With A Mentor</h1>
+                    <p class="cursive_bold">Look for mentors from across the United States </p>
+                  </div>
+                  <!-- End Heading -->
+
+
+                  <!-- End Row -->
+
+
+                </div>
+                </div>
+                <!-- End Col -->
+              </div>
+              <!-- End Row -->
+            </div>
+          </div>
+          <!-- End Content -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          <!-- End Card -->
+        </div>
+      </div>
+    </div>
+  </main>
+
+
+  <script src="/assets/vendor/tom-select/dist/js/tom-select.complete.min.js"></script>
+  <script src="/assets/js/theme.min.js"></script>
+
+
+  <script>
+    (function () {
+
+
+
+      // INITIALIZATION OF SELECT
+      // =======================================================
+      HSCore.components.HSTomSelect.init('.js-select', {
+        render: {
+          'option': function (data, escape) {
+            return data.optionTemplate || `<div>${data.text}</div>>`
+          },
+          'item': function (data, escape) {
+            return data.optionTemplate || `<div>${data.text}</div>>`
+          }
+        }
+      })
+
+
+
+
+
+
+
+    })()
+  </script>
+
+  <script>
+    jQuery(document).ready(function () {
+      jQuery('#search_submit').on('click', function () {
+        console.log('clicked');
+        const query = jQuery('#searchCounselors').val();
+        jQuery.get('/search/counselors', { q: query }, function (data) {
+          jQuery('#search-results').empty();
+          console.log(data);  
+
+          data.forEach(function (author) {
+
+            var card = `
+            <div class=" mt-3 ">
+            <div class="mb-1 d-flex justify-content-center">
+            <div class="rounded-4 card card-transition shadow border border-3 border-dark background-img col-md-10 " href="#"
+                >
+                <div class="card-body m-1 p-4">
+                  <h2 class="card-title h2 m-0 p-0 cursive_bold">
+              ${author.first_name + " " + author.last_name}
+              <img class="avatar mb-2"
+                src="/assets/img/Colleges/${author.current_university.replaceAll(" ", "_")
+                                        }.png" >
+            </h2>
+                    <div class="row">
+                        <div class="col-lg-4 order-lg-2 mb-2 mb-lg-1">
+                                        <div class="d-flex flex-column h-100">
+                                            <div class="mb-3">
+
+
+
+                                </div>
+
+                                <div class=" shadow-none">
+
+                                    <h2 class="text-center p-0 m-0 h2">Accepted Universities</h2>
+
+                                    <div class="card-body p-0 m-1  rounded-2">
+
+
+
+
+                                        ${(function fun() {
+
+                // Do your loop here
+                // Return the result as a string
+                let str = '';
+                for (let university of author.accepted_universities) {
+                  str += `<img class="avatar  m-1"
+                src="/assets/img/Colleges/${university.replaceAll(" ", "_")}.png">`
+                }
+                return str;
+
+
+
+              })()}
+
+                                    </div>
+
+                                </div>
+
+                                <div class="mt-2 mb-1 d-flex  justify-content-end">
+                                    <a href="/counselor/${author._id }" id="book-now"
+                                        class="btn btn-dark cursive w-100 btn-grad">Read Full Application</a>
+                                </div>
+                            </div>
+                        </div>
+
+          <div class="col-lg-3">
+            
+
+            <h6 class="m-0 pb-1">
+
+
+            ${author.current_university }
+
+
+            </h6>
+
+
+
+
+
+            <div class="">
+              <div class="d-flex align-items-center flex-wrap mb-2">
+                <div class="d-flex gap-1">
+                  ${(function fun() {
+                    let str = '';
+                for (let i = 0; i < Math.floor(author.average_rating); i++) {
+                  str+= `<img src="/assets/svg/illustrations/star.svg" alt="Review rating" width="22">`
+                }
+                return str;
+              })()}
+
+                                                <img src="/assets/svg/illustrations/star.svg" alt="Review rating"
+                                                    width="22">
+
+
+                                                     ${(function fun() {
+                                                      let str = ''
+                 for (let i = 4; i > Math.floor(author.average_rating); i--) {
+                  str+= `<img src="/assets/svg/illustrations/star-muted.svg" alt="Review rating" width="22">`
+                }
+                return str;
+              })()}
+
+                                                
+
+                                    </div>
+                                    <div class="ms-1">
+                                        <span class="fw-semibold text-dark me-1">
+                                            ${Math.round(author.average_rating*100) /100 }
+                                        </span>
+                                        <span class="text-dark-70">
+                                            ${author.total_reviews }
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex-shrink-0 justify-content-center align-items-center">
+                                <img class="avatar avatar-circle flex-grow-1 my-1" src="${author.profile_picture  }"
+                                    alt="Image Description" style="min-width: 100px; max-width: 200px; height: auto;">
+                            </div>
+
+                            <p class="card-text text-body cursive">
+
+                                ${author.bio }
+                            </p>
+
+                            <div class="row">
+
+                            </div>
+                </div>
+
+                <div class="col-lg-5">
+
+                  <h2 class="card-title  pt-2 cursive_bold px-md-6">Application Summary</h2>
+
+                  <div class="row">
+
+
+                    <div class="col-lg-6">
+
+                      <li class="h4 my-2" style="font-weight: 500;">
+                        <span>Ethnicity:</span>
+                        <span>
+                          ${ author.race }
+                        </span>
+
+                      </li>
+                      <li class="h4 my-2" style="font-weight: 500;">
+                        <span>International:</span>
+                        <span>
+                          ${author.international }
+                        </span>
+
+                      </li>
+                      <li class="h4 my-2" style="font-weight: 500;">
+                        <span>Low-Income:</span>
+                        <span>
+                          ${author.low_income }
+                        </span>
+
+                      </li>
+
+                      <li class="h4 mt-2 mb-0 pb-0" style="font-weight: 500;">
+                        <span>First-Gen:</span>
+                        <span>
+                          ${ author.first_gen }
+                        </span>
+
+                      </li>
+
+
+
+
+                    </div>
+                    <div class="col-lg-6">
+                      <li class="h4 my-2" style="font-weight: 500;">
+                        <span>GPA:</span>
+                        <span>
+                          ${ author.gpa }
+                        </span>
+
+                      </li>
+
+                      <li class="h4 my-2" style="font-weight: 500;">
+                        <span>SAT:</span>
+                        <span>
+                          ${ author.SAT }
+                        </span>
+
+                      </li>
+
+                      <li class="h4 my-2" style="font-weight: 500;">
+                        <span>ACT:</span>
+                        <span>
+                          ${ author.ACT }
+                        </span>
+
+                      </li>
+
+                      <li class="h4 my-2" style="font-weight: 500;">
+                        <span>AP/IB/DE:</span>
+                        <span>
+                          ${author.classes.length }
+                        </span>
+
+                      </li>
+
+
+
+                    </div>
+
+
+
+
+
+
+                  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                </div>
+
+              </div>
+           
+            </div>
+          </div>
+        </div>
+
+        `
+
+
+
+
+
+
+
+            
+            jQuery('#search-results').append(card);
+          });
+          if (data.length == 0) {
+            jQuery('#search-results').append('<h3>No results found</h3>');
+          }
+        }).fail(function (error) {
+          console.log('Error:', error);
+        });
+      });
+    });
+  </script>
+
+
+<script>
+
+
+  document.title = "Counsia | Search Mentors";
+
+  $('meta[name="description"]').attr("content", "Look for mentors from across the United States. Search by university, college, or name.");
+</script>

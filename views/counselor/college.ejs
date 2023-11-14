@@ -1,0 +1,473 @@
+<% layout('./layouts/boilerplate') %>
+<style>
+    .counselor_card{
+          box-shadow: 0 0px 10px 1px rgb(136, 211, 232);
+
+        
+    }
+
+    .animate-charcter
+{
+                font-family: 'Kumbh Sans', sans-serif;
+    font-weight: 700;
+   text-transform: uppercase;
+  background-image: linear-gradient(
+    -225deg,
+    #c94b4b 0%,
+    #4b134f 50%,
+    #c94b4b 100%
+
+  );
+  background-size: auto auto;
+  background-clip: border-box;
+  background-size: 200% auto;
+  color: #fff;
+  background-clip: text;
+  text-fill-color: transparent;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: textclip 3s linear infinite;
+  display: inline-block;
+      font-size: 4rem;
+}
+
+@keyframes textclip {
+  to {
+    background-position: 200% center;
+  }
+}
+
+.btn-grad{
+    background-image: linear-gradient(
+    -225deg,
+    #c94b4b 0%,
+    #4b134f 50%,
+    #c94b4b 100%
+
+  );
+    background-size: auto auto;
+
+
+   background-size: 200%;
+animation: anime 7s linear infinite;
+color: white;
+margin-bottom: 0%;
+
+
+}
+
+@keyframes anime {
+   to {
+    background-position: 200% center;
+  }
+}
+
+
+
+</style>
+
+<div class="bg-img-start" 
+    style="background:linear-gradient(0deg, rgba(70, 54, 30, 0.5), rgba(70, 54, 30, 0.5)),
+    url(/assets/img/college_backdrops/<%=college.replaceAll(' ', '_')%>.png);
+    object-fit: cover; background-repeat: no-repeat; background-size: cover; background-position: center center; height:
+    80vh
+    ">
+        <div class="d-md-flex content-space-3 content-space-md-0">
+        <div
+            class="container d-md-flex justify-content-md-center align-items-md-center flex-md-column text-center" style="height: 80vh;">
+            <h1 class="display-1 text-white "><%= college %></h1>
+            <p class="lead text-white">Look through our mentors from <%= college %>.</p>
+        </div>
+    </div>
+</div>
+
+<!-- Features Stats -->
+<% if(college_data_obj) {%>
+<div class="container content-space-2 content-space-lg-3 mb-n10 pb-n10">
+    <h1 class="text-center mb-6"><%= college%> Information </h1> 
+    <div class="my-10 text-center">
+
+        <p>
+            <%= college_data_obj['Bio'] %>
+        </p>
+
+
+    </div>
+    <div class="row mb-10">
+        <div class="col-sm-4 mb-3 mb-sm-0">
+            <div class="text-center">
+                <small class="text-cap text-primary">— SAT Range</small>
+                <h4 class="display-4"><%- college_data_obj['SAT_Range'] %></h4>
+                                    <p>SAT Range to be competitive</p>
+
+                
+            </div>
+        </div>
+        <!-- End Col -->
+
+        <div class="col-sm-4 mb-3 mb-sm-0">
+            <div class="text-center">
+                <small class="text-cap text-primary">— ACT Range</small>
+                <h4 class="display-4"><%- college_data_obj['ACT_Range'] %></h4>
+                                <p>ACT Range to be competitive</p>
+
+            </div>
+        </div>
+        <!-- End Col -->
+
+        <div class="col-sm-4">
+            <div class="text-center">
+                <small class="text-cap text-primary">— Acceptance Rate</small>
+                <h4 class="display-4"><%- college_data_obj['Acceptance_Rate'] %></h4>
+                                <p>Includes early and regular decision plans.</p>
+
+            </div>
+        </div>
+        <!-- End Col -->
+    </div>
+    <!-- End Row -->
+
+    <div class="row">
+        <div class="col-sm-4 mb-3 mb-sm-0">
+            <div class="text-center">
+                <small class="text-cap text-primary">— Median Income</small>
+                <h4 class="display-4"><%- college_data_obj['Median_Earnings'] || 'N/A' %></h4>
+                                <p>Median earnings for graduates.</p>
+
+            </div>
+        </div>
+        <!-- End Col -->
+    
+        <div class="col-sm-4 mb-3 mb-sm-0">
+            <div class="text-center">
+                <small class="text-cap text-primary">— Application Fee</small>
+                <h4 class="display-4"><%- college_data_obj['Application_Fee'] %></h4>
+                                <p>The school's application fee.</p>
+
+            </div>
+        </div>
+        <!-- End Col -->
+    
+        <div class="col-sm-4">
+            <div class="text-center">
+                <small class="text-cap text-primary">— Deadline</small>
+                <h4 class="display-4"><%- college_data_obj['Application_Deadline'] %></h4>
+                <p>Deadline for regular decision.</p>
+            </div>
+        </div>
+        <!-- End Col -->
+    </div>
+</div>
+
+<% } %>
+<!-- End Features Stats -->
+
+
+
+<div class="w-md-100 mt-10 pt-10 pt-4 text-center mb-1">
+    <h2 class="h1 cursive_bold animate-charcter">Our Mentors</h2>
+</div>
+
+<div class="w-md-100 text-center mb-9 px-10 ">
+    <h2 class="h1 cursive ">Look through our most viewed mentors at <%= college %>.</h2>
+</div>
+
+    <div class=" mx-9 my-2 py-2  px-0">
+
+    
+
+
+
+
+        <div class="row overflow-auto pb-5 mb-10">
+           
+            <% for(let counselor of counselors){ %>
+
+                <div class=" mt-3 ">
+                    
+                    <div class="row mb-1 d-flex justify-content-center ">
+                        <div class="rounded-4 card card-transition card-mentor border border-3 border-dark background-img col-md-10" href="#"
+                        >
+
+                            
+                            <div class="card-body m-0 p-3">
+                                <h2 class="card-title h2 cursive_bold p-0 m-0">
+                                    <%= counselor.first_name + " " +counselor.last_name%>
+                                        <img class="avatar mb-2" src="/assets/img/Colleges/<%=counselor.current_university.replaceAll(" ",  "_")
+                                            %>.png">
+                                </h2>
+                                <div class="row">
+                                    <div class="col-lg-4 order-lg-2 mb-2 mb-lg-1">
+                                        <div class="d-flex flex-column h-100">
+                                            <div class="mb-3">
+                
+                
+                
+                                            </div>
+                
+                                            <!-- Testimonials -->
+                                            <div class=" shadow-none">
+                
+                                                <h2 class="text-center mb-2 h2">Accepted Universities</h2>
+                
+                                                <div class="card-body p-0 m-0 rounded-2">
+                
+                
+                
+                
+                                                    <% for (let university of counselor.accepted_universities){ %>
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                                                        <img class="avatar  m-1"
+                                                            src="/assets/img/Colleges/<%=university.replaceAll(" ", "_") %>.png"
+                                                        alt="<%=`https:
+                                                            //ui-avatars.com/api/?name=${university.substring(0,1)}+${university.substring(1,2)}size=128`%>
+                                                            ">
+                
+                                                            <% } %>
+                
+                
+                
+                
+                
+                
+                                                                <!-- End Blockquote -->
+                
+                                                </div>
+                
+                                            </div>
+                
+                                            <div class="mt-3 mb-1 d-flex  justify-content-end">
+                                                <a href="/counselor/<%= counselor._id %>" id="book-now"
+                                                    class="btn btn-grad cursive w-100">Read Full Application</a>
+                                            </div>
+                                            <!-- End Testimonials -->
+                                        </div>
+                                    </div>
+                                    <!-- End Col -->
+                
+                                    <div class="col-lg-3 overflow-auto">
+                                        
+                
+                                        <h6 class="">
+                
+                
+                                            <%=counselor.major %> - <%= counselor.current_university %>
+                
+                
+                                        </h6>
+                
+                
+                
+                
+                
+                                        <div class="">
+                                            <div class="d-flex align-items-center flex-wrap">
+                                                <!-- Rating -->
+                                                <div class="d-flex gap-1">
+                                                    <% for(let i=0; i<Math.floor(counselor.average_rating);i++){%>
+                
+                
+                
+                
+                
+                                                        <img src="/assets/svg/illustrations/star.svg" alt="Review rating" width="22">
+                
+                
+                                                        <% } %>
+                
+                                                            <img src="/assets/svg/illustrations/star.svg" alt="Review rating"
+                                                                width="22">
+                
+                                                            <% for(let i=4; i>Math.floor(counselor.average_rating);i--){%>
+                
+                
+                
+                
+                
+                                                                <img src="/assets/svg/illustrations/star-muted.svg" alt="Review rating"
+                                                                    width="22">
+                
+                
+                                                                <% } %>
+                
+                                                </div>
+                                                <!-- End Rating -->
+                                                <div class="ms-1">
+                                                    <span class="fw-semibold text-dark me-1">
+                                                        <%=Math.round(counselor.average_rating*100) /100 %>
+                                                    </span>
+                                                    <span class="text-dark-70">
+                                                        <%=counselor.total_reviews %>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="flex-shrink-0 justify-content-center align-items-center">
+                                            <img class="avatar avatar-circle flex-grow-1 my-1" src="<%= counselor.profile_picture  %>"
+                                                alt="Image Description" style="min-width: 100px; max-width: 200px; height: auto;">
+                                        </div>
+                
+                                        <p class="card-text text-body cursive">
+                
+                                            <%= counselor.bio %>
+                                        </p>
+                
+                                        <div class="row">
+                
+                                        </div>
+                                        <!-- End Row -->
+                                    </div>
+                
+                                    <div class="col-lg-5">
+                
+                                        <h2 class="card-title px-md-6 pt-2  cursive_bold">Application Summary</h2>
+                
+                                        <div class="row">
+                
+                
+                                            <div class="col-lg-6">
+                
+                                                <li class="h4 my-2" style="font-weight: 500;">
+                                                    <span>Ethnicity:</span>
+                                                    <span>
+                                                        <%= counselor.race %>
+                                                    </span>
+                
+                                                </li>
+                                                <li class="h4 my-2" style="font-weight: 500;">
+                                                    <span>International:</span>
+                                                    <span>
+                                                        <%= counselor.international %>
+                                                    </span>
+                
+                                                </li>
+                                                <li class="h4 my-2" style="font-weight: 500;">
+                                                    <span>Low-Income:</span>
+                                                    <span>
+                                                        <%= counselor.low_income %>
+                                                    </span>
+                
+                                                </li>
+                
+                                                <li class="h4 my-2" style="font-weight: 500;">
+                                                    <span>First-Gen:</span>
+                                                    <span>
+                                                        <%= counselor.first_gen %>
+                                                    </span>
+                
+                                                </li>
+                
+                
+                
+                
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <li class="h4 my-2" style="font-weight: 500;">
+                                                    <span>GPA:</span>
+                                                    <span>
+                                                        <%= counselor.gpa %>
+                                                    </span>
+                
+                                                </li>
+                
+                                                <li class="h4 my-2" style="font-weight: 500;">
+                                                    <span>SAT:</span>
+                                                    <span>
+                                                        <%= counselor.SAT %>
+                                                    </span>
+                
+                                                </li>
+                
+                                                <li class="h4 my-2" style="font-weight: 500;">
+                                                    <span>ACT:</span>
+                                                    <span>
+                                                        <%= counselor.ACT %>
+                                                    </span>
+                
+                                                </li>
+                
+                                                <li class="h4 my-2" style="font-weight: 500;">
+                                                    <span>AP/IB/DE:</span>
+                                                    <span>
+                                                        <%= counselor.classes.length %>
+                                                    </span>
+                
+                                                </li>
+                
+                
+                
+                                            </div>
+                
+                
+                
+                
+                
+                
+                                        </div>
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                                    </div>
+                
+                                    <!-- End Col -->
+                                </div>
+                                <!-- End Row -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Row -->
+                </div>
+
+                <!-- End Col -->
+                <% } %>
+            
+
+                <% if (counselors.length==0) { %>
+                    <div class="w-md-100 text-center mb-9">
+                        <h2 class="h4 cursive ">No mentors posted yet. Please take a look later.</h2>
+                    </div>
+                
+                    <% } %>
+
+
+
+                    <!-- End Col -->
+        </div>
+
+
+        
+
+
+     
+
+    </div>
+    <!-- End Row -->
+
+
+            <script>
+                let college = <%- JSON.stringify(college) %>;
+
+                document.title = college + " Mentors | Counsia";
+
+                $('meta[name="description"]').attr("content", "View our mentors from " + college + ". Counsia serves as a connection point between university students who have excelled and high school students with big dreams of getting into their chosen colleges.");
+            </script>

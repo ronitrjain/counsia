@@ -1,0 +1,146 @@
+<% layout('./layouts/dashboard_boilerplate') %>
+
+<!-- Changable Content -->
+<div class="content container-fluid col-12">
+    <div class="row justify-content-center align-items-centers">
+        <div class="col-lg-10">
+            <!-- Profile Cover -->
+            <div class="profile-cover">
+                <div class="profile-cover-img-wrapper">
+                    <img class="profile-cover-img" src="/assets_dashboard/img/1920x400/img1.jpg"
+                        alt="Image Description">
+                </div>
+            </div>
+            <!-- End Profile Cover -->
+
+            <!-- Profile Header -->
+            <div class="text-center mb-5">
+                <!-- Avatar -->
+                <div class="avatar avatar-xxl avatar-circle profile-cover-avatar">
+                    <img class="avatar-img" src="<%=currentUser.profile_picture %>" alt="Image Description">
+                    <span class="avatar-status avatar-status-success"></span>
+                </div>
+                <!-- End Avatar -->
+
+                <h1 class="page-header-title">
+                    <%= currentUser.firstName + " " + currentUser.lastName %> <i
+                            class="bi-patch-check-fill fs-2 text-primary" data-bs-toggle="tooltip"
+                            data-bs-placement="top" title="Top endorsed"></i>
+                </h1>
+
+                <!-- List -->
+                <ul class="list-inline list-px-2">
+                    <li class="list-inline-item">
+                        <i class="bi-person me-1"></i>
+                        <span>
+                            <%= currentUser.username %>
+                        </span>
+                    </li>
+
+                    <li class="list-inline-item">
+                        <i class="bi-envelope me-1"></i>
+                        <a href="#">
+                            <%= currentUser.email %>
+                        </a>
+                    </li>
+
+
+                </ul>
+                <!-- End List -->
+            </div>
+            <!-- End Profile Header -->
+
+
+
+
+
+
+
+
+        <div class="col-lg-12">
+            <div class="d-grid gap-3 gap-lg-5">
+                <div class="card">
+                    <div class="card-header border-bottom">
+                        <div class="d-flex align-items-center">
+                            <h5 class="card-header-title">Password Reset</h5>
+                            <span class="badge bg-soft-danger text-danger ms-2">Email</span>
+                        </div>
+                    </div>
+        
+                    <!-- Body -->
+                    <div class="card-body">
+                        <p class="card-text">Want to change your password? Enter an email and we'll send you a
+                            password
+                            reset link.</p>
+        
+                        <form action="/password-reset" method="POST">
+                            <!-- Form -->
+                            <div class="row mb-4">
+                                <label for="accountEmailLabel" class="col-sm-3 col-form-label form-label">Account Email</label>
+        
+                                <div class="col-sm-9">
+                                    <input type="email" class="form-control" name="email" id="accountEmailLabel"
+                                        placeholder="Enter account email" aria-label="Enter current password">
+                                    <small class="form-text">This is the email you use to log in to your
+                                        Counsia account.</small>
+                                </div>
+                            </div>
+                            <!-- End Form -->
+        
+                            <%if(error!=""){%>
+                                <p class="text-danger">
+                                    <%= error %>
+                                </p>
+        
+        
+        
+                                <% } %>
+        
+                                    <div class="d-flex justify-content-end">
+                                        <button type="submit" class="btn btn-primary">Send</button>
+                                    </div>
+                        </form>
+                    </div>
+                    <!-- End Body -->
+                </div>
+                <!-- End Card -->
+        
+        
+            </div>
+            <!-- End Card -->
+        
+            <!-- Card -->
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <!-- Sticky Block End Point -->
+            <div id="stickyBlockEndPoint"></div>
+        </div>
+    </div>
+    <!-- End Row -->
+</div>
+<!-- End Col -->
+
+<!-- End Changeable Content -->
+
+

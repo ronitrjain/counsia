@@ -1,0 +1,246 @@
+<% layout('./layouts/dashboard_boilerplate') %>
+
+<link rel="stylesheet" href="/assets/css/fullcalendar.css">
+
+<script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js'></script>
+<style>
+    @media (max-width: 767.98px) {
+        .fc .fc-toolbar.fc-header-toolbar {
+            display: block;
+            text-align: center;
+        }
+
+        .fc-header-toolbar .fc-toolbar-chunk {
+            display: block;
+        }
+
+        .fc {
+            font-size: 0.5rem;
+        }
+    }
+</style>
+
+<script>
+
+    let counselor = <%- JSON.stringify(counselor) %>
+
+
+        document.addEventListener('DOMContentLoaded', function () {
+            var Calendar = FullCalendar.Calendar;
+            var Draggable = FullCalendar.Draggable;
+
+            var containerEl = document.getElementById('external-events');
+            var calendarEl = document.getElementById('calendar');
+            var currentDate = new Date();
+
+            // Extract the year, month, and day from the current date
+            var year = currentDate.getFullYear();
+            var month = (currentDate.getMonth() + 1).toString().padStart(2, '0'); // Months are zero-based, so we add 1
+            var day = currentDate.getDate().toString().padStart(2, '0');
+
+            // Format the date as 'YYYY-MM-DD'
+            var formattedDate = year + '-' + month + '-' + day;
+
+            // initialize the external events
+            // -----------------------------------------------------------------
+
+            new Draggable(containerEl, {
+                itemSelector: '.fc-event',
+                eventData: function (eventEl) {
+                    return {
+                        title: eventEl.innerText,
+                        backgroundColor: '#3888D8',
+                        borderColor: '#3888D8',
+                        textColor: 'white',
+                        extendedProps: {
+                            isBooked: false,
+                            isSelected: false
+                        },
+                        editable: true,
+                        durationEditable: false,
+                        overlap: false,
+                        id: Date.now() + Math.floor(Math.random() * 1000)
+
+                    };
+                }
+            });
+
+            // initialize the calendar
+            // -----------------------------------------------------------------
+
+            var calendar = new Calendar(calendarEl, {
+                timeZone: 'local',
+
+                headerToolbar: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'timeGridWeek,timeGridDay'
+                },
+                events: counselor.events,
+                initialView: 'timeGridWeek',
+                eventOverlap: false,
+
+
+                eventAllow: function (dropInfo, draggedEvent) {
+                    if (dropInfo.start < new Date()) {
+                        return false;
+                    }
+                    return true;
+                },
+                allDaySlot: false,
+
+
+                dateClick: function (arg) {
+                    console.log(arg.date.toUTCString());
+                },
+
+
+
+
+                editable: true,
+
+                droppable: true, // this allows things to be dropped onto the calendar
+                drop: function (info) {
+                    calendar.render();
+
+
+                },
+                eventClick: function (info) {
+                    //delete event
+                    if (info.event.extendedProps.isBooked == false) {
+                        info.event.remove();
+                    }
+                    else {
+                        alert('You cannot delete a booked session')
+                    }
+                }
+            });
+
+            calendar.render();
+
+
+            let saveButton = document.getElementById('save-button');
+
+            saveButton.addEventListener('click', async function () {
+                let calendar_events = await calendar.getEvents();
+                let events = [];
+                for (let i = 0; i < calendar_events.length; i++) {
+                    let event = calendar_events[i];
+                    let extendedProps = {
+                        isBooked: false,
+                        isSelected: false
+                    }
+                    event.extendedProps = extendedProps;
+                    let backgroundColor = '3888D8'
+                    if (event.extendedProps.isBooked) {
+                        backgroundColor = 'FF0000'
+                    }
+                    event.backgroundColor = backgroundColor;
+
+                    events.push(event)
+
+                }
+                //stringify events
+                events = JSON.stringify(events);
+
+                data = {
+                    events
+                }
+                const params = new URLSearchParams(data);
+
+
+
+                fetch('/dashboard/counselor-schedule', {
+                    method: 'POST',
+                    headers: {
+                        //form
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: params.toString()
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log('Success:', data);
+                        window.location.href = '/dashboard/counselor-schedule';
+                    })
+                    .catch((error) => {
+                        console.error('Error:', error);
+                    })
+
+
+
+
+            });
+
+        });
+
+</script>
+<!-- ========== MAIN CONTENT ========== -->
+
+            <div class=" col-lg-12">
+                <!-- Card -->
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-header-title">Your Calendar</h4>
+                    </div>
+
+                    <div class="container p-5">
+                        <div class="col-12 mb-4"" id='external-events'>
+
+                                <div class=" card card-lg card-transition h-100 text-center "" href=" #">
+                            <div class="card-body">
+                                <div class="mb-4">
+
+                                </div>
+                                <h3 class="card-title">Add Sessions </h3>
+                                <p class="card-text text-body">Drag The Open Session Blocks Onto The Calendar To
+                                    Make Open Sessions. Click on the session to delete it. You can only add future
+                                    sessions.</p>
+                            </div>
+                            <div class="card-footer pt-0 d-flex flex-column align-items-center justify-content-center">
+                                <div id="open-session-event"
+                                    class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event'>
+                                    <div class='fc-event-main'> Open Session</div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+
+
+
+                    </div>
+
+
+
+
+                    <div id='calendar-container'>
+                        <div id='calendar'></div>
+                    </div>
+
+                    <div class="mt-4">
+                        <button id="save-button" class="btn btn-primary"> Save </button>
+                    </div>
+
+                </div>
+
+
+
+
+
+
+            </div>
+            <!-- End Card -->
+        </div>
+        <!-- End Col -->
+    </div>
+    <!-- End Row -->
+    </div>
+    <!-- End Content Section -->
+
+<!-- ========== END MAIN CONTENT ========== -->

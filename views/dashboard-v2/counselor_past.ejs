@@ -1,0 +1,104 @@
+<% layout('./layouts/dashboard_boilerplate') %>
+
+
+
+    <div class="col-lg-12">
+        <!-- Card -->
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-header-title">Your Past Meetings</h5>
+            </div>
+
+            <!-- Table -->
+            <div class="table-responsive">
+
+                <% if(counselor_upcoming_meetings.length==0) {%>
+
+                    <div class="container m-5 p-5">
+
+                        <h2>You have no past <span class="text-primary text-highlight-warning">meetings.</span></h2>
+                    </div>
+
+
+                    <% }else{ %>
+
+
+
+                        <table
+                            class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th>User</th>
+                                    <th>Date</th>
+                                    <th>Time</th>
+                                    <th style="width: 5%;">Meeting Link</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+
+                                <% for(let meeting of counselor_upcoming_meetings) {%>
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <div class="flex-shrink-0">
+                                                    <img class="avatar avatar-sm avatar-circle"
+                                                        src="<%= meeting.user.profile_picture %>"
+                                                        alt="Image Description">
+                                                </div>
+
+                                                <div class="flex-grow-1 ms-3">
+                                                    <a class="d-inline-block link-dark" href="/user/<%=meeting.user._id %>">
+                                                        <h6 class="text-hover-primary mb-0">
+
+                                                            <%= meeting.user.firstName %>
+                                                                <%= meeting.user.lastName %>
+
+
+                                                                    <img class="avatar avatar-xss ms-1"
+                                                                        src="../assets/svg/illustrations/top-vendor.svg"
+                                                                        alt="Image Description" data-bs-toggle="tooltip"
+                                                                        data-bs-placement="top" title="Verified user">
+                                                        </h6>
+                                                    </a>
+                                                    <small class="d-block">
+                                                        <%= meeting.user.email %>
+                                                    </small>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <!-- Select -->
+                                            <span class="format-date"><%=meeting.start  %></span>
+
+                                                <!-- End Select -->
+                                        </td>
+                                        <td>
+                                            <!-- Select -->
+                                            <span class="format-time">
+                                                <%=meeting.start %>
+                                            </span>
+                                                <!-- End Select -->
+                                        </td>
+                                        <td>
+                                            <a href="/meeting/<%=meeting._id%>">Click Here</a>
+
+                                        </td>
+                                    </tr>
+                                    <%}%>
+
+
+
+
+                            </tbody>
+                        </table>
+                        <% } %>
+            </div>
+            <!-- End Table -->
+
+            <!-- Footer -->
+
+        </div>
+        <!-- End Card -->
+
+    </div>

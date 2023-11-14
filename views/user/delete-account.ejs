@@ -1,0 +1,45 @@
+
+<% layout('./layouts/boilerplate.ejs') %>
+
+
+<!-- Form -->
+<div class="container content-space-2 content-space-lg-3 vh-100 d-flex align-items-center">
+    <div class="flex-grow-1 mx-auto" style="max-width: 28rem;">
+        <!-- Heading -->
+        <div class="text-center mb-5 mb-md-7">
+            <h1 class="h2">Delete Your Account</h1>
+            <p>Conform your username to delete your account.</p>
+        </div>
+        <!-- End Heading -->
+
+        <!-- Form -->
+        <form class="js-validate needs-validation" novalidate action="/delete-account" method="POST">
+            <!-- Form -->
+            <div class="mb-4">
+                <label class="form-label" for="username">Confirm Your Username</label>
+                <input type="text" class="form-control form-control-lg" name="username" id="username"
+                    placeholder="jakob23" aria-label="jakob23" required>
+                <% if (error) { %>
+
+                <div class="text-danger"><%= error %></div>
+                 
+                <% } %>
+            </div>
+            <!-- End Form -->
+
+            <!-- Form -->
+            
+            <!-- End Form -->
+
+            <div class="d-grid mb-3">
+                <button type="submit" class="btn btn-primary btn-lg">Delete</button>
+            </div>
+
+            <div class="text-center">
+                <p>Want to go back? <a class="link" href="/dashboard">Click Here</a></p>
+            </div>
+        </form>
+        <!-- End Form -->
+    </div>
+</div>
+<!-- End Form -->

@@ -1,0 +1,417 @@
+<% layout('./layouts/dashboard_boilerplate') %>
+
+<div class="content container-fluid col-12">
+    <div class="row justify-content-center align-items-centers">
+        <div class="col-lg-10">
+            <!-- Profile Cover -->
+            <div class="profile-cover">
+                <div class="profile-cover-img-wrapper">
+                    <img class="profile-cover-img" src="/assets_dashboard/img/1920x400/img1.jpg"
+                        alt="Image Description">
+                </div>
+            </div>
+            <!-- End Profile Cover -->
+
+            <!-- Profile Header -->
+            <div class="text-center mb-5">
+                <!-- Avatar -->
+                <div class="avatar avatar-xxl avatar-circle profile-cover-avatar">
+                    <img class="avatar-img" src="<%=currentUser.profile_picture %>" alt="Image Description">
+                    <span class="avatar-status avatar-status-success"></span>
+                </div>
+                <!-- End Avatar -->
+
+                <h1 class="page-header-title">
+                    <%= currentUser.firstName + " " + currentUser.lastName %> <i
+                            class="bi-patch-check-fill fs-2 text-primary" data-bs-toggle="tooltip"
+                            data-bs-placement="top" title="Top endorsed"></i>
+                </h1>
+
+                <!-- List -->
+                <ul class="list-inline list-px-2">
+                    <li class="list-inline-item">
+                        <i class="bi-person me-1"></i>
+                        <span>
+                            <%= currentUser.username %>
+                        </span>
+                    </li>
+
+                    <li class="list-inline-item">
+                        <i class="bi-envelope me-1"></i>
+                        <a href="#">
+                            <%= currentUser.email %>
+                        </a>
+                    </li>
+
+
+                </ul>
+                <!-- End List -->
+            </div>
+            <!-- End Profile Header -->
+
+
+
+
+
+
+
+
+            <div class="col-lg-12">
+                <div class="d-grid gap-3 gap-lg-5">
+
+
+
+                    <!-- Card -->
+                    <div class="card">
+                        <div class="card-header border-bottom">
+                            <h4 class="card-header-title">Basic Counselor Info</h4>
+                        </div>
+
+                        <!-- Body -->
+                        <div class="card-body">
+
+
+
+                            <form action="/counselor/<%=counselor._id %>/info/update" method="POST" enctype="multipart/form-data">
+                                <!-- Form -->
+
+                                <!-- End Form -->
+
+                                <!-- Form -->
+                                <div class="row mb-4">
+                                    <label for="firstNameLabel" class="col-sm-3 col-form-label form-label">Full
+                                        name
+                                        <i class="bi-question-circle text-body ms-1" data-bs-toggle="tooltip"
+                                            data-bs-placement="top"
+                                            title="Only Visible to Those You Interact With"></i></label>
+
+                                    <div class="col-sm-9">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" name="first_name" id="firstNameLabel"
+                                                placeholder="Clarice" aria-label="Clarice"
+                                                value="<%=counselor.first_name %>">
+                                            <input type="text" class="form-control" name="last_name" id="lastNameLabel"
+                                                placeholder="Boone" aria-label="Boone"
+                                                value="<%=counselor.last_name %>">
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- End Form -->
+
+                                <!-- Form -->
+                                
+
+
+                                <!-- End Form -->
+
+                                <%if(error!=""){%>
+                                    <p class="text-danger">
+                                        <%= error %>
+                                    </p>
+
+
+
+                                    <% } %>
+
+
+                                        <!-- End Item -->
+                                        <div class="row my-3">
+                                            <div class="col-sm-6">
+                                                <!-- Form -->
+                                                <div class="mb-4">
+                                                    <label class="form-label" for="gpa"> GPA</label>
+
+                                                    <div class="input-group input-group-merge">
+                                                        <span class="input-group-prepend input-group-text">
+                                                            <i class="bi-briefcase-fill"></i>
+                                                        </span>
+                                                        <input required type="number"
+                                                            class="form-control form-control-lg" id="gpa"
+                                                            placeholder="3.39" aria-label="gpa" name="gpa" step="0.01"
+                                                            value="<%=counselor.gpa  %>">
+                                                    </div>
+                                                </div>
+                                                <!-- End Form -->
+                                            </div>
+                                            <!-- End Col -->
+
+                                            <div class="col-sm-6">
+                                                <!-- Form -->
+                                                <div class="mb-4">
+                                                    <label class="form-label" for="major">Major Of
+                                                        Interest</label>
+                                            
+                                                    <div class="input-group input-group-merge">
+                                                        <span class="input-group-prepend input-group-text">
+                                                            <i class="bi-globe2"></i>
+                                                        </span>
+                                                        <input required type="text" class="form-control form-control-lg" id="major" placeholder="Economics" maxlength="30"
+                                                            aria-label="major" name="major" value="<%=counselor.major %>">
+                                                    </div>
+                                                </div>
+                                                <!-- End Form -->
+                                            </div>
+                                            <!-- End Col -->
+                                        </div>
+
+                                        <!-- End Row -->
+
+                                   
+
+                                        <div class="form-label">
+
+                                            <label for="bio mb-2">Short Bio</label>
+
+                                            <textarea id='bio' class="form-control" id="bio" rows="2"
+                                                placeholder="Tell us about yourself" name="bio" maxlength="30"
+                                                value="<%=counselor.bio %>"><%=counselor.bio %></textarea>
+
+                                        </div>
+
+                                        <div class="form-label">
+                                        
+                                            <label for="long_bio">Long Bio</label>
+                                        
+                                            <textarea  required id='long_bio' class="form-control"  rows="4" placeholder="Tell us about yourself" name="long_bio"
+                                                 value="<%=counselor.long_bio %>"><%=counselor.long_bio %></textarea>
+                                        
+                                        </div>
+
+                                        <div class="form-label mt-4">
+                                        
+                                            <label for="extracurriculars" ">Activities (Separate with new line)</label>
+                                        
+                
+
+                                                <textarea required class="form-control" name="extracurriculars" id='extracurriculars' cols="20" rows="5"><%=counselor.extracurriculars.join('\n') %></textarea>
+                                 
+                                        
+                                        </div>
+                                        <div class="form-label mt-4">
+                                        
+                                            <label for="awards" ">Awards (Separate with new line)</label>
+                                                                                
+                                           
+                                                    <textarea required class="form-control" name="awards" id='awards' cols="20"
+                                                    rows="5"><%=counselor.awards.join('\n') %></textarea>
+
+                                        
+                                        </div>
+
+                                        <div class="form-label mt-4">
+                                        
+                                            <label for="classes" ">Classes (Separate with new line)</label>
+                                                                                                                        
+                                        <textarea required class="form-control" name="classes" id='classes' cols="20"
+                                            rows="5"><%=counselor.classes.join('\n') %></textarea>
+                                        
+                                        </div>
+
+
+                                        <div class="col-sm-9 my-3">
+
+                                            <label for="interested_universities">Attending University</label>
+
+
+                                            <div class="input-group">
+
+
+                                                <!-- Select -->
+                                                <div class="tom-select-custom my-3 col-12">
+                                                    <select id="current_university" class="js-select form-select"
+                                                         name="current_university"
+                                                        data-hs-tom-select-options='{ "width": "100%",      "hideSearch": false}'
+                                                        placeholder="Select Universities">
+                                                        <% for (let university of world_universities) { %>
+                                                            <option value="<%= university %>" <%if(counselor.current_university == university){%>
+                                                                selected
+                                                                <% } %>
+                                                                    >
+                                                                    <%= university %>
+
+                                                            </option>
+                                                            <% } %>
+                                                    </select>
+                                                </div>
+                                                <!-- End Select -->
+                                            </div>
+
+
+
+
+                                        </div>
+
+                                        <!-- Item -->
+                                        <div class="row mb-3">
+                                            <label for="profile_picture" class="col-sm-4 col-form-label">Mentor
+                                                Profile
+                                                Picture Update</label>
+                                            <div class="col-sm-8">
+                                                <input type="file" class="form-control" id="profile_picture" name=profile_picture" 
+                                                    accept="image/x-png,image/gif,image/jpeg">
+                                            </div>
+                                        </div>
+
+                                        <div class="row mb-3">
+                                            <label for="zoom_meeting_link" class="col-sm-4 col-form-label" style="font-size: 0.8rem;">ZOOM Personal Meeting Link (.edu Account)</label>
+                                            <div class="col-sm-8">
+                                                <input type="url" class="form-control" id="zoom_meeting_link" name="zoom_meeting_link" value="<%= counselor.zoom_meeting_link %>">
+                                                  
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="list-group-item p-3 mb-3 col-lg-3 col-md-6">
+                                            <div class="d-flex">
+                                                <div class="flex-shrink-0">
+                                                    <img class="avatar avatar-xs avatar-4x3" src="/assets/svg/brands/stripe-icon.svg" alt="Image Description">
+                                                </div>
+                                        
+                                                <div class="flex-grow-1 ms-3">
+                                                    <div class="row align-items-center">
+                                                        <div class="col">
+                                                            <h6 class="mb-1">Stripe</h6>
+                                                            <span class="d-block small text-body">Payments
+                                                            </span>
+                                                        </div>
+                                                        <!-- End Col -->
+                                        
+                                                        <div class="col-auto">
+                                                            <!-- Form Switch -->
+                                                            <div class="form-check form-switch">
+                                                                <% if(stripe_verified ){ %>
+                                        
+                                                                    <input onclick="return false;" class="form-check-input" type="checkbox"
+                                                                        id="connectedAccountsStripe" checked >
+                                        
+                                        
+                                                                    <% }else{ %>
+                                        
+                                                                        <input class="form-check-input" type="checkbox" id="connectedAccountsStripe" >
+                                        
+                                        
+                                        
+                                                                        <% } %>
+                                        
+                                                                            <label class="form-check-label" for="connectedAccountsStripe"></label>
+                                                            </div>
+                                                            <!-- End Form Switch -->
+                                                        </div>
+                                                        <!-- End Col -->
+                                                    </div>
+                                                    <!-- End Row -->
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+
+
+
+
+
+                                        <!-- Form -->
+
+
+
+                                        <div class="d-flex justify-content-end gap-3 mb-3">
+                                            <a class="btn btn-white" onclick="refreshPage()">Cancel</a>
+                                            <button class="btn btn-primary" type="submit">Save changes</a>
+                                        </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <script>
+
+                 let checkbox2 = document.getElementById('connectedAccountsStripe');
+
+                    checkbox2.addEventListener('change', function () {
+                        if (this.checked) {
+                            window.location.href = '/auth/stripe'; // Replace with your desired link
+                        }
+                    });
+
+
+
+            </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <!-- Sticky Block End Point -->
+            <div id="stickyBlockEndPoint"></div>
+        </div>
+    </div>
+    <!-- End Row -->
+</div>
+<!-- End Col -->
+
+<!-- End Changeable Content -->
+
+
+<script>
+    // Get a reference to the file input element
+    const fileInput = document.getElementById("profile_picture");
+
+    // Add an event listener to detect when a file is selected
+    fileInput.addEventListener("change", function () {
+        // Check if files were selected
+        if (fileInput.files.length > 0) {
+            const selectedFile = fileInput.files[0];
+
+            // Create a FileReader to read the image
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                const img = new Image();
+                img.src = e.target.result;
+
+                // Once the image is loaded, get its width and height
+                img.onload = function () {
+                    const width = img.width;
+                    const height = img.height;
+                    const aspectRatio = width / height;
+
+                    // Define a threshold for "closeness" to a square (80%)
+                    const threshold = 0.7;
+
+                    // Calculate the lower and upper bounds for aspect ratio
+                    const lowerBound = 1 - (1 - threshold) / 2;
+                    const upperBound = 1 + (1 - threshold) / 2;
+
+
+                    // Check if the height is less than 500 pixels
+                    if (!(aspectRatio >= lowerBound && aspectRatio <= upperBound)) {
+                        alert("Profile Image must be a square for best results.");
+                        // Clear the input field
+                        fileInput.value = "";
+                    }
+                };
+            };
+            reader.readAsDataURL(selectedFile);
+        }
+    });
+</script>

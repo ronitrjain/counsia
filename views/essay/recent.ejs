@@ -1,0 +1,133 @@
+<% layout('./layouts/boilerplate') %>
+
+<style>
+    .animate-charcter {
+        font-family: 'Kumbh Sans', sans-serif;
+        font-weight: 700;
+        text-transform: uppercase;
+        background-image: linear-gradient(-225deg,
+                #c94b4b 0%,
+                #4b134f 50%,
+                #c94b4b 100%);
+        background-size: auto auto;
+        background-clip: border-box;
+        background-size: 200% auto;
+        color: #fff;
+        background-clip: text;
+        text-fill-color: transparent;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: textclip 5s linear infinite;
+        display: inline-block;
+        font-size: 4rem;
+    }
+
+    @keyframes textclip {
+        to {
+            background-position: 200% center;
+        }
+    }
+</style>
+
+    <!-- Card Grid -->
+    <div class="container content-space-2 content-space-lg-3">
+
+
+        <div class="w-md-100 text-center mx-md-auto mb-3">
+            <h2 class="animate-charcter">Recent Essays</h2>
+           
+        </div>
+
+        <div class="w-md-100 text-center mb-9">
+            <h2 class="h1 cursive ">Look through some recently posted essays.</h2>
+        </div>
+        <div class="row pb-5 mb-10">
+
+            <% for (let essay of essays){ %>
+
+
+
+                <div class="col-lg-6 mb-3 mb-lg-5">
+                    <!-- Card -->
+                    <a class="card card-bordered card-transition h-100" href="/essay/<%= essay._id %>"
+                        style="background-image: url(/assets/img/others/bg.jpg);
+                        background-position: left top;
+                        background-size: contain;
+                        ">
+                        <div class="card-body">
+                            <!-- Media -->
+                            <div class="d-block d-sm-flex">
+                                <div class="flex-shrink-0">
+                                    <span class="svg-icon text-primary mb-2 mb-sm-0">
+                                    </span>
+                                </div>
+
+                                <div class="flex-grow-1 ms-sm-4">
+                                    <h3 class="card-title">
+                                        <img class="avatar-sm avatar-circle mb-2 mx-1 inline" src="/assets/img/Colleges/<%=  essay.university.replaceAll(" ", "_") + ".png" %>">
+                                        <%= essay.university %>
+                                        
+                                    </h3>
+
+                                    
+                               
+                                    
+                                    <p class="card-text text-black bold py-1" style="font-weight: 700;">
+                                    <%=essay.prompt.slice(0,100) + "..."%>
+                                        </p>
+
+                                        <p class="card-text text-black py-1">
+                                            <%=essay.essay.slice(0,300)+"..." %>
+                                        </p>
+
+                                        <div class="d-flex">
+                                            <div class="flex-shrink-0">
+                                                <!-- Avatar Group -->
+
+                                                <!-- End Avatar Group -->
+                                            </div>
+
+                                            <div class="flex-grow-1 ms-2 d-flex justify-content-end">
+                                                
+                                                <p class="card-text text-dark small">
+                                                    <span class="text-muted"></span>
+                                                   
+                                                    <%= essay.counselor.first_name + " " + essay.counselor.last_name%> (<%= essay.counselor.current_university%>)
+                                                    <img class="avatar-sm avatar-circle mb-2 mx-1 inline" src="<%= essay.counselor.profile_picture  %>">
+
+                                                </p>
+
+                                              
+                                            </div>
+
+                                           
+                                        </div>
+                                       
+                                </div>
+                            </div>
+                            <!-- End Media -->
+                        </div>
+                    </a>
+                    <!-- End Card -->
+                </div>
+                <!-- End Col -->
+
+                <% } %>
+
+
+        </div>
+        <!-- End Row -->
+
+
+    </div>
+    <!-- End Card Grid -->
+
+        <script>
+
+
+
+
+            document.title = "Recent Essays | College Counselor";
+
+            $('meta[name="description"]').attr("content", "Look through some recently posted essays by our mentors at top universities.");
+        </script>

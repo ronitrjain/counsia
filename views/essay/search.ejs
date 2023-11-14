@@ -1,0 +1,278 @@
+<% layout('./layouts/boilerplate') %>
+    <link rel="stylesheet" href="/assets/vendor/tom-select/dist/css/tom-select.bootstrap5.css">
+  
+
+    <style>
+        .animate-charcter {
+            font-family: 'Kumbh Sans', sans-serif;
+            font-weight: 700;
+            text-transform: uppercase;
+            background-image: linear-gradient(-225deg,
+                    #c94b4b 0%,
+                    #4b134f 50%,
+                    #c94b4b 100%);
+            background-size: auto auto;
+            background-clip: border-box;
+            background-size: 200% auto;
+            color: #fff;
+            background-clip: text;
+            text-fill-color: transparent;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: textclip 5s linear infinite;
+            display: inline-block;
+            font-size: 4rem;
+        }
+    
+        @keyframes textclip {
+            to {
+                background-position: 200% center;
+            }
+        }
+    </style>
+
+    <main id="content" role="main">
+
+        
+        <!-- Form -->
+        <div class=" container content-space-3 content-space-t-lg-4 content-space-b-lg-3">
+
+            <div class="w-md-100  text-center mx-md-auto mb-1 animate-charcter">
+             Essay Search
+            
+            </div>
+
+            <div class="w-md-100 text-center mb-3">
+                <h2 class="h1 cursive ">Search for essays that got accepted to your dream school.</h2>
+            </div>
+            <div class="flex-grow-1 mx-auto" style="max-width: 100rem;">
+
+                
+                <!-- List Directory -->
+                <div id="openRolesSection" class="container content-space-1">
+                    <!-- Heading -->
+                    
+                    <!-- End Heading -->
+
+                    <!-- Form -->
+                    <form onsubmit="return false;">
+                        <div class="row gx-2 gx-md-3 mb-7">
+
+
+                            <div class="col-md-10 mb-2 mb-md-0">
+                                <label class="form-label visually-hidden" for="searchCounselors">Search mentor</label>
+
+                                <!-- Form -->
+                                <div class="input-group input-group-merge">
+                                    <span class="input-group-prepend input-group-text">
+                                        <i class="bi-search"></i>
+                                    </span>
+                                    <input type="text" class="form-control form-control-lg" id="searchCounselors"
+                                        placeholder="Search by university, college, or prompt..."
+                                        aria-label="Search by university, college, or prompt...">
+                                </div>
+                                <!-- End Form -->
+                            </div>
+                            <!-- End Col -->
+
+
+
+
+                            <div class="col-md-2 col-sm-6">
+                                <button id="search_submit" class="btn btn-primary">
+                                    <i class="bi-arrow-right"></i>
+                                </button>
+                            </div>
+
+
+                            <!-- End Col -->
+                        </div>
+                        <!-- End Row -->
+                    </form>
+                    <!-- End Form -->
+
+
+                </div>
+                <!-- End List Directory -->
+                <div id="search-results" class="row mt-3 pb-5 mb-10">
+
+
+                    <!-- Content -->
+                    <div class="d-md-flex">
+                        <div
+                            class="container d-md-flex align-items-md-center content-space-t-3 content-space-b-1 content-space-b-md-3 content-space-md-0">
+                            <div class="row justify-content-md-between align-items-md-center flex-grow-1">
+                                <div class="col-9 col-md-5 mb-5 mb-md-0">
+                                    <img class="img-fluid" src="../assets/svg/illustrations/oc-yelling.svg"
+                                        alt="SVG Illustration">
+                                </div>
+                                <!-- End Col -->
+
+                                <div class="col-md-6">
+                                    <!-- Heading -->
+                                    <div class="mb-4">
+                                        <h1>Get Essay Inspiration</h1>
+                                        <p> Search through essays that worked. </p>
+                                    </div>
+                                    <!-- End Heading -->
+
+
+                                    <!-- End Row -->
+
+
+                                </div>
+                                <!-- End Col -->
+                            </div>
+                            <!-- End Row -->
+                        </div>
+                    </div>
+                    <!-- End Content -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    <!-- End Card -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+    <script src="/assets/vendor/tom-select/dist/js/tom-select.complete.min.js"></script>
+    <script src="/assets/js/theme.min.js"></script>
+
+
+    <script>
+        (function () {
+
+
+
+            // INITIALIZATION OF SELECT
+            // =======================================================
+            HSCore.components.HSTomSelect.init('.js-select', {
+                render: {
+                    'option': function (data, escape) {
+                        return data.optionTemplate || `<div>${data.text}</div>>`
+                    },
+                    'item': function (data, escape) {
+                        return data.optionTemplate || `<div>${data.text}</div>>`
+                    }
+                }
+            })
+
+
+
+
+
+
+
+        })()
+    </script>
+
+    <script>
+        jQuery(document).ready(function () {
+            jQuery('#search_submit').on('click', function () {
+                console.log('clicked');
+                const query = jQuery('#searchCounselors').val();
+                jQuery.get('/search/essays', { q: query }, function (data) {
+                    jQuery('#search-results').empty();
+
+                    data.forEach(function (essay) {
+
+                        var card = `
+                        <div class="col-lg-6 mb-3 mb-lg-5">
+                    <!-- Card -->
+                    <a class="card card-bordered card-transition h-100" href="/essay/${essay._id}"
+                        style="background-image: url(/assets/img/others/bg.jpg);
+                        background-position: left top;
+                        background-size: contain;
+                        ">
+                        <div class="card-body">
+                            <!-- Media -->
+                            <div class="d-block d-sm-flex">
+                                <div class="flex-shrink-0">
+                                    <span class="svg-icon text-primary mb-2 mb-sm-0">
+                                    </span>
+                                </div>
+
+                                <div class="flex-grow-1 ms-sm-4">
+                                    <h3 class="card-title">
+                                        <img class="avatar-sm avatar-circle mb-2 mx-1 inline" src="/assets/img/Colleges/${essay.university.replaceAll(" ", "_") + ".png"}">
+                                        ${essay.university}
+                                        
+                                    </h3>
+
+                                    
+                               
+                                    
+                                    <p class="card-text text-black bold py-1" style="font-weight: 700;">
+                                    ${essay.prompt.slice(0, 50) + "..."}
+                                        </p>
+
+                                        <p class="card-text text-black py-1">
+                                            ${essay.essay.slice(0, 400) + ((essay.essay.length < 400) ? "" : "...")}
+                                        </p>
+
+                                        <div class="d-flex">
+                                            <div class="flex-shrink-0">
+                                                <!-- Avatar Group -->
+
+                                                <!-- End Avatar Group -->
+                                            </div>
+
+                                            <div class="flex-grow-1 ms-2 d-flex justify-content-end">
+                                                
+                                                <p class="card-text text-dark small">
+                                                    <span class="text-muted"></span>
+                                                   
+                                                    ${essay.user.firstName + " " + essay.user.lastName} (${ essay.counselor.current_university})
+                                                    <img class="avatar-sm avatar-circle mb-2 mx-1 inline" src="${ essay.counselor.profile_picture  }">
+
+                                                </p>
+
+                                              
+                                            </div>
+
+                                           
+                                        </div>
+                                       
+                                </div>
+                            </div>
+                            <!-- End Media -->
+                        </div>
+                    </a>
+                    <!-- End Card -->
+                </div>
+                        `
+                        
+                        jQuery('#search-results').append(card);
+                    });
+                    if (data.length == 0) {
+                        jQuery('#search-results').append('<h3>No results found</h3>');
+                    }
+                }).fail(function (error) {
+                    console.log('Error:', error);
+                });
+            });
+        });
+    </script>
+
+        <script>
+
+
+
+
+            document.title = "Essay Search | Counsia"
+
+            $('meta[name="description"]').attr("content", "Read winning essays from our mentors. Get a better understanding of the college application process.");
+        </script>

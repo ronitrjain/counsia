@@ -1,0 +1,308 @@
+<% layout('./layouts/boilerplate') %>
+
+    <!-- ========== MAIN CONTENT ========== -->
+    <main id="content" role="main" class="bg-light">
+        <!-- Breadcrumb -->
+        <div class="navbar-dark bg-dark" style="background-image: url(./assets/svg/components/wave-pattern-light.svg);">
+            <div class="container content-space-1 content-space-b-lg-3">
+                <div class="row align-items-center">
+                    <div class="col">
+
+
+                    </div>
+
+
+
+                    <!-- Responsive Toggle Button -->
+                    <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#sidebarNav" aria-controls="sidebarNav" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                        <span class="navbar-toggler-default">
+                            <i class="bi-list"></i>
+                        </span>
+                        <span class="navbar-toggler-toggled">
+                            <i class="bi-x"></i>
+                        </span>
+                    </button>
+                    <!-- End Responsive Toggle Button -->
+                </div>
+                <!-- End Col -->
+            </div>
+            <!-- End Row -->
+        </div>
+        </div>
+        <!-- End Breadcrumb -->
+
+        <!-- Content -->
+        <div class="container content-space-1 content-space-t-lg-0 content-space-b-lg-2 mt-lg-n10">
+            <div class="row">
+                <div class="col-lg-3">
+                    <!-- Navbar -->
+                    <div class="navbar-expand-lg navbar-light">
+                        <div id="sidebarNav" class="collapse navbar-collapse navbar-vertical">
+                            <!-- Card -->
+                            <div class="card flex-grow-1 mb-5">
+                                <div class="card-body">
+                                    <!-- Avatar -->
+                                    <div class="d-none d-lg-block text-center mb-5">
+                                        <div class="avatar avatar-xxl avatar-circle mb-3">
+                                            <img class="avatar-img" src="<%= user.profile_picture %>"
+                                                alt="Profile Picture">
+
+                                        </div>
+
+                                        <h4 class="card-title mb-0">
+                                            <%=user.firstName %>
+                                                <%=user.lastName %>
+                                        </h4>
+                                        <p class="card-text small">
+                                            <%=user.email%>
+                                        </p>
+                                    </div>
+                                    <!-- End Avatar -->
+
+                                    <!-- Nav -->
+                                    <span class="text-cap">Account</span>
+
+                                    <!-- List -->
+                                    <ul class="nav nav-sm nav-tabs nav-vertical mb-4">
+                                        <li class="nav-item">
+                                            <a class="nav-link " href="/dashboardv2/personal">
+                                                <i class="bi-person-badge nav-icon"></i> Personal
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link " href="/dashboardv2/security">
+                                                <i class="bi-shield-shaded nav-icon"></i> Security
+                                            </a>
+                                        </li>
+
+                                    </ul>
+                                    <!-- End List -->
+
+                                    <span class="text-cap">Meetings</span>
+
+                                    <!-- List -->
+                                    <ul class="nav nav-sm nav-tabs nav-vertical mb-4">
+                                        <li class="nav-item">
+                                            <a class="nav-link " href="/dashboardv2/upcoming">
+                                                <i class="bi-basket nav-icon"></i> Upcoming
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link " href="/dashboardv2/past">
+                                                <i class="bi-heart nav-icon"></i> Past
+
+                                            </a>
+                                        </li>
+                                    </ul>
+                                    <!-- End List -->
+
+                                    <span class="text-cap">Billing</span>
+
+                                    <!-- List -->
+                                    <ul class="nav nav-sm nav-tabs nav-vertical mb-4">
+                                        <li class="nav-item">
+                                            <a class="nav-link " href="/dashboardv2/payments">
+                                                <i class="bi-credit-card nav-icon"></i> Payments
+                                            </a>
+                                        </li>
+
+
+                                    </ul>
+                                    <!-- End List -->
+                                    <%if(counselor){%>
+
+                                        <span class="text-cap">Counselor</span>
+
+                                        <!-- List -->
+                                        <ul class="nav nav-sm nav-tabs nav-vertical">
+                                            <li class="nav-item">
+                                                <a class="nav-link active " href="/dashboardv2/counselor">
+                                                    <i class="bi-credit-card nav-icon"></i> Personal
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link " href="/dashboardv2/counselor-schedule">
+                                                    <i class="bi-geo-alt nav-icon"></i> Schedule
+                                                </a>
+                                            </li>
+
+                                            <li class="nav-item">
+                                                <a class="nav-link  " href="/dashboardv2/counselor-past">
+                                                    <i class="bi-geo-alt nav-icon"></i> Past
+                                                </a>
+                                            </li>
+
+                                            <li class="nav-item">
+                                                <a class="nav-link  " href="/dashboardv2/counselor-upcoming">
+                                                    <i class="bi-geo-alt nav-icon"></i> Upcoming
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link " href="/dashboardv2/counselor-payments">
+                                                    <i class="bi-people nav-icon"></i> Payments
+
+                                                </a>
+                                            </li>
+                                        </ul>
+                                        <!-- End List -->
+                                        <%}%>
+
+                                            <div class="d-lg-none">
+                                                <div class="dropdown-divider"></div>
+
+                                                <!-- List -->
+                                                <ul class="nav nav-sm nav-tabs nav-vertical">
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" href="#">
+                                                            <i class="bi-box-arrow-right nav-icon"></i> Log out
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                                <!-- End List -->
+                                            </div>
+                                            <!-- End Nav -->
+                                </div>
+                            </div>
+                            <!-- End Card -->
+                        </div>
+                    </div>
+                    <!-- End Navbar -->
+                </div>
+                <!-- End Col -->
+
+                <div class="col-lg-9">
+                    <div class="d-grid gap-3 gap-lg-5">
+
+
+
+                        <!-- Card -->
+                        <div class="card">
+                            <div class="card-header border-bottom">
+                                <h4 class="card-header-title">Basic Counselor Info</h4>
+                            </div>
+
+                            <!-- Body -->
+                            <div class="card-body">
+                                <form action="/counselor/<%=counselor._id %>/info/update" method="POST"
+                                    enctype="multipart/form-data">
+                                    <div class="row mb-4">
+
+
+                                    </div>
+
+                                    <!-- Form -->
+                                    <div class="row mb-4">
+                                        <label for="firstNameLabel" class="col-sm-3 col-form-label form-label">Full name
+                                            <i class="bi-question-circle text-body ms-1" data-bs-toggle="tooltip"
+                                                data-bs-placement="top"
+                                                title="Only Visible to Those You Interact With"></i></label>
+
+                                        <div class="col-sm-9">
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" name="firstName"
+                                                    id="firstNameLabel" placeholder="Clarice" aria-label="Clarice"
+                                                    value="<%=counselor.first_name %>">
+                                                <input type="text" class="form-control" name="lastName"
+                                                    id="lastNameLabel" placeholder="Boone" aria-label="Boone"
+                                                    value="<%=counselor.last_name %>">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- End Form -->
+
+                                    <!-- Form -->
+                                    <div class="row mb-4">
+                                        <label for="bio" class="col-sm-3 col-form-label form-label">Bio</label>
+
+                                        <div class="col-sm-9">
+                                            <textarea type="text" class="form-control" name="bio"
+                                                id="bio"><%= counselor.bio  %> </textarea>
+                                        </div>
+                                    </div>
+
+
+
+
+
+                                    <!-- File Attachment Input -->
+                                    <div class=" row mb-3">
+                                        <label for="profile_picture" class="col-sm-4 col-form-label">Update Profile
+                                            Picture</label>
+                                        <div class="col-sm-8">
+                                            <input type="file" class=" form-control" id="profile_picture"
+                                                name="profile_picture">
+                                        </div>
+                                    </div>
+                                    <!-- End File Attachment Input -->
+
+
+
+
+
+
+
+
+
+                                    <% if(error!='' ) {%>
+
+                                        <div>
+                                            <p class="danger">
+                                                <%= error %>
+                                            </p>
+                                        </div>
+                                        <%}%>
+                                            <!-- End Form -->
+
+
+                                            <!-- End Item -->
+
+
+
+                                            <!-- Form -->
+
+
+                                            <div class="card-footer pt-0">
+                                                <div class="d-flex justify-content-end gap-3">
+                                                    <a class="btn btn-white" onclick="refreshPage()">Cancel</a>
+                                                    <button class="btn btn-primary" href="javascript:;">Save
+                                                        changes</a>
+                                                </div>
+                                            </div>
+                                </form>
+                            </div>
+                            <!-- End Body -->
+
+                            <!-- Footer -->
+
+                            <!-- End Footer -->
+                        </div>
+                        <!-- End Card -->
+
+
+
+
+                    </div>
+                </div>
+
+            </div>
+            <!-- End Row -->
+        </div>
+        <!-- End Content -->
+    </main>
+    <script>
+        function refreshPage() {
+            location.reload(); // Reloads or refreshes the current page
+        }
+    </script>
+
+    <script>
+        const checkbox = document.getElementById('connectedAccounts1');
+
+        checkbox.addEventListener('change', function () {
+            if (this.checked) {
+                window.location.href = '/auth/google'; // Replace with your desired link
+            }
+        });
+    </script>

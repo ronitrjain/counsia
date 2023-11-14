@@ -1,0 +1,83 @@
+<% layout('./layouts/boilerplate') %>
+
+    <main class="container content-space-3 content-space-t-lg-3 content-space-b-lg-2" role="main">
+
+        <!-- Content -->
+        <div class="container content-space-1">
+            <div class="mb-4">
+                <h3>About the user</h3>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-4 mb-4 mb-sm-0">
+                    <div class="mb-3">
+                        <img class="avatar avatar-xl avatar-circle" src="<%= user.profile_picture %>"
+                            alt="Image Description">
+                    </div>
+
+                    <ul class="list-unstyled list-py-1">
+                        <li><i class=" bi bi-person dropdown-item-icon"></i>
+                            <%= user.username%>
+
+
+                        </li>
+
+                        <li><i class=" bi bi-envelope dropdown-item-icon"></i>
+                            <%= user.email%>
+                        </li>
+
+                        <!-- SAT -->
+                        <li><i class=" bi bi-pencil dropdown-item-icon"></i>
+                            SAT: <%= user.SAT %>
+
+                        </li>
+                        <!-- ACT-->
+
+                        <li><i class=" bi bi-pencil dropdown-item-icon"></i>
+                            ACT: <%= user.ACT %>
+
+                        </li>
+
+                        <!-- GPA -->
+                        <li><i class=" bi bi-mortarboard dropdown-item-icon"></i>
+                            GPA: <%= user.gpa %>
+
+                        </li>
+
+                        <!-- MAjor -->
+                        <li><i class=" bi bi-book dropdown-item-icon"></i>
+                            Major: <%= user.major %>
+
+                        </li>
+
+
+                    </ul>
+                </div>
+                <!-- End Col -->
+
+                <div class="col-sm-8">
+                    <!-- Info -->
+                    <div class="mb-2">
+                        <h4 class="mb-2"><a >
+                                <%= user.firstName + " " + user.lastName %>
+                            </a></h4>
+                        <p>
+                            <span class="fw-semibold">Interested In:</span>
+                            <%= user.interested_universities.join(', ') %>
+
+                        </p>
+                        
+                    </div>
+
+                    <p>
+                        <span class="fw-semibold">Bio:</span> <%= user.bio %>
+                    </p>
+                    <!-- End Info -->
+                </div>
+                <!-- End Col -->
+            </div>
+            <!-- End Row -->
+        </div>
+        <!-- End Content -->
+
+    </main>

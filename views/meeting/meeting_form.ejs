@@ -1,0 +1,90 @@
+<% layout('./layouts/boilerplate') %>
+
+    <!-- Form -->
+    <div class="container content-space-2 content-space-lg-3">
+
+
+        <!-- Form -->
+        <div class="mx-auto" style="max-width: 40rem;">
+            <h2 class="text-center py-4">Meeting Details with <%= meeting.counselor.first_name + " "
+                    +meeting.counselor.last_name %> on <span class="format-date">
+                        <%=meeting.start%>
+                    </span> at <span class="format-time">
+                        <%=meeting.start%>
+                    </span>
+            </h2>
+
+            <p class="text-center">Fill out this information so the counselor has information on your application.</p>
+            <!-- Form -->
+            <form action="" method="POST">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <!-- Form -->
+                        <div class="mb-4">
+                            <label class="form-label" for="student_first_name">First name</label>
+                            <input type="text" class="form-control form-control-lg" name="student_first_name"
+                                id="student_first_name" placeholder="First name" aria-label="First name">
+                        </div>
+                        <!-- End Form -->
+                    </div>
+
+                    <div class="col-sm-6">
+                        <!-- Form -->
+                        <div class="mb-4">
+                            <label class="form-label" for="student_last_name">Last name</label>
+                            <input type="text" class="form-control form-control-lg" name="student_last_name"
+                                id="student_last_name" placeholder="Last name" aria-label="Last name">
+                        </div>
+                        <!-- End Form -->
+                    </div>
+                </div>
+                <!-- End Form -->
+
+                <!-- Form -->
+                <div class="mb-4">
+                    <label class="form-label" for="student_email">Email address</label>
+                    <input type="email" class="form-control form-control-lg" name="student_email" id="student_email"
+                        placeholder="email@site.com" aria-label="email@site.com">
+                </div>
+                <!-- End Form -->
+
+                <!-- Form -->
+
+                <!-- End Form -->
+
+                <!-- Select -->
+                <div class="mb-4">
+                    <label class="form-label" for="type">Type</label>
+                    <select name="type" id="type" class="form-select form-select-lg" aria-label="Meeting Type">
+                        <option value='essay' selected>Essay Help</option>
+                        <option value="interview">Interview Prep</option>
+                        <option value="strategy">Strategy Review</option>
+
+                    </select>
+                </div>
+                <!-- End Select -->
+
+                <!-- Form -->
+                <div class="mb-4">
+                    <label class="form-label" for="student_comments">Details</label>
+                    <textarea class="form-control form-control-lg" required name="student_comments"
+                        id="student_comments"
+                        placeholder="Tell your mentor about yourself and anything they might need to better help you in your meeting."
+                        aria-label="Tell your mentor about yourself and anything they might need to better help you in your meeting."
+                        rows="4"></textarea>
+                </div>
+                <!-- End Form -->
+
+                <div class="d-grid mb-2">
+                    <button type="submit" class="btn btn-primary btn-lg">Update Meeting Info</button>
+                </div>
+
+                <div class="text-center">
+                    <span class="form-text">Your mentor will get back to you shortly.</span>
+                </div>
+            </form>
+            <!-- End Form -->
+        </div>
+        <!-- End Form -->
+    </div>
+    <!-- End Form -->

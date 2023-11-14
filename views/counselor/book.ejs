@@ -1,0 +1,628 @@
+<% layout('./layouts/boilerplate') %>
+
+    <link rel="stylesheet" href="/assets/css/fullcalendar.css">
+    <link rel="stylesheet" href="/assets/vendor/tom-select/dist/css/tom-select.bootstrap5.css">
+
+
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js'></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+       <style>
+       @media (max-width: 767.98px) {
+    .fc .fc-toolbar.fc-header-toolbar {
+        display: block;
+        text-align: center;
+    }
+
+    .fc-header-toolbar .fc-toolbar-chunk {
+        display: block;
+    }
+    .fc{
+        font-size: 0.5rem;
+    }
+}
+
+       </style>
+
+
+
+
+    <script>
+        function validateForm() {
+            var selectedOptions = document.querySelectorAll('#session_select option:checked');
+
+            if (selectedOptions.length === 0) {
+                alert('Please select at least one session before checking out.');
+                return false; // Prevent form submission
+            }
+
+            // The form will be submitted if at least one option is selected
+            return true;
+        }
+    </script>
+
+    <script>
+
+
+        let counselor = <%- JSON.stringify(counselor) %>
+
+
+            document.addEventListener('DOMContentLoaded', function () {
+                var Calendar = FullCalendar.Calendar;
+
+                var containerEl = document.getElementById('external-events');
+                var calendarEl = document.getElementById('calendar');
+                var currentDate = new Date();
+
+                // Extract the year, month, and day from the current date
+                var year = currentDate.getFullYear();
+                var month = (currentDate.getMonth() + 1).toString().padStart(2, '0'); // Months are zero-based, so we add 1
+                var day = currentDate.getDate().toString().padStart(2, '0');
+
+                // Format the date as 'YYYY-MM-DD'
+                var formattedDate = year + '-' + month + '-' + day;
+
+
+                var calendar = new Calendar(calendarEl, {
+                    timeZone: 'local',
+
+                    headerToolbar: {
+                        left: 'prev,next today',
+                        center: 'title',
+                        right: 'timeGridWeek,timeGridDay'
+                    },
+                    events: counselor.events,
+                    selectable: true,
+                    initialView: 'timeGridWeek',
+                    eventOverlap: false,
+                    dateClick: function (arg) {
+                        console.log(arg.date.toUTCString());
+                    },
+                    eventClick: function (info) {
+                        ;
+                    },
+                    allDaySlot: false
+
+                });
+
+                calendar.render();
+
+
+            });
+
+    </script>
+
+    <div class="m-10">
+    </div>
+
+    <main id="content" role="main" class="m-4 p-4">
+        <form action="/counselor/book/<%= counselor.id  %>" method="POST" onsubmit="return validateForm()">
+
+            <!-- Hero -->
+            <div class="container content-space-1">
+                <div class="row">
+                    <div class="col-md-7 mb-7 mb-md-0">
+                        <div class="pe-md-4">
+                            <div class="card-pinned">
+                                <!-- Swiper Main Slider -->
+                                <div id='calendar-container'>
+                                    <div id='calendar'></div>
+                                </div>
+                                <!-- End Swiper Main Slider -->
+
+                                <!-- Swiper Thumb Slider -->
+
+                                <!-- End Swiper Thumb Slider -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Col -->
+
+                    <div class="col-md-5">
+                        <!-- Rating -->
+
+                        <!-- End Rating -->
+
+                        <!-- Heading -->
+                        <div class="mb-5">
+                            <h1 class="h2"> Book Sessions With <%= counselor.first_name + " " + counselor.last_name %>
+                                    </p>
+                        </div>
+                        <!-- End Heading -->
+
+                        <!-- Price -->
+                        <div class="mb-5">
+                            <span class="d-block mb-2">Session price:</span>
+                            <div class="d-flex align-items-center">
+                                <h3 class="mb-0">$59.99</h3>
+                                <span class="ms-2"><del>$69.99</del></span>
+                            </div>
+                        </div>
+                        <!-- End Price -->
+                        <%if(error!=""){%>
+                            <p class="text-danger">
+                                <%= error %>
+                            </p>
+
+
+
+                            <% } %>
+
+                                <!-- Quantity -->
+                                <div class="mb-3">
+                                    <div class=" row align-items-center">
+                                        <div class="col">
+                                            <label for="session_select" class="d-block small mb-3">Select
+                                                Session</label>
+
+
+                                            <div class="tom-select-custom mb-3">
+                                                <select required id="session_select" class="js-select form-select"
+                                                    multiple name="booked_events" data-hs-tom-select-options='{
+                                                                                "width": "100%",
+                                                                                "hideSearch": false
+                                                                              }' placeholder="Book Session Times">
+                                                    <% for(let event of bookable_events) {%>
+                                                        <option class="format-date" value="<%= event.id%>" id="<%= event.id %>"> <%= event.start %></option>
+                                                        <% } %>
+                                                </select>
+                                            </div>
+                                            <!-- End Select -->
+                                        </div>
+
+                                    </div>
+
+
+
+
+                                </div>
+                                <!-- End Col -->
+
+
+                                <!-- End Col -->
+                                <!-- End Row -->
+                                <!-- End Quantity -->
+
+                                <!-- Accordion -->
+                                <div class="accordion mb-5" id="shopCartAccordion">
+                                    <!-- Collapse -->
+                                    <div class="accordion-item">
+                                        <a class="accordion-button collapsed" href="#" role="button"
+                                            data-bs-toggle="collapse" data-bs-target="#shopCartAccordionCollapseOne"
+                                            aria-expanded="false" aria-controls="shopCartAccordionCollapseOne">
+                                            <div class="d-flex align-items-center">
+                                                <div class="flex-shrink-0">
+                                                    <span class="svg-icon svg-icon-sm text-primary">
+
+                                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                            xmlns="http://www.w3.org/2000/svg">
+                                                            <rect opacity="0.3" x="3" y="3" width="18" height="18"
+                                                                rx="9" fill="#035A4B" />
+                                                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                                                d="M8.42647 12H7.23529C7.23529 14.6315 9.36852 16.7647 12 16.7647C14.6315 16.7647 16.7647 14.6315 16.7647 12C16.7647 9.36853 14.6315 7.23529 12 7.23529C10.8231 7.23529 9.71618 7.66521 8.8607 8.4153L8.70962 8.30952C8.37305 8.07385 7.91166 8.3222 7.92302 8.73291L7.96298 10.178C7.97224 10.5127 8.30136 10.7439 8.61932 10.639L9.99538 10.1855C10.3863 10.0566 10.4628 9.53709 10.1256 9.30103L9.8755 9.12587C10.4798 8.6783 11.2189 8.42647 12 8.42647C13.9736 8.42647 15.5735 10.0264 15.5735 12C15.5735 13.9736 13.9736 15.5735 12 15.5735C10.0264 15.5735 8.42647 13.9736 8.42647 12Z"
+                                                                fill="#035A4B" />
+                                                        </svg>
+
+                                                </div>
+                                                <div class="flex-grow-1 ms-3">
+                                                    Screened Mentors
+                                                </div>
+                                            </div>
+                                        </a>
+
+                                        <div id="shopCartAccordionCollapseOne" class="accordion-collapse collapse"
+                                            data-bs-parent="#shopCartAccordion">
+                                            <div class="accordion-body">
+                                                <p class="mb-0">Mentors are thouroughly screened before being listed.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- End Collapse -->
+
+                                    <!-- Collapse -->
+                                    <div class="accordion-item">
+                                        <a class="accordion-button collapsed" href="#" role="button"
+                                            data-bs-toggle="collapse" data-bs-target="#shopCartAccordionCollapseTwo"
+                                            aria-expanded="false" aria-controls="shopCartAccordionCollapseTwo">
+                                            <div class="d-flex align-items-center">
+                                                <div class="flex-shrink-0">
+                                                    <span class="svg-icon svg-icon-sm text-primary">
+                                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                            xmlns="http://www.w3.org/2000/svg">
+                                                            <path opacity="0.3"
+                                                                d="M18 10V20C18 20.6 18.4 21 19 21C19.6 21 20 20.6 20 20V10H18Z"
+                                                                fill="#035A4B" />
+                                                            <path opacity="0.3"
+                                                                d="M11 10V17H6V10H4V20C4 20.6 4.4 21 5 21H12C12.6 21 13 20.6 13 20V10H11Z"
+                                                                fill="#035A4B" />
+                                                            <path opacity="0.3"
+                                                                d="M10 10C10 11.1 9.1 12 8 12C6.9 12 6 11.1 6 10H10Z"
+                                                                fill="#035A4B" />
+                                                            <path opacity="0.3"
+                                                                d="M18 10C18 11.1 17.1 12 16 12C14.9 12 14 11.1 14 10H18Z"
+                                                                fill="#035A4B" />
+                                                            <path opacity="0.3" d="M14 4H10V10H14V4Z" fill="#035A4B" />
+                                                            <path opacity="0.3" d="M17 4H20L22 10H18L17 4Z"
+                                                                fill="#035A4B" />
+                                                            <path opacity="0.3" d="M7 4H4L2 10H6L7 4Z" fill="#035A4B" />
+                                                            <path
+                                                                d="M6 10C6 11.1 5.1 12 4 12C2.9 12 2 11.1 2 10H6ZM10 10C10 11.1 10.9 12 12 12C13.1 12 14 11.1 14 10H10ZM18 10C18 11.1 18.9 12 20 12C21.1 12 22 11.1 22 10H18ZM19 2H5C4.4 2 4 2.4 4 3V4H20V3C20 2.4 19.6 2 19 2ZM12 17C12 16.4 11.6 16 11 16H6C5.4 16 5 16.4 5 17C5 17.6 5.4 18 6 18H11C11.6 18 12 17.6 12 17Z"
+                                                                fill="#035A4B" />
+                                                        </svg>
+
+
+
+
+
+
+                                                    </span>
+                                                </div>
+                                                <div class="flex-grow-1 ms-3">
+                                                    Zoom Link
+                                                </div>
+                                            </div>
+                                        </a>
+
+                                        <div id="shopCartAccordionCollapseTwo" class="accordion-collapse collapse"
+                                            data-bs-parent="#shopCartAccordion">
+                                            <div class="accordion-body">
+                                                <p class="mb-0">We utiilize Zoom for our meetings. The meeting
+                                                    links will
+                                                    automatically be added to your Counsia Calendar as well as emailed to
+                                                    you.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- End Collapse -->
+                                </div>
+                                <!-- End Accordion -->
+
+                                <div class="d-grid mb-4">
+                                    <button type="submit" class="btn btn-primary btntransition">Checkout</button>
+                                </div>
+
+                                <!-- Media -->
+                                <div class="d-flex align-items-center">
+                                    <div class="flex-shrink-0">
+                                        <div class="svg-icon svg-icon-sm text-primary">
+                                        </div>
+                                    </div>
+                                    <div class="flex-grow-1 ms-2">
+                                        <span class="small me-1">Need Help?</span>
+                                        <a class="link small" href="/contact">Contact now</a>
+                                    </div>
+                                </div>
+                                <!-- End Media -->
+                    </div>
+                </div>
+
+                
+
+            </div>
+        </form>
+
+        <div class=" my-10">
+            <div class=" mt-3 ">
+            
+                <div class="row mb-1 d-flex justify-content-center ">
+                    <div class="rounded-4 card card-transition card-mentor border border-3 border-dark background-img col-md-10"
+                        href="#">
+            
+            
+                        <div class="card-body m-0 p-3">
+                            <h2 class="card-title h2 cursive_bold p-0 m-0">
+                                <%= counselor.first_name + " " +counselor.last_name%>
+                                    <img class="avatar mb-2"
+                                        src="/assets/img/Colleges/<%=counselor.current_university.replaceAll(" ",  "_") %>.png">
+                            </h2>
+                            <div class="row">
+                                <div class="col-lg-4 order-lg-2 mb-2 mb-lg-1">
+                                    <div class="d-flex flex-column h-100">
+                                        <div class="mb-3">
+            
+            
+            
+                                        </div>
+            
+                                        <!-- Testimonials -->
+                                        <div class=" shadow-none">
+            
+                                            <h2 class="text-center mb-2 h2">Accepted Universities</h2>
+            
+                                            <div class="card-body p-0 m-0 rounded-2">
+            
+            
+            
+            
+                                                <% for (let university of counselor.accepted_universities){ %>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+                                                    <img class="avatar  m-1"
+                                                        src="/assets/img/Colleges/<%=university.replaceAll(" ", "_") %>.png"
+                                                    alt="<%=`https:
+                                                        //ui-avatars.com/api/?name=${university.substring(0,1)}+${university.substring(1,2)}size=128`%>
+                                                        ">
+            
+                                                        <% } %>
+            
+            
+            
+            
+            
+            
+                                                            <!-- End Blockquote -->
+            
+                                            </div>
+            
+                                        </div>
+            
+                                        <div class="mt-3 mb-1 d-flex  justify-content-end">
+                                            <a href="/counselor/<%= counselor._id %>" id="book-now"
+                                                class="btn btn-dark cursive w-100">Read Full Application</a>
+                                        </div>
+                                        <!-- End Testimonials -->
+                                    </div>
+                                </div>
+                                <!-- End Col -->
+            
+                                <div class="col-lg-3 overflow-auto">
+            
+            
+                                    <h6 class="">
+            
+            
+                                        <%=counselor.major %> - <%= counselor.current_university %>
+            
+            
+                                    </h6>
+            
+            
+            
+            
+            
+                                    <div class="">
+                                        <div class="d-flex align-items-center flex-wrap">
+                                            <!-- Rating -->
+                                            <div class="d-flex gap-1">
+                                                <% for(let i=0; i<Math.floor(counselor.average_rating);i++){%>
+            
+            
+            
+            
+            
+                                                    <img src="/assets/svg/illustrations/star.svg" alt="Review rating" width="22">
+            
+            
+                                                    <% } %>
+            
+                                                        <img src="/assets/svg/illustrations/star.svg" alt="Review rating"
+                                                            width="22">
+            
+                                                        <% for(let i=4; i>Math.floor(counselor.average_rating);i--){%>
+            
+            
+            
+            
+            
+                                                            <img src="/assets/svg/illustrations/star-muted.svg" alt="Review rating"
+                                                                width="22">
+            
+            
+                                                            <% } %>
+            
+                                            </div>
+                                            <!-- End Rating -->
+                                            <div class="ms-1">
+                                                <span class="fw-semibold text-dark me-1">
+                                                    <%=Math.round(counselor.average_rating*100) /100 %>
+                                                </span>
+                                                <span class="text-dark-70">
+                                                    <%=counselor.total_reviews %>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="flex-shrink-0 justify-content-center align-items-center">
+                                        <img class="avatar avatar-circle flex-grow-1 my-1" src="<%= counselor.profile_picture  %>"
+                                            alt="Image Description" style="min-width: 100px; max-width: 200px; height: auto;">
+                                    </div>
+            
+                                    <p class="card-text text-body cursive">
+            
+                                        <%= counselor.bio %>
+                                    </p>
+            
+                                    <div class="row">
+            
+                                    </div>
+                                    <!-- End Row -->
+                                </div>
+            
+                                <div class="col-lg-5">
+            
+                                    <h2 class="card-title px-md-6 pt-2  cursive_bold">Application Summary</h2>
+            
+                                    <div class="row">
+            
+            
+                                        <div class="col-lg-6">
+            
+                                            <li class="h4 my-2" style="font-weight: 500;">
+                                                <span>Ethnicity:</span>
+                                                <span>
+                                                    <%= counselor.race %>
+                                                </span>
+            
+                                            </li>
+                                            <li class="h4 my-2" style="font-weight: 500;">
+                                                <span>International:</span>
+                                                <span>
+                                                    <%= counselor.international %>
+                                                </span>
+            
+                                            </li>
+                                            <li class="h4 my-2" style="font-weight: 500;">
+                                                <span>Low-Income:</span>
+                                                <span>
+                                                    <%= counselor.low_income %>
+                                                </span>
+            
+                                            </li>
+            
+                                            <li class="h4 my-2" style="font-weight: 500;">
+                                                <span>First-Gen:</span>
+                                                <span>
+                                                    <%= counselor.first_gen %>
+                                                </span>
+            
+                                            </li>
+            
+            
+            
+            
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <li class="h4 my-2" style="font-weight: 500;">
+                                                <span>GPA:</span>
+                                                <span>
+                                                    <%= counselor.gpa %>
+                                                </span>
+            
+                                            </li>
+            
+                                            <li class="h4 my-2" style="font-weight: 500;">
+                                                <span>SAT:</span>
+                                                <span>
+                                                    <%= counselor.SAT %>
+                                                </span>
+            
+                                            </li>
+            
+                                            <li class="h4 my-2" style="font-weight: 500;">
+                                                <span>ACT:</span>
+                                                <span>
+                                                    <%= counselor.ACT %>
+                                                </span>
+            
+                                            </li>
+            
+                                            <li class="h4 my-2" style="font-weight: 500;">
+                                                <span>AP/IB/DE:</span>
+                                                <span>
+                                                    <%= counselor.classes.length %>
+                                                </span>
+            
+                                            </li>
+            
+            
+            
+                                        </div>
+            
+            
+            
+            
+            
+            
+                                    </div>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+                                </div>
+            
+                                <!-- End Col -->
+                            </div>
+                            <!-- End Row -->
+                        </div>
+                    </div>
+                </div>
+                <!-- End Row -->
+            </div>
+
+        </div>
+
+
+
+        <script>
+                // Get all option elements
+                var options = document.getElementsByTagName('option');
+
+                // Loop through and set their inner text to "hello"
+                for (var i = 0; i < options.length; i++) {
+                    let text = options[i].textContent;
+                    console.log(text);
+
+                    let date = new Date(text.trim());
+
+                    //TURN DATE into local date-time
+
+
+
+                    options[i].textContent = "Open Session: " + date.toLocaleString();
+                
+                }
+        </script>
+
+        
+
+    </main>
+
+</div>
+    <script src="/assets/vendor/tom-select/dist/js/tom-select.complete.min.js"></script>
+    <script src="/assets/js/theme.min.js"></script>
+
+
+
+    <script>
+        (function () {
+            // INITIALIZATION OF FILE ATTACH
+            HSCore.components.HSTomSelect.init('.js-select', {
+                render: {
+                    'option': function (data, escape) {
+                        return data.optionTemplate || `<div>${data.text}</div>>`
+                    },
+                    'item': function (data, escape) {
+                        return data.optionTemplate || `<div>${data.text}</div>>`
+                    }
+                }
+            })
+
+
+
+
+
+
+
+
+        })()
+    </script>
+
+            <script>
+
+                document.title = "Book Sessions With " + counselor.first_name + " | Counsia"
+
+                $('meta[name="description"]').attr("content", "Book sessions with mentors at Counsia. Our mentors are screened and have been accepted to top universities.");
+            </script>
+
+
+

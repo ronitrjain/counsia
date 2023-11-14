@@ -1,0 +1,287 @@
+<% layout('./layouts/boilerplate') %>
+
+    <!-- ========== MAIN CONTENT ========== -->
+    <main id="content" role="main" class="bg-light">
+        <!-- Breadcrumb -->
+        <div class="navbar-dark bg-dark" style="background-image: url(./assets/svg/components/wave-pattern-light.svg);">
+            <div class="container content-space-1 content-space-b-lg-3">
+                <div class="row align-items-center">
+                    <div class="col">
+
+
+                    </div>
+                    <!-- End Col -->
+
+
+
+                    <!-- Responsive Toggle Button -->
+                    <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#sidebarNav" aria-controls="sidebarNav" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                        <span class="navbar-toggler-default">
+                            <i class="bi-list"></i>
+                        </span>
+                        <span class="navbar-toggler-toggled">
+                            <i class="bi-x"></i>
+                        </span>
+                    </button>
+                    <!-- End Responsive Toggle Button -->
+                </div>
+                <!-- End Col -->
+            </div>
+            <!-- End Row -->
+        </div>
+        </div>
+        <!-- End Breadcrumb -->
+
+        <!-- Content -->
+        <div class="container content-space-1 content-space-t-lg-0 content-space-b-lg-2 mt-lg-n10">
+            <div class="row">
+                <div class="col-lg-3">
+                    <!-- Navbar -->
+                    <div class="navbar-expand-lg navbar-light">
+                        <div id="sidebarNav" class="collapse navbar-collapse navbar-vertical">
+                            <!-- Card -->
+                            <div class="card flex-grow-1 mb-5">
+                                <div class="card-body">
+                                    <!-- Avatar -->
+                                    <div class="d-none d-lg-block text-center mb-5">
+                                        <div class="avatar avatar-xxl avatar-circle mb-3">
+                                            <img class="avatar-img" src="<%= user.profile_picture %>"
+                                                alt="Profile Picture">
+
+                                        </div>
+
+                                        <h4 class="card-title mb-0">
+                                            <%=user.firstName %>
+                                                <%=user.lastName %>
+                                        </h4>
+                                        <p class="card-text small">
+                                            <%=user.email%>
+                                        </p>
+                                    </div>
+                                    <!-- End Avatar -->
+
+                                    <!-- Nav -->
+                                    <span class="text-cap">Account</span>
+
+                                    <!-- List -->
+                                    <ul class="nav nav-sm nav-tabs nav-vertical mb-4">
+                                        <li class="nav-item">
+                                            <a class="nav-link " href="/dashboard/personal">
+                                                <i class="bi-person-badge nav-icon"></i> Personal
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/dashboard/security">
+                                                <i class="bi-shield-shaded nav-icon"></i> Security
+                                            </a>
+                                        </li>
+
+                                    </ul>
+                                    <!-- End List -->
+
+                                    <span class="text-cap">Meetings</span>
+
+                                    <!-- List -->
+                                    <ul class="nav nav-sm nav-tabs nav-vertical mb-4">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/dashboard/upcoming">
+                                                <i class="bi-basket nav-icon"></i> Upcoming
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link active" href="/dashboard/past">
+                                                <i class="bi-heart nav-icon"></i> Past
+
+                                            </a>
+                                        </li>
+                                    </ul>
+                                    <!-- End List -->
+
+                                    <span class="text-cap">Billing</span>
+
+                                    <!-- List -->
+                                    <ul class="nav nav-sm nav-tabs nav-vertical mb-4">
+                                        <li class="nav-item">
+                                            <a class="nav-link " href="/dashboard/payments">
+                                                <i class="bi-credit-card nav-icon"></i> Payments
+                                            </a>
+                                        </li>
+
+
+                                    </ul>
+                                    <!-- End List -->
+                                    <%if(counselor){%>
+
+                                        <span class="text-cap">Counselor</span>
+
+                                        <!-- List -->
+                                        <ul class="nav nav-sm nav-tabs nav-vertical">
+                                            <li class="nav-item">
+                                                <a class="nav-link " href="/dashboard/counselor-personal">
+                                                    <i class="bi-credit-card nav-icon"></i> Personal
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link " href="/dashboard/counselor-schedule">
+                                                    <i class="bi-geo-alt nav-icon"></i> Schedule
+                                                </a>
+                                            </li>
+
+                                            <li class="nav-item">
+                                                <a class="nav-link  " href="/dashboard/counselor-past">
+                                                    <i class="bi-geo-alt nav-icon"></i> Past
+                                                </a>
+                                            </li>
+
+                                            <li class="nav-item">
+                                                <a class="nav-link  " href="/dashboard/counselor-upcoming">
+                                                    <i class="bi-geo-alt nav-icon"></i> Upcoming
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link " href="/dashboard/counselor-payments">
+                                                    <i class="bi-people nav-icon"></i> Payments
+
+                                                </a>
+                                            </li>
+                                        </ul>
+                                        <!-- End List -->
+                                        <%}%>
+
+                                            <div class="d-lg-none">
+                                                <div class="dropdown-divider"></div>
+
+                                                <!-- List -->
+                                                <ul class="nav nav-sm nav-tabs nav-vertical">
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" href="#">
+                                                            <i class="bi-box-arrow-right nav-icon"></i> Log out
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                                <!-- End List -->
+                                            </div>
+                                            <!-- End Nav -->
+                                </div>
+                            </div>
+                            <!-- End Card -->
+                        </div>
+                    </div>
+                    <!-- End Navbar -->
+                </div>
+                <!-- End Col -->
+
+                <div class="col-lg-9">
+                    <!-- Card -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-header-title">Your Past Meetings</h5>
+                        </div>
+
+                        <!-- Table -->
+                        <div class="table-responsive">
+
+                            <% if(meetings.length==0) {%>
+
+                                <div class="container m-5 p-5">
+
+                                    <h2>You have no past <span
+                                            class="text-primary text-highlight-warning">meetings.</span></h2>
+                                </div>
+
+
+                                <% }else{ %>
+
+
+
+                                    <table
+                                        class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table">
+                                        <thead class="thead-light">
+                                            <tr>
+                                                <th>Counselor</th>
+                                                <th>Date</th>
+                                                <th>Time</th>
+                                                <th style="width: 5%;">Meeting Link</th>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody>
+
+                                            <% for(let meeting of meetings) {%>
+                                                <tr>
+                                                    <td>
+                                                        <div class="d-flex align-items-center">
+                                                            <div class="flex-shrink-0">
+                                                                <img class="avatar avatar-sm avatar-circle"
+                                                                    src="<%= meeting.counselor.profile_picture %>"
+                                                                    alt="Image Description">
+                                                            </div>
+
+                                                            <div class="flex-grow-1 ms-3">
+                                                                <a class="d-inline-block link-dark" href="#">
+                                                                    <h6 class="text-hover-primary mb-0">
+
+                                                                        <%= meeting.counselor.first_name %>
+                                                                            <%= meeting.counselor.last_name %>
+
+
+                                                                                <img class="avatar avatar-xss ms-1"
+                                                                                    src="../assets/svg/illustrations/top-vendor.svg"
+                                                                                    alt="Image Description"
+                                                                                    data-bs-toggle="tooltip"
+                                                                                    data-bs-placement="top"
+                                                                                    title="Verified user">
+                                                                    </h6>
+                                                                </a>
+                                                                <small class="d-block">
+                                                                    <%= meeting.counselor.current_university %>
+                                                                </small>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <!-- Select -->
+                                                        <%= formatTimeString(meeting.start, 'date' ) %>
+
+
+                                                            <!-- End Select -->
+                                                    </td>
+                                                    <td>
+                                                        <!-- Select -->
+                                                        <%= formatTimeString(meeting.start, 'time' )%>
+
+                                                            <!-- End Select -->
+                                                    </td>
+                                                    <td>
+                                                        <a href="<%= meeting.zoom_meeting_link%>">Click Here</a>
+
+                                                    </td>
+                                                </tr>
+                                                <%}%>
+
+
+
+
+                                        </tbody>
+                                    </table>
+                                    <% } %>
+                        </div>
+                        <!-- End Table -->
+
+                        <!-- Footer -->
+
+                    </div>
+                    <!-- End Card -->
+
+                </div>
+                <!-- End Row -->
+
+                <!-- End Content -->
+    </main>
+    <script>
+        function refreshPage() {
+            location.reload(); // Reloads or refreshes the current page
+        }
+    </script>

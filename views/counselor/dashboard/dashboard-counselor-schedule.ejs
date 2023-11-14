@@ -1,0 +1,408 @@
+<% layout('./layouts/boilerplate') %>
+    <link rel="stylesheet" href="/assets/css/fullcalendar.css">
+
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js'></script>
+
+    <script>
+
+        let counselor = <%- JSON.stringify(counselor) %>
+
+
+            document.addEventListener('DOMContentLoaded', function () {
+                var Calendar = FullCalendar.Calendar;
+                var Draggable = FullCalendar.Draggable;
+
+                var containerEl = document.getElementById('external-events');
+                var calendarEl = document.getElementById('calendar');
+                var currentDate = new Date();
+
+                // Extract the year, month, and day from the current date
+                var year = currentDate.getFullYear();
+                var month = (currentDate.getMonth() + 1).toString().padStart(2, '0'); // Months are zero-based, so we add 1
+                var day = currentDate.getDate().toString().padStart(2, '0');
+
+                // Format the date as 'YYYY-MM-DD'
+                var formattedDate = year + '-' + month + '-' + day;
+
+                // initialize the external events
+                // -----------------------------------------------------------------
+
+                new Draggable(containerEl, {
+                    itemSelector: '.fc-event',
+                    eventData: function (eventEl) {
+                        return {
+                            title: eventEl.innerText,
+                            backgroundColor: '#3888D8',
+                            borderColor: '#3888D8',
+                            textColor: 'white',
+                            extendedProps: {
+                                isBooked: false,
+                                isSelected: false
+                            },
+                            editable: true,
+                            durationEditable: false,
+                            overlap: false,
+                            id: Date.now() + Math.floor(Math.random() * 1000)
+
+                        };
+                    }
+                });
+
+                // initialize the calendar
+                // -----------------------------------------------------------------
+
+                var calendar = new Calendar(calendarEl, {
+                    timeZone: 'local',
+
+                    headerToolbar: {
+                        left: 'prev,next today',
+                        center: 'title',
+                        right: 'timeGridWeek,timeGridDay'
+                    },
+                    events: counselor.events,
+                    initialView: 'timeGridWeek',
+                    eventOverlap: false,
+
+
+                    eventAllow: function (dropInfo, draggedEvent) {
+                        if (dropInfo.start < new Date()) {
+                            return false;
+                        }
+                        return true;
+                    },
+                    allDaySlot: false,
+
+
+                    dateClick: function (arg) {
+                        console.log(arg.date.toUTCString());
+                    },
+
+
+
+
+                    editable: true,
+
+                    droppable: true, // this allows things to be dropped onto the calendar
+                    drop: function (info) {
+                        calendar.render();
+
+
+                    },
+                    eventClick: function (info) {
+                        //delete event
+                        if (info.event.extendedProps.isBooked == false) {
+                            info.event.remove();
+                        }
+                        else {
+                            alert('You cannot delete a booked session')
+                        }
+                    }
+                });
+
+                calendar.render();
+
+
+                let saveButton = document.getElementById('save-button');
+
+                saveButton.addEventListener('click', async function () {
+                    let calendar_events = await calendar.getEvents();
+                    let events = [];
+                    for (let i = 0; i < calendar_events.length; i++) {
+                        let event = calendar_events[i];
+                        let extendedProps = {
+                            isBooked: false,
+                            isSelected: false
+                        }
+                        event.extendedProps = extendedProps;
+                        let backgroundColor = '3888D8'
+                        if (event.extendedProps.isBooked) {
+                            backgroundColor = 'FF0000'
+                        }
+                        event.backgroundColor = backgroundColor;
+
+                        events.push(event)
+
+                    }
+                    //stringify events
+                    events = JSON.stringify(events);
+
+                    data = {
+                        events
+                    }
+                    const params = new URLSearchParams(data);
+
+
+
+                    fetch('/dashboard/counselor-schedule', {
+                        method: 'POST',
+                        headers: {
+                            //form
+                            'Content-Type': 'application/x-www-form-urlencoded'
+                        },
+                        body: params.toString()
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            console.log('Success:', data);
+                            window.location.href = '/dashboard/counselor-schedule';
+                        })
+                        .catch((error) => {
+                            console.error('Error:', error);
+                        })
+
+
+
+
+                });
+
+            });
+
+    </script>
+    <!-- ========== MAIN CONTENT ========== -->
+    <main id="content" role="main" class="bg-light">
+        <!-- Breadcrumb -->
+        <div class="navbar-dark bg-dark" style="background-image: url(/assets/svg/components/wave-pattern-light.svg);">
+            <div class="container content-space-1 content-space-b-lg-3">
+                <div class="row align-items-center">
+                    <div class="col">
+
+                    
+                    </div>
+
+
+
+                    <!-- Responsive Toggle Button -->
+                    <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#sidebarNav" aria-controls="sidebarNav" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                        <span class="navbar-toggler-default">
+                            <i class="bi-list"></i>
+                        </span>
+                        <span class="navbar-toggler-toggled">
+                            <i class="bi-x"></i>
+                        </span>
+                    </button>
+                    <!-- End Responsive Toggle Button -->
+                </div>
+                <!-- End Col -->
+            </div>
+            <!-- End Row -->
+        </div>
+        </div>
+        <!-- End Breadcrumb -->
+
+        <!-- Content -->
+        <div class="container content-space-1 content-space-t-lg-0 content-space-b-lg-2 mt-lg-n10">
+            <div class="row">
+                <div class="col-lg-3">
+                    <!-- Navbar -->
+                    <div class="navbar-expand-lg navbar-light">
+                        <div id="sidebarNav" class="collapse navbar-collapse navbar-vertical">
+                            <!-- Card -->
+                            <div class="card flex-grow-1 mb-5">
+                                <div class="card-body">
+                                    <!-- Avatar -->
+                                    <div class="d-none d-lg-block text-center mb-5">
+                                        <div class="avatar avatar-xxl avatar-circle mb-3">
+                                            <img class="avatar-img" src="<%= user.profile_picture %>"
+                                                alt="Profile Picture">
+
+                                        </div>
+
+                                        <h4 class="card-title mb-0">
+                                            <%=user.firstName %>
+                                                <%=user.lastName %>
+                                        </h4>
+                                        <p class="card-text small">
+                                            <%=user.email%>
+                                        </p>
+                                    </div>
+                                    <!-- End Avatar -->
+
+                                    <!-- Nav -->
+                                    <span class="text-cap">Account</span>
+
+                                    <!-- List -->
+                                    <ul class="nav nav-sm nav-tabs nav-vertical mb-4">
+                                        <li class="nav-item">
+                                            <a class="nav-link " href="/dashboard/personal">
+                                                <i class="bi-person-badge nav-icon"></i> Personal
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link " href="/dashboard/security">
+                                                <i class="bi-shield-shaded nav-icon"></i> Security
+                                            </a>
+                                        </li>
+
+                                    </ul>
+                                    <!-- End List -->
+
+                                    <span class="text-cap">Meetings</span>
+
+                                    <!-- List -->
+                                    <ul class="nav nav-sm nav-tabs nav-vertical mb-4">
+                                        <li class="nav-item">
+                                            <a class="nav-link " href="/dashboard/upcoming">
+                                                <i class="bi-basket nav-icon"></i> Upcoming
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link " href="/dashboard/past">
+                                                <i class="bi-heart nav-icon"></i> Past
+
+                                            </a>
+                                        </li>
+                                    </ul>
+                                    <!-- End List -->
+
+                                    <span class="text-cap">Billing</span>
+
+                                    <!-- List -->
+                                    <ul class="nav nav-sm nav-tabs nav-vertical mb-4">
+                                        <li class="nav-item">
+                                            <a class="nav-link " href="/dashboard/payments">
+                                                <i class="bi-credit-card nav-icon"></i> Payments
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link " href="/dashboard-methods">
+                                                <i class="bi-geo-alt nav-icon"></i> Methods
+                                            </a>
+                                        </li>
+
+                                    </ul>
+                                    <!-- End List -->
+                                    <%if(counselor){%>
+
+                                        <span class="text-cap">Counselor</span>
+
+                                        <!-- List -->
+                                        <ul class="nav nav-sm nav-tabs nav-vertical">
+                                            <li class="nav-item">
+                                                <a class="nav-link " href="/dashboard/counselor-personal">
+                                                    <i class="bi-credit-card nav-icon"></i> Personal
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link active " href="/dashboard/counselor-schedule">
+                                                    <i class="bi-geo-alt nav-icon"></i> Schedule
+                                                </a>
+                                            </li>
+
+                                            <li class="nav-item">
+                                                <a class="nav-link  " href="/dashboard/counselor-past">
+                                                    <i class="bi-geo-alt nav-icon"></i> Past
+                                                </a>
+                                            </li>
+
+                                            <li class="nav-item">
+                                                <a class="nav-link  " href="/dashboard/counselor-upcoming">
+                                                    <i class="bi-geo-alt nav-icon"></i> Upcoming
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link " href="/dashboard/counselor-payments">
+                                                    <i class="bi-people nav-icon"></i> Payments
+
+                                                </a>
+                                            </li>
+                                        </ul>
+                                        <!-- End List -->
+                                        <%}%>
+
+                                            <div class="d-lg-none">
+                                                <div class="dropdown-divider"></div>
+
+                                                <!-- List -->
+                                                <ul class="nav nav-sm nav-tabs nav-vertical">
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" href="#">
+                                                            <i class="bi-box-arrow-right nav-icon"></i> Log out
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                                <!-- End List -->
+                                            </div>
+                                            <!-- End Nav -->
+                                </div>
+                            </div>
+                            <!-- End Card -->
+                        </div>
+                    </div>
+                    <!-- End Navbar -->
+                </div>
+                <!-- End Col -->
+
+
+
+
+
+                <div class=" col-lg-9">
+                    <!-- Card -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-header-title">Your Calendar</h4>
+                        </div>
+
+                        <div class="container p-5">
+                            <div class="col-12 mb-4"" id='external-events'>
+
+                                <div class=" card card-lg card-transition h-100 text-center "" href=" #">
+                                <div class="card-body">
+                                    <div class="mb-4">
+
+                                    </div>
+                                    <h3 class="card-title">Add Sessions </h3>
+                                    <p class="card-text text-body">Drag The Open Session Blocks Onto The Calendar To
+                                        Make Open Sessions. Click on the session to delete it. You can only add future
+                                        sessions.</p>
+                                </div>
+                                <div
+                                    class="card-footer pt-0 d-flex flex-column align-items-center justify-content-center">
+                                    <div id="open-session-event"
+                                        class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event'>
+                                        <div class='fc-event-main'> Open Session</div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+
+
+
+
+
+
+                        </div>
+
+
+
+
+                        <div id='calendar-container'>
+                            <div id='calendar'></div>
+                        </div>
+
+                        <div class="mt-4">
+                            <button id="save-button" class="btn btn-primary"> Save </button>
+                        </div>
+
+                    </div>
+
+
+
+
+
+
+                </div>
+                <!-- End Card -->
+            </div>
+            <!-- End Col -->
+        </div>
+        <!-- End Row -->
+        </div>
+        <!-- End Content Section -->
+    </main>
+    <!-- ========== END MAIN CONTENT ========== -->

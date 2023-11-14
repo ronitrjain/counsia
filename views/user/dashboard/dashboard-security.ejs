@@ -1,0 +1,244 @@
+<% layout('./layouts/boilerplate') %>
+
+    <!-- ========== MAIN CONTENT ========== -->
+    <main id="content" role="main" class="bg-light">
+        <!-- Breadcrumb -->
+        <div class="navbar-dark bg-dark" style="background-image: url(./assets/svg/components/wave-pattern-light.svg);">
+            <div class="container content-space-1 content-space-b-lg-3">
+                <div class="row align-items-center">
+                    <div class="col">
+
+                        <!-- Breadcrumb -->
+
+                        <!-- End Breadcrumb -->
+                    </div>
+                    <!-- End Col -->
+
+
+
+                    <!-- Responsive Toggle Button -->
+                    <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#sidebarNav" aria-controls="sidebarNav" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                        <span class="navbar-toggler-default">
+                            <i class="bi-list"></i>
+                        </span>
+                        <span class="navbar-toggler-toggled">
+                            <i class="bi-x"></i>
+                        </span>
+                    </button>
+                    <!-- End Responsive Toggle Button -->
+                </div>
+                <!-- End Col -->
+            </div>
+            <!-- End Row -->
+        </div>
+        </div>
+        <!-- End Breadcrumb -->
+
+        <!-- Content -->
+        <div class="container content-space-1 content-space-t-lg-0 content-space-b-lg-2 mt-lg-n10">
+            <div class="row">
+                <div class="col-lg-3">
+                    <!-- Navbar -->
+                    <div class="navbar-expand-lg navbar-light">
+                        <div id="sidebarNav" class="collapse navbar-collapse navbar-vertical">
+                            <!-- Card -->
+                            <div class="card flex-grow-1 mb-5">
+                                <div class="card-body">
+                                    <!-- Avatar -->
+                                    <div class="d-none d-lg-block text-center mb-5">
+                                        <div class="avatar avatar-xxl avatar-circle mb-3">
+                                            <img class="avatar-img" src="<%= user.profile_picture %>"
+                                                alt="Profile Picture">
+
+                                        </div>
+
+                                        <h4 class="card-title mb-0">
+                                            <%=user.firstName %>
+                                                <%=user.lastName %>
+                                        </h4>
+                                        <p class="card-text small">
+                                            <%=user.email%>
+                                        </p>
+                                    </div>
+                                    <!-- End Avatar -->
+
+                                    <!-- Nav -->
+                                    <span class="text-cap">Account</span>
+
+                                    <!-- List -->
+                                    <ul class="nav nav-sm nav-tabs nav-vertical mb-4">
+                                        <li class="nav-item">
+                                            <a class="nav-link " href="/dashboard/personal">
+                                                <i class="bi-person-badge nav-icon"></i> Personal
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link active" href="/dashboard/security">
+                                                <i class="bi-shield-shaded nav-icon"></i> Security
+                                            </a>
+                                        </li>
+
+                                    </ul>
+                                    <!-- End List -->
+
+                                    <span class="text-cap">Meetings</span>
+
+                                    <!-- List -->
+                                    <ul class="nav nav-sm nav-tabs nav-vertical mb-4">
+                                        <li class="nav-item">
+                                            <a class="nav-link " href="/dashboard/upcoming">
+                                                <i class="bi-basket nav-icon"></i> Upcoming
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link " href="/dashboard/past">
+                                                <i class="bi-heart nav-icon"></i> Past
+
+                                            </a>
+                                        </li>
+                                    </ul>
+                                    <!-- End List -->
+
+                                    <span class="text-cap">Billing</span>
+
+                                    <!-- List -->
+                                    <ul class="nav nav-sm nav-tabs nav-vertical mb-4">
+                                        <li class="nav-item">
+                                            <a class="nav-link " href="/dashboard/payments">
+                                                <i class="bi-credit-card nav-icon"></i> Payments
+                                            </a>
+                                        </li>
+
+
+                                    </ul>
+                                    <!-- End List -->
+                                    <%if(counselor){%>
+
+                                        <span class="text-cap">Counselor</span>
+
+                                        <!-- List -->
+                                        <ul class="nav nav-sm nav-tabs nav-vertical">
+                                            <li class="nav-item">
+                                                <a class="nav-link " href="/dashboard/counselor-personal">
+                                                    <i class="bi-credit-card nav-icon"></i> Personal
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link " href="/dashboard/counselor-schedule">
+                                                    <i class="bi-geo-alt nav-icon"></i> Schedule
+                                                </a>
+                                            </li>
+
+                                            <li class="nav-item">
+                                                <a class="nav-link  " href="/dashboard/counselor-past">
+                                                    <i class="bi-geo-alt nav-icon"></i> Past
+                                                </a>
+                                            </li>
+
+                                            <li class="nav-item">
+                                                <a class="nav-link  " href="/dashboard/counselor-upcoming">
+                                                    <i class="bi-geo-alt nav-icon"></i> Upcoming
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link " href="/dashboard/counselor-payments">
+                                                    <i class="bi-people nav-icon"></i> Payments
+
+                                                </a>
+                                            </li>
+                                        </ul>
+                                        <!-- End List -->
+                                        <%}%>
+
+                                            <div class="d-lg-none">
+                                                <div class="dropdown-divider"></div>
+
+                                                <!-- List -->
+                                                <ul class="nav nav-sm nav-tabs nav-vertical">
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" href="#">
+                                                            <i class="bi-box-arrow-right nav-icon"></i> Log out
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                                <!-- End List -->
+                                            </div>
+                                            <!-- End Nav -->
+                                </div>
+                            </div>
+                            <!-- End Card -->
+                        </div>
+                    </div>
+                    <!-- End Navbar -->
+                </div>
+                <!-- End Col -->
+
+                <div class="col-lg-9">
+                    <div class="d-grid gap-3 gap-lg-5">
+                        <div class="card">
+                            <div class="card-header border-bottom">
+                                <div class="d-flex align-items-center">
+                                    <h5 class="card-header-title">Password Reset</h5>
+                                    <span class="badge bg-soft-danger text-danger ms-2">Email</span>
+                                </div>
+                            </div>
+
+                            <!-- Body -->
+                            <div class="card-body">
+                                <p class="card-text">Want to change your password? Enter an email and we'll send you a
+                                    password
+                                    reset link.</p>
+
+                                <form action="/password-reset" method="POST">
+                                    <!-- Form -->
+                                    <div class="row mb-4">
+                                        <label for="accountEmailLabel"
+                                            class="col-sm-3 col-form-label form-label">Account Email</label>
+
+                                        <div class="col-sm-9">
+                                            <input type="email" class="form-control" name="email" id="accountEmailLabel"
+                                                placeholder="Enter account email" aria-label="Enter current password">
+                                            <small class="form-text">This is the email you use to log in to your
+                                                Counsia account.</small>
+                                        </div>
+                                    </div>
+                                    <!-- End Form -->
+
+                                    <%if(error!=""){%>
+                                        <p class="text-danger">
+                                            <%= error %>
+                                        </p>
+
+
+
+                                        <% } %>
+
+                                            <div class="d-flex justify-content-end">
+                                                <button type="submit" class="btn btn-primary">Send</button>
+                                            </div>
+                                </form>
+                            </div>
+                            <!-- End Body -->
+                        </div>
+                        <!-- End Card -->
+
+
+                    </div>
+                    <!-- End Card -->
+
+                    <!-- Card -->
+                </div>
+            </div>
+
+        </div>
+        <!-- End Row -->
+
+        <!-- End Content -->
+    </main>
+    <script>
+        function refreshPage() {
+            location.reload(); // Reloads or refreshes the current page
+        }
+    </script>

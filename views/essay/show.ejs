@@ -1,0 +1,327 @@
+<% layout('./layouts/boilerplate') %>
+
+
+    <style>
+        .btn-grad {
+            background-image: linear-gradient(-225deg,
+                    #c94b4b 0%,
+                    #4b134f 50%,
+                    #c94b4b 100%);
+            background-size: auto auto;
+
+
+            background-size: 200%;
+            animation: anime 7s linear infinite;
+            color: white;
+            margin-bottom: 0%;
+        }
+
+
+        @keyframes anime {
+            to {
+                background-position: 200% center;
+            }
+        }
+
+        .card-mentor {
+       -webkit-box-shadow: -8px 13px 16px -3px rgba(0,0,0,0.49);
+-moz-box-shadow: -8px 13px 16px -3px rgba(0,0,0,0.49);
+box-shadow: -8px 13px 16px -3px rgba(0,0,0,0.49);
+
+        }
+    </style>
+    <!-- Hero -->
+
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@200;300;400;600&display=swap" rel="stylesheet">
+
+
+
+
+    <div class="bg-dark" style="background-image: url(/assets/svg/components/wave-pattern-light.svg);">
+        <div class="container content-space-2 content-space-lg-3">
+            <div class="w-lg-65 text-center mx-lg-auto">
+                <span class="badge text-dark rounded-pill mb-3 cursive" style="background-color: #FFF1E2;">
+                    <%= essay.university %>
+                </span>
+                <h1 class="text-white mb-0 cursive">
+                    <%= essay.prompt.slice(0,200) + ((essay.prompt.length>200)? "..." :"") %>
+                </h1>
+            </div>
+        </div>
+    </div>
+    <!-- End Hero -->
+
+    <!-- Content -->
+    <div class="container content-space-2 content-space-lg-0 ">
+        <div class="row ">
+            <div class="col-lg-4 mt-lg-n10 mb-8 mb-lg-0">
+                <!-- Sticky Block -->
+                <div class="">
+                    <div class="">
+
+
+                        <!-- Card -->
+                        <div class="p-4 rounded-4 card  card-transition card-mentor background-img p-3 d-flex justify-content-center align-items-center flex-end"
+                            style="background-color: #FFF1E2;">
+                            <h2 class="card-title h2 cursive_bold">
+                                <%= author.first_name%>
+                                    <img class="avatar avatar-circle mb-2"
+                                        src="/assets/img/Colleges/<%=author.current_university.replaceAll(" ",  "_")
+                                        %>.png">
+                            </h2>
+
+                            <h6 class="">
+
+
+                                <%=author.major %> - <%= author.current_university %>
+
+
+                            </h6>
+
+
+
+
+
+                            <div class="">
+                                <div class="d-flex align-items-center flex-wrap">
+                                    <!-- Rating -->
+                                    <div class="d-flex gap-1">
+                                        <% for(let i=0; i<Math.floor(author.average_rating);i++){%>
+
+
+
+
+
+                                            <img src="/assets/svg/illustrations/star.svg" alt="Review rating"
+                                                width="22">
+
+
+                                            <% } %>
+
+                                                <img src="/assets/svg/illustrations/star.svg" alt="Review rating"
+                                                    width="22">
+
+                                                <% for(let i=4; i>Math.floor(author.average_rating);i--){%>
+
+
+
+
+
+                                                    <img src="/assets/svg/illustrations/star-muted.svg"
+                                                        alt="Review rating" width="22">
+
+
+                                                    <% } %>
+
+                                    </div>
+                                    <!-- End Rating -->
+                                    <div class="ms-1">
+                                        <span class="fw-semibold text-dark me-1">
+                                            <%=Math.round(author.average_rating*100) /100 %>
+                                        </span>
+                                        <span class="text-dark-70">
+                                            <%=author.total_reviews %>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex-shrink-0 justify-content-center align-items-center">
+                                <img class="avatar avatar-circle flex-grow-1 my-1" src="<%= author.profile_picture  %>"
+                                    alt="Image Description" style="min-width: 150px; max-width: 300px; height: auto;">
+                            </div>
+
+                            <p class="card-text text-body cursive text-center">
+
+                                <%= author.bio %>
+                            </p>
+
+                            <div class="mt-3 mb-2 d-flex b justify-content-end">
+                                <a href="/counselor/<%= author._id %>" id="book-now"
+                                    class="btn btn-grad cursive w-100 rounded-2">Read Full Application</a>
+                            </div>
+
+                            <div class="row">
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- End Card -->
+                    </div>
+
+                </div>
+
+
+                <!-- Sticky Block -->
+            </div>
+
+            <!-- End Col -->
+
+            <div class="col-lg-8 content-space-t-lg-2 mb-8">
+
+
+
+
+                <% if(isCreator){ %>
+                    <form action="<%=essay._id  %>/edit" method="POST" class="ps-lg-4 mb-5">
+
+
+
+                        <textarea required type="text" class=" my-2 form-control form-control-lg" id="prompt"
+                            aria-label="prompt" name="prompt" rows="5"><%-essay.prompt %></textarea>
+
+
+
+                        <!-- End Sticky End Point -->
+                        <textarea required type="text" class=" form-control form-control-lg " id="essay_text"
+                            aria-label="essay_text" name="essay_text" rows="10"><%-essay.essay %></textarea>
+
+
+                        <button type="submit" class="btn btn-primary btn-sm transition-3d-hover my-3">Edit</button>
+
+                    </form>
+
+                    <% }else{ %>
+
+
+                        <div class="ps-lg-4 text-dark ">
+
+                            <b>
+
+                                <%-essay.prompt.trim() %>
+                            </b>
+
+
+
+                            <!-- End Sticky End Point -->
+                        </div>
+                        <div class="ps-lg-4 text-dark" style="white-space: pre-line;">
+
+
+                            <%=essay.essay.trim() %>
+
+
+                        </div>
+                        <% } %>
+
+
+
+
+
+            </div>
+
+        </div>
+
+
+
+        <!-- End Col -->
+    </div>
+
+
+    <!-- Card Grid -->
+    <div class="container content-space-b-2 content-space-b-lg-3 cursive">
+        <!-- Heading -->
+        <div class="w-md-75 w-lg-50 text-center mx-md-auto mt-4 mb-5 mb-md-9">
+            <h2> Essays</h2>
+            <p>Read other popular essays.</p>
+        </div>
+        <!-- End Heading -->
+
+        <div class="row">
+
+            <% for(let essay of essays){%>
+
+                <div class="col-sm-6 col-lg-4 mb-4">
+                    <!-- Card -->
+                    <div class="card bg-dark h-100"
+                        style="background-image: url(/assets/svg/components/wave-pattern-light.svg);">
+                        <!-- Card Body -->
+                        <div class="card-body">
+                            <div class="mb-5">
+
+                                <img class="avatar  m-1" src="/assets/img/Colleges/<%=essay.university.replaceAll(" ","_") %>.png"
+                                alt="
+                                ">
+
+                                <span class="badge bg-primary">
+                                    <%=essay.university%>
+                                </span>
+                            </div>
+
+                            <h3 class="card-title">
+                                <a class="text-white cursive" href="/essay/<%=essay._id %>">
+                                    <%= essay.prompt.slice(0,30) + "..." %>
+                                </a>
+                            </h3>
+
+                            <p class="text-white-70 cursive">
+                                <%= essay.essay.slice(0,400) + "..." %>
+                            </p>
+                        </div>
+                        <!-- End Card Body -->
+
+                        <!-- Card Footer -->
+                        <div class="card-footer">
+                            <div class="d-flex align-items-center">
+                                <div class="flex-shrink-0 avatar-group avatar-group-xs">
+                                    <a class="avatar avatar-xs avatar-circle" href="/essay/<%=essay._id %>"
+                                        data-bs-toggle="tooltip" data-bs-placement="top" title="Aaron Larsson">
+                                        <img class="avatar-img" src="<%= essay.counselor.profile_picture %>"
+                                            alt="Image Description">
+                                    </a>
+                                </div>
+
+                                <div class="flex-grow-1">
+                                    <div class="d-flex justify-content-end">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End Card Footer -->
+                    </div>
+                    <!-- End Card -->
+                </div>
+                <!-- End Col -->
+
+
+                <% } %>
+
+
+
+
+
+
+
+
+
+        </div>
+        <!-- End Row -->
+    </div>
+
+
+    <!-- End Row -->
+    <!-- End Content -->
+
+
+    <!-- End Row -->
+
+
+
+    <!-- JS Implementing Plugins -->
+
+    <script>
+        let essay = <%- JSON.stringify(essay) %>;
+
+        let college = essay.university;
+
+
+
+
+        document.title = college + " Essay| Counsia";
+
+        $('meta[name="description"]').attr("content", essay.prompt.slice(0, 200) + "...");
+    </script>
